@@ -1,0 +1,13 @@
+name: example
+description: A example of altive_lints.
+version: 1.0.0
+environment:
+  sdk: '>=2.16.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  altive_lints:
+    path: ..
