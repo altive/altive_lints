@@ -1,4 +1,4 @@
-# https://dart-lang.github.io/linter/lints/
+# https://dart-lang.github.io/linter/lints/options/options.html
 linter:
   rules:
     - always_declare_return_types
