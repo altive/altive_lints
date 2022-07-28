@@ -68,10 +68,6 @@ linter:
     public_member_api_docs: false
 
     # Incompatible with `prefer_final_locals`
-    # Having immutable local variables makes larger functions more predictible
+    # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.
     unnecessary_final: false
-
-    # There are many warnings in cases where there is no problem.
-    # Also, using `useIsMounted` in `flutter_hooks` does not resolve the warning after checking the mount status.
-    use_build_context_synchronously: false
