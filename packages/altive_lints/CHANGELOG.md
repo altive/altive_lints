@@ -1,3 +1,7 @@
+## 1.3.0
+
+ - **FEAT**: re-enable `use_build_context_synchronously`. ([1ec61e89](https://github.com/altive/altive_lints/commit/1ec61e89389d9b53ce8ae703eb559039854cebd0))
+
 ## 1.2.0
 
  - **FEAT**: disable `use_build_context_synchronously`. ([c347f646](https://github.com/altive/altive_lints/commit/c347f646be1b736c8cb9733f9c1a02be1d19b901))
