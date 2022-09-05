@@ -1,3 +1,10 @@
+## 1.4.0
+
+ - **FEAT**: enable rules. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
+ - **FEAT**: re-enable `use_build_context_synchronously`. ([1ec61e89](https://github.com/altive/altive_lints/commit/1ec61e89389d9b53ce8ae703eb559039854cebd0))
+ - **FEAT**: disable `use_build_context_synchronously`. ([c347f646](https://github.com/altive/altive_lints/commit/c347f646be1b736c8cb9733f9c1a02be1d19b901))
+ - **FEAT**: enable `require_trailing_commas`. ([a46b8ec6](https://github.com/altive/altive_lints/commit/a46b8ec678d96b2f35f76984704c5f5551b982f3))
+
 ## 1.3.0
 
  - **FEAT**: re-enable `use_build_context_synchronously`. ([1ec61e89](https://github.com/altive/altive_lints/commit/1ec61e89389d9b53ce8ae703eb559039854cebd0))
