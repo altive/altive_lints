@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2022-09-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`altive_lints` - `v1.4.0`](#altive_lints---v140)
+
+---
+
+#### `altive_lints` - `v1.4.0`
+
+ - **FEAT**: add rules. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
+   - `combinators_ordering`
+   - `discarded_futures`
+   - `unnecessary_null_aware_operator_on_extension_on_nullable`
+   - `unnecessary_to_list_in_spreads`
+   - `unreachable_from_main`
+   - `use_string_in_part_of_directives`
+ - **FEAT**: remove `invariant_booleans` as it has been deprecated. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
+
+
 ## 2022-07-28
 
 ### Changes

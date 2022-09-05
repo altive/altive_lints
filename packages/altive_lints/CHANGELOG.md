@@ -1,3 +1,14 @@
+## 1.4.0
+
+ - **FEAT**: add rules. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
+   - `combinators_ordering`
+   - `discarded_futures`
+   - `unnecessary_null_aware_operator_on_extension_on_nullable`
+   - `unnecessary_to_list_in_spreads`
+   - `unreachable_from_main`
+   - `use_string_in_part_of_directives`
+ - **FEAT**: remove `invariant_booleans` as it has been deprecated. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
+
 ## 1.3.0
 
  - **FEAT**: re-enable `use_build_context_synchronously`. ([1ec61e89](https://github.com/altive/altive_lints/commit/1ec61e89389d9b53ce8ae703eb559039854cebd0))
