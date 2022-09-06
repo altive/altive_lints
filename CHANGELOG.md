@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2022-09-06
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`altive_lints` - `v1.5.0`](#altive_lints---v150)
+
+---
+
+#### `altive_lints` - `v1.5.0`
+
+ - **FEAT**: remove analyzer exclude specification. ([c26891c8](https://github.com/altive/altive_lints/commit/c26891c839a274d7cd1b10449008f53d73d5df86))
+
+
 ## 2022-09-05
 
 ### Changes

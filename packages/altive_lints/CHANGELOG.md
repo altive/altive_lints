@@ -1,3 +1,7 @@
+## 1.5.0
+
+ - **FEAT**: remove analyzer exclude specification. ([c26891c8](https://github.com/altive/altive_lints/commit/c26891c839a274d7cd1b10449008f53d73d5df86))
+
 ## 1.4.0
 
  - **FEAT**: add rules. ([c1582022](https://github.com/altive/altive_lints/commit/c158202243e7079470f7556359a5dcf923557ea5))
