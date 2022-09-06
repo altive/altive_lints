@@ -1,9 +1,5 @@
 include: all_lint_rules.yaml
 analyzer:
-  exclude:
-    - "**/*.g.dart"
-    - "**/*.mocks.dart"
-    - "**/generated_plugin_registrant.dart"
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
@@ -52,7 +48,7 @@ linter:
 
     # Too heavy for application. Preferable to enable in public packages
     prefer_asserts_with_message: false
-    
+
     # Conflicts with `prefer_single_quotes`
     # Single quotes are easier to type and don't compromise on readability.
     prefer_double_quotes: false
