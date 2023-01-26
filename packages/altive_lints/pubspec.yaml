@@ -4,8 +4,4 @@ version: 1.5.0
 homepage: https://github.com/altive/altive_lints
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
-
-dependencies:
-
-dev_dependencies:
+  sdk: ">=2.19.0 <3.0.0"
