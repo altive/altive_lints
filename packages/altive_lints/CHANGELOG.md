@@ -1,3 +1,7 @@
+## 1.6.0
+
+ - **FEAT**: update all_lint_rules with Flutter 3.7/Dart 2.19. ([f464f8d3](https://github.com/altive/altive_lints/commit/f464f8d3765733a627533fb770128c1abe1b2781))
+
 ## 1.5.0
 
  - **FEAT**: remove analyzer exclude specification. ([c26891c8](https://github.com/altive/altive_lints/commit/c26891c839a274d7cd1b10449008f53d73d5df86))
