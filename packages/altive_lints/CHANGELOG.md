@@ -1,19 +1,19 @@
 ## 1.6.0
 
- - **FEAT**: update all_lint_rules with Flutter 3.7/Dart 2.19. ([f464f8d3](https://github.com/altive/altive_lints/commit/f464f8d3765733a627533fb770128c1abe1b2781))
-  -  remove from all_lint_rules as it has been deprecated
-    - always_require_non_null_named_parameters
-    - avoid_returning_null
-    - avoid_returning_null_for_future
-    - prefer_equal_for_default_values
+ - **FEAT**: update `all_lint_rules.yaml` with Flutter 3.7 / Dart 2.19. ([f464f8d3](https://github.com/altive/altive_lints/commit/f464f8d3765733a627533fb770128c1abe1b2781))
+   - remove from `all_lint_rules.yaml` as it has been deprecated
+     - `always_require_non_null_named_parameters`
+     - `avoid_returning_null`
+     - `avoid_returning_null_for_future`
+     - `prefer_equal_for_default_values`
 
-  -  add new rules
-    - collection_methods_unrelated_type
-    - dangling_library_doc_comments
-    - enable_null_safety
-    - implicit_call_tearoffs
-    - library_annotations
-    - unnecessary_library_directive
+   - add new rules
+     - `collection_methods_unrelated_type`
+     - `dangling_library_doc_comments`
+     - `enable_null_safety`
+     - `implicit_call_tearoffs`
+     - `library_annotations`
+     - `unnecessary_library_directive`
 
 ## 1.5.0
 
