@@ -2,8 +2,10 @@
     "dart.runPubGetOnPubspecChanges": false,
     "cSpell.words": [
         "bools",
+        "combinators",
         "interps",
         "ints",
+        "tearoffs",
         "todos"
     ]
 }
