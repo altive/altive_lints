@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-01-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`altive_lints` - `v1.6.0`](#altive_lints---v160)
+
+---
+
+#### `altive_lints` - `v1.6.0`
+
+ - **FEAT**: update all_lint_rules with Flutter 3.7/Dart 2.19. ([f464f8d3](https://github.com/altive/altive_lints/commit/f464f8d3765733a627533fb770128c1abe1b2781))
+
+
 ## 2022-09-06
 
 ### Changes
