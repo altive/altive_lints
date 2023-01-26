@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`altive_lints` - `v1.6.1`](#altive_lints---v161)
+
+---
+
+#### `altive_lints` - `v1.6.1`
+
+ - **DOCS**: fix changelog indents. ([58280f76](https://github.com/altive/altive_lints/commit/58280f76634cfa3ec817fc3499751b99f809245c))
+
+
+## 2023-01-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`altive_lints` - `v1.6.0`](#altive_lints---v160)
 
 ---

@@ -1,3 +1,7 @@
+## 1.6.1
+
+ - **DOCS**: fix changelog indents. ([58280f76](https://github.com/altive/altive_lints/commit/58280f76634cfa3ec817fc3499751b99f809245c))
+
 ## 1.6.0
 
  - **FEAT**: update `all_lint_rules.yaml` with Flutter 3.7 / Dart 2.19. ([f464f8d3](https://github.com/altive/altive_lints/commit/f464f8d3765733a627533fb770128c1abe1b2781))
