@@ -1,0 +1,9 @@
+{
+    "dart.runPubGetOnPubspecChanges": false,
+    "cSpell.words": [
+        "bools",
+        "interps",
+        "ints",
+        "todos"
+    ]
+}
