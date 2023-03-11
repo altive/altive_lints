@@ -11,5 +11,5 @@ dev_dependencies:
 
 ## Usage
 
-1. Copy [analysis_options.yaml](https://github.com/altive/altive_lints/blob/main/example/analysis_options.yaml) to your project root.
+1. Copy [analysis_options.yaml](https://github.com/altive/altive_lints/blob/main/packages/altive_lints/example/analysis_options.yaml) to your project root.
 2. Add your rules if needed.
