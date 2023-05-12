@@ -1,3 +1,17 @@
+## 1.7.0
+
+ - **FEAT**: update all_lint_rules.yaml with Flutter 3.10 / Dart 3.0 ([#2](https://github.com/altive/altive_lints/issues/2)). ([1f4c5abf](https://github.com/altive/altive_lints/commit/1f4c5abfcde549a4ed14a505129f9e7e84b17893))
+   - add new rules to `all_lint_rules.yaml`
+     - `deprecated_member_use_from_same_package`
+     - `implicit_reopen`
+     - `invalid_case_patterns`
+     - `matching_super_parameters`
+     - `no_literal_bool_comparisons`
+     - `type_literal_in_constant_pattern`
+     - `unnecessary_breaks`
+   - remove from `all_lint_rules.yaml`
+     - `enable_null_safety`
+
 ## 1.6.1
 
  - **DOCS**: fix changelog indents. ([58280f76](https://github.com/altive/altive_lints/commit/58280f76634cfa3ec817fc3499751b99f809245c))
@@ -10,7 +24,6 @@
      - `avoid_returning_null`
      - `avoid_returning_null_for_future`
      - `prefer_equal_for_default_values`
-
    - add new rules
      - `collection_methods_unrelated_type`
      - `dangling_library_doc_comments`
