@@ -1,3 +1,7 @@
+## 1.8.1
+ - fix changelog.
+ - fix example pubspec.lock.
+
 ## 1.8.0
 
  - **FEAT**: update all_lint_rules.yaml. ([cd008cb7](https://github.com/altive/altive_lints/commit/cd008cb7c0f0b6b0206d29407596642e45c889d7))
