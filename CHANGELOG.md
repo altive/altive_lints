@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-14
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`altive_lints` - `v1.8.0`](#altive_lints---v180)
+
+---
+
+#### `altive_lints` - `v1.8.0`
+
+ - **FEAT**: update all_lint_rules.yaml. ([cd008cb7](https://github.com/altive/altive_lints/commit/cd008cb7c0f0b6b0206d29407596642e45c889d7))
+
+
 ## 2023-05-12
 
 ### Changes

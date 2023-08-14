@@ -1,3 +1,7 @@
+## 1.8.0
+
+ - **FEAT**: update all_lint_rules.yaml. ([cd008cb7](https://github.com/altive/altive_lints/commit/cd008cb7c0f0b6b0206d29407596642e45c889d7))
+
 ## 1.7.0
 
  - **FEAT**: update all_lint_rules.yaml with Flutter 3.10 / Dart 3.0 ([#2](https://github.com/altive/altive_lints/issues/2)). ([1f4c5abf](https://github.com/altive/altive_lints/commit/1f4c5abfcde549a4ed14a505129f9e7e84b17893))
