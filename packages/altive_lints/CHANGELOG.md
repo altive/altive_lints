@@ -1,6 +1,12 @@
 ## 1.8.0
 
  - **FEAT**: update all_lint_rules.yaml. ([cd008cb7](https://github.com/altive/altive_lints/commit/cd008cb7c0f0b6b0206d29407596642e45c889d7))
+   - add new rules to `all_lint_rules.yaml`
+     - [avoid_returning_null](https://dart.dev/tools/linter-rules/avoid_returning_null)
+     - [avoid_returning_null_for_future](https://dart.dev/tools/linter-rules/avoid_returning_null_for_future)
+     - [always_require_non_null_named_parameters](https://dart.dev/tools/linter-rules/always_require_non_null_named_parameters)
+     - [avoid_returning_null_for_void](https://dart.dev/tools/linter-rules/avoid_returning_null_for_void)
+     - [no_wildcard_variable_uses](https://dart.dev/tools/linter-rules/no_wildcard_variable_uses)
 
 ## 1.7.0
 
