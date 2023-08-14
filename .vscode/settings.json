@@ -1,5 +1,5 @@
 {
-    "dart.runPubGetOnPubspecChanges": false,
+    "dart.runPubGetOnPubspecChanges": "always",
     "cSpell.words": [
         "bools",
         "combinators",
