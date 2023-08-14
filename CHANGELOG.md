@@ -15,6 +15,25 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`altive_lints` - `v1.8.1`](#altive_lints---v181)
+
+---
+
+#### `altive_lints` - `v1.8.1`
+
+
+## 2023-08-14
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`altive_lints` - `v1.8.0`](#altive_lints---v180)
 
 ---
