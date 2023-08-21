@@ -1,4 +1,4 @@
-# This is TEST-DATA FILE
+# TEST-DATA FILE
 # https://dart-lang.github.io/linter/lints/options/options.html
 linter:
   rules:
