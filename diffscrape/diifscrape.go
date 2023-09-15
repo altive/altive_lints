@@ -64,7 +64,7 @@ func scrapeWebPage(uri string, htmlQuerySelector string) (*string, error) {
 	var webText *string
 	c := colly.NewCollector()
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting: ", r.URL)
+		slog.Info("Visiting", slog.String("url", r.URL.String()))
 	})
 	c.OnHTML(htmlQuerySelector, func(e *colly.HTMLElement) {
 		webText = &e.Text

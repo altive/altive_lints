@@ -1,6 +1,6 @@
 module github.com/altive_lints/diffscrape
 
-go 1.21.0
+go 1.21.1
 
 require github.com/gocolly/colly/v2 v2.1.0
 
