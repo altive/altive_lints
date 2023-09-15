@@ -1,3 +1,6 @@
+[![Check all lint rule diffs](https://github.com/altive/altive_lints/actions/workflows/check-all-lint-rule-diffs.yaml/badge.svg)](https://github.com/altive/altive_lints/actions/workflows/check-all-lint-rule-diffs.yaml)
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+
 # Altive Lints
 
 Provides `all_lint_rules.yaml` that activates all rules and `altive_lints.yaml` with Altive recommended rule selection.
