@@ -5,6 +5,7 @@ description: >-
 version: 1.8.1
 homepage: https://altive.dev
 repository: https://github.com/altive/altive_lints
+issue_tracker: https://github.com/altive/altive_lints/issues
 topics:
   - lints
   - analysis

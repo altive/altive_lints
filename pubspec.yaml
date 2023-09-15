@@ -1,4 +1,5 @@
-name: altive_lints
+name: altive_lints_workspace
+publish_to: none
 
 environment:
   sdk: ^3.0.0
