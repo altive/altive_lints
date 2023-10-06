@@ -1,9 +1,18 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
-enable-beta-ecosystems: true
-updates:   
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+
   - package-ecosystem: "pub"
-    directory: "/packages/altive_lints" # Location of package manifests
+    directory: "/packages/altive_lints"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/example"
     schedule:
       interval: "monthly"
