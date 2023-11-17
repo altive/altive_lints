@@ -1,3 +1,10 @@
+## 1.9.0
+
+ - **FEAT**: update all_lint_rules ([#10](https://github.com/altive/altive_lints/issues/10)). ([31694673](https://github.com/altive/altive_lints/commit/316946734f98d03c764a3e3b704fed59f9bdd444))
+   - add new rules to `all_lint_rules.yaml`
+     - [annotate_redeclares](https://dart.dev/tools/linter-rules/annotate_redeclares)
+     - [avoid_unstable_final_fields](https://dart.dev/tools/linter-rules/avoid_unstable_final_fields)
+
 ## 1.8.1
  - fix changelog.
  - fix example pubspec.lock.
