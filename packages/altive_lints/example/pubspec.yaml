@@ -10,5 +10,4 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  altive_lints:
-    path: ..
+  altive_lints: any

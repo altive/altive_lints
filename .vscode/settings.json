@@ -1,6 +1,7 @@
 {
     "dart.runPubGetOnPubspecChanges": "always",
     "cSpell.words": [
+        "altive",
         "bools",
         "combinators",
         "diffscrape",

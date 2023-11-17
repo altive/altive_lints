@@ -31,6 +31,6 @@ include: package:altive_lints/all_lint_rules.yaml
 
 3. Add your rules if needed.
 
-## All Lint Rules
+## Related All Lint Rules
 
-https://dart-lang.github.io/linter/lints/options/options.html
+https://dart.dev/tools/linter-rules/all
