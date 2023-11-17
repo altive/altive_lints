@@ -1,3 +1,8 @@
+## 1.9.0
+
+ - **REFACTOR**: extract method. ([40542361](https://github.com/altive/altive_lints/commit/405423614b813098bb30a60a7628b64c209758dc))
+ - **FEAT**: update all_lint_rules ([#10](https://github.com/altive/altive_lints/issues/10)). ([31694673](https://github.com/altive/altive_lints/commit/316946734f98d03c764a3e3b704fed59f9bdd444))
+
 ## 1.8.1
  - fix changelog.
  - fix example pubspec.lock.

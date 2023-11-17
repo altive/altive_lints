@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-11-17
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`altive_lints` - `v1.9.0`](#altive_lints---v190)
+
+---
+
+#### `altive_lints` - `v1.9.0`
+
+ - **REFACTOR**: extract method. ([40542361](https://github.com/altive/altive_lints/commit/405423614b813098bb30a60a7628b64c209758dc))
+ - **FEAT**: update all_lint_rules ([#10](https://github.com/altive/altive_lints/issues/10)). ([31694673](https://github.com/altive/altive_lints/commit/316946734f98d03c764a3e3b704fed59f9bdd444))
+
+
 ## 2023-08-14
 
 ### Changes
