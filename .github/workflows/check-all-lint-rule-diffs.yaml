@@ -22,8 +22,10 @@ jobs:
           go-version-file: './diffscrape/go.mod'
           cache-dependency-path: './diffscrape/go.sum'
       - name: Run go
-        working-directory: ./diffscrape
-        run: go run cmd/rules/main.go
+        working-directory: ./diffscrape/cmd/rules
+        run: |
+          pwd
+          go run main.go
       - uses: technote-space/get-diff-action@v6
         with:
           FILES: |
