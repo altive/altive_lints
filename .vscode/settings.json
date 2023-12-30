@@ -15,6 +15,15 @@
         "unawaited",
         "writeln"
     ],
+    "cSpell.ignorePaths": [
+        "package-lock.json",
+        "pubspec.lock",
+        "node_modules",
+        "vscode-extension",
+        ".git/objects",
+        ".vscode",
+        ".vscode-insiders"
+    ],
     "yaml.schemas": {
         "https://json.schemastore.org/yamllint.json": [
             "*.yaml",
