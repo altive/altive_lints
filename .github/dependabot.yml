@@ -13,6 +13,11 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "pub"
-    directory: "/packages/example"
+    directory: "/packages/altive_lints/example"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/diffscrape"
     schedule:
       interval: "monthly"
