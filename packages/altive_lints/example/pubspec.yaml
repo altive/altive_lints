@@ -1,6 +1,6 @@
 name: example
 description: A example of altive_lints.
-publish_to: "none"
+publish_to: none
 version: 1.0.0
 environment:
   sdk: ^3.0.0

@@ -1,5 +1,5 @@
 name: diffscrape
-description: A sample command-line application with basic argument parsing.
+description: Diffscrape is a package for scraping and checking differences.
 version: 0.0.1
 publish_to: none
 repository: https://github.com/altive/altive_lints
