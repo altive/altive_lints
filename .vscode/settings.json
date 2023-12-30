@@ -8,7 +8,16 @@
         "gocolly",
         "interps",
         "ints",
+        "pubspec",
+        "redeclares",
         "tearoffs",
-        "todos"
-    ]
+        "todos",
+        "unawaited",
+        "writeln"
+    ],
+    "yaml.schemas": {
+        "https://json.schemastore.org/yamllint.json": [
+            "*.yaml",
+        ]
+    }
 }

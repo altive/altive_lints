@@ -1,0 +1,17 @@
+name: diffscrape
+description: A sample command-line application with basic argument parsing.
+version: 0.0.1
+publish_to: none
+repository: https://github.com/altive/altive_lints
+
+environment:
+  sdk: ^3.2.3
+
+dependencies:
+  args: ^2.4.2
+  html: ^0.15.4
+  http: ^1.1.2
+
+dev_dependencies:
+  altive_lints: ^1.9.0
+  test: ^1.24.0

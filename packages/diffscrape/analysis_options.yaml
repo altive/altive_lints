@@ -1,0 +1,5 @@
+include: package:altive_lints/altive_lints.yaml
+
+linter:
+  rules:
+    - avoid_print: false

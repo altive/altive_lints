@@ -1,27 +1,25 @@
-name: Check all lint rule diffs
+name: Update all lint rules
 
 on:
+  schedule:
+    - cron:  '0 0 * * 3'
   workflow_dispatch:
 
 env:
   branch: "update-all-lint-rules"
 
 jobs:
-  diff:
-    name: Check diff
+  update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       has_diff: ${{ steps.output.outputs.has_diff }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version-file: './diffscrape/go.mod'
-          cache-dependency-path: './diffscrape/go.sum'
-      - name: Run go
-        working-directory: ./diffscrape/cmd/rules
-        run: go run main.go
+      - uses: dart-lang/setup-dart@v1
+      - name: run
+        working-directory: ./packages/diffscrape
+        run: dart run diffscrape
       - name: output diff
         id: output
         run: echo "diff_count=$(git diff --name-only --relative=packages/altive_lints/lib | wc -l)" >> "$GITHUB_ENV"
@@ -48,7 +46,7 @@ jobs:
   pull-request:
     name: Create Pull-Request
     runs-on: ubuntu-latest
-    needs: [diff]
+    needs: [update]
     if: ${{ needs.diff.outputs.has_diff == 'true' }}
     steps:
       - uses: actions/checkout@v4

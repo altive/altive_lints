@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "diffscrape",
+            "cwd": "packages/diffscrape",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "diffscrape",
+                "--uri",
+                "https://dart.dev/tools/linter-rules/all",
+                "--file",
+                "../altive_lints/lib/all_lint_rules.yaml",
+                "--query-selector",
+                "pre code.yaml",
+                "--verbose"
+            ]
+        }
+    ]
+}
