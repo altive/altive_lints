@@ -89,7 +89,7 @@ Future<String> _scrape({
 
   final element = document.querySelectorAll(querySelector).firstOrNull?.text;
   if (element == null) {
-    stderr.writeln('No elements found.');
+    stderr.writeln('No elements found. querySelector: $querySelector');
     exit(1);
   }
   if (verbose) {
