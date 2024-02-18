@@ -40,7 +40,7 @@ jobs:
       - name: Git config
         if: env.diff_count != '0'
         run: |
-          git remote set-url origin https://github-actions:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git remote set-url origin "https://github-actions:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Commit & Push
@@ -69,7 +69,7 @@ jobs:
       - name: Create PR
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: gh pr create -B $GITHUB_REF -t ${{ env.branch }} -b "" -a $GITHUB_ACTOR -H ${{ env.branch }}
+        run: gh pr create -B "$GITHUB_REF" -t "${{ env.branch }}" -b "" -a "$GITHUB_ACTOR" -H "${{ env.branch }}"
 
       - name: Revoke GitHub Apps token
         env:
