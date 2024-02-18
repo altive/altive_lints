@@ -23,7 +23,7 @@ jobs:
           dart run diffscrape \
             --uri "https://dart.dev/tools/linter-rules/all" \
             --file "../altive_lints/lib/all_lint_rules.yaml" \
-            --query-selector "pre code.yaml" \
+            --query-selector "pre code" \
             --verbose
       - name: output diff
         id: output
