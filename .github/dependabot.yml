@@ -5,12 +5,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   - package-ecosystem: "pub"
     directory: "/packages/altive_lints"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   - package-ecosystem: "pub"
     directory: "/packages/altive_lints/example"
@@ -20,4 +20,9 @@ updates:
   - package-ecosystem: "pub"
     directory: "/packages/diffscrape"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+      dependencies-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
