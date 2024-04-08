@@ -6,9 +6,4 @@ packages:
 
 command:
   version:
-    # Only allow versioning to happen on main branch.
-    branch: main
-    # Generate commit links in package changelogs.
-    linkToCommits: true
-    # Additionally build a changelog at the root of the workspace.
-    workspaceChangelog: true
+    workspaceChangelog: false
