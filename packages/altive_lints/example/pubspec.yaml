@@ -10,4 +10,4 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  altive_lints: any
+  altive_lints: ^1.10.0

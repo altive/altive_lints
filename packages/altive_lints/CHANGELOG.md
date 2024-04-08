@@ -1,3 +1,7 @@
+## 1.10.0
+
+ - **FEAT**: update all_lint_rules ([#17](https://github.com/altive/altive_lints/issues/17)). ([5cabb1d8](https://github.com/altive/altive_lints/commit/5cabb1d87b593b3ea9f0e088dfb599b9351abdb5))
+
 ## 1.9.0
 
  - **FEAT**: update all_lint_rules ([#10](https://github.com/altive/altive_lints/issues/10)). ([31694673](https://github.com/altive/altive_lints/commit/316946734f98d03c764a3e3b704fed59f9bdd444))
