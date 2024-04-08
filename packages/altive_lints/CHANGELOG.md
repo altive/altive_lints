@@ -1,3 +1,18 @@
+## 1.10.0
+
+ - **FEAT**: update all_lint_rules ([#17](https://github.com/altive/altive_lints/issues/17)). ([5cabb1d8](https://github.com/altive/altive_lints/commit/5cabb1d87b593b3ea9f0e088dfb599b9351abdb5))
+   - add new rules to `all_lint_rules.yaml`
+     - [missing_code_block_language_in_doc_comment](https://dart.dev/tools/linter-rules/missing_code_block_language_in_doc_comment)
+     - [unintended_html_in_doc_comment](https://dart.dev/tools/linter-rules/unintended_html_in_doc_comment)
+     - [unnecessary_library_name](https://dart.dev/tools/linter-rules/unnecessary_library_name)
+   - remove from `all_lint_rules.yaml`
+     - [always_require_non_null_named_parameters](https://dart.dev/tools/linter-rules/always_require_non_null_named_parameters)
+     - [avoid_returning_null](https://dart.dev/tools/linter-rules/avoid_returning_null)
+     - [avoid_returning_null_for_future](https://dart.dev/tools/linter-rules/avoid_returning_null_for_future)
+     - [list_remove_unrelated_type](https://dart.dev/tools/linter-rules/list_remove_unrelated_type)
+     - [iterable_contains_unrelated_type](https://dart.dev/tools/linter-rules/iterable_contains_unrelated_type)
+     - [avoid_unstable_final_fields](https://dart.dev/tools/linter-rules/avoid_unstable_final_fields)
+
 ## 1.9.0
 
  - **FEAT**: update all_lint_rules ([#10](https://github.com/altive/altive_lints/issues/10)). ([31694673](https://github.com/altive/altive_lints/commit/316946734f98d03c764a3e3b704fed59f9bdd444))
