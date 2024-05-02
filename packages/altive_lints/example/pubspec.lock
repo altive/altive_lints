@@ -4,10 +4,9 @@ packages:
   altive_lints:
     dependency: "direct dev"
     description:
-      name: altive_lints
-      sha256: cc3f1215e69ae2e9922a9bc383cf607ae29cd955481059e3f106e08ad22b75d7
-      url: "https://pub.dev"
-    source: hosted
+      path: ".."
+      relative: true
+    source: path
     version: "1.10.0"
   characters:
     dependency: transitive
@@ -60,4 +59,4 @@ packages:
     source: hosted
     version: "2.1.4"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
+  dart: ">=3.2.0-0 <4.0.0"
