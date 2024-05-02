@@ -8,7 +8,7 @@ environment:
   sdk: ^3.2.3
 
 dependencies:
-  args: ^2.4.2
+  args: ^2.5.0
   html: ^0.15.4
   http: ^1.2.1
 
