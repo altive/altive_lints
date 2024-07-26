@@ -1,0 +1,38 @@
+name: code check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Melos
+        uses: bluefireteam/melos-action@v3
+
+      - name: Analyze packages
+        run: melos analyze
+
+      - name: Custom lint
+        run: melos custom_lint
+
+      - name: Check for the existence of unformatted files
+        # Cannot use `melos format` as it requires excluding files generated from the target file
+        run: melos run format:ci --no-select
