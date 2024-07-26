@@ -13,3 +13,7 @@ topics:
 
 environment:
   sdk: ^3.0.0
+
+dependencies:
+  analyzer: ^6.4.1
+  custom_lint_builder: ^0.6.4
