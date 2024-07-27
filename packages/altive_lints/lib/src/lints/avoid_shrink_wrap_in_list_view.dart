@@ -5,6 +5,42 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 import '../utils/types_utils.dart';
 
+/// An `avoid_shrink_wrap_in_list_view` rule that discourages
+/// using `shrinkWrap` with `ListView`.
+///
+/// This property causes performance issues by requiring
+/// the list to fully layout its content upfront.
+/// Instead of `shrinkWrap`, consider using slivers
+/// for better performance with large lists.
+///
+/// ### Example
+///
+/// #### BAD:
+///
+/// ```dart
+/// ListView(
+///   shrinkWrap: true, // LINT
+///   children: <Widget>[
+///     Text('Hello'),
+///     Text('World'),
+///   ],
+/// );
+/// ```
+///
+/// #### GOOD:
+///
+/// ```dart
+/// CustomScrollView(
+///   slivers: <Widget>[
+///     SliverList.list(
+///       children: [
+///         Text('Hello'),
+///         Text('World'),
+///       ],
+///     ),
+///   ],
+/// );
+/// ```
 class AvoidShrinkWrapInListView extends DartLintRule {
   const AvoidShrinkWrapInListView() : super(code: _code);
 
