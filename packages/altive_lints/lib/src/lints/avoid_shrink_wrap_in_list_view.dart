@@ -48,7 +48,9 @@ class AvoidShrinkWrapInListView extends DartLintRule {
     name: 'avoid_shrink_wrap_in_list_view',
     problemMessage: 'Avoid using ListView with shrinkWrap, '
         'since it might degrade the performance.\n'
-        'Consider using slivers instead.',
+        'Consider using slivers instead.'
+        'Or, it is originally intended to be used for shrinking '
+        'when there is room for height in a dialog, for example.',
   );
 
   @override
