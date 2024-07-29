@@ -12,6 +12,7 @@
         "pubspec",
         "redeclares",
         "subosito",
+        "Supertypes",
         "tearoffs",
         "todos",
         "unawaited",

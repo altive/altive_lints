@@ -9,3 +9,5 @@ dev_dependencies:
   altive_lints: 
     path: ../
   custom_lint: ^0.6.4
+  flutter:
+    sdk: flutter
