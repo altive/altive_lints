@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_single_child
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
