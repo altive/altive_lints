@@ -38,7 +38,6 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///   ],
 /// );
 /// ```
-
 class AvoidSliverToBoxAdapter extends DartLintRule {
   const AvoidSliverToBoxAdapter() : super(code: _code);
 
