@@ -1,7 +1,7 @@
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-/// A `avoid_date_time_now` rule that discourages the use of
+/// A `prefer_clock_now` rule that discourages the use of
 /// `DateTime.now()` due to its non-testability in unit tests.
 ///
 /// Instead of `DateTime.now()`, it recommends using a testable alternative,
@@ -21,11 +21,11 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// ```dart
 /// var now = clock.now(); // Using 'clock' package
 /// ```
-class AvoidDateTimeNow extends DartLintRule {
-  const AvoidDateTimeNow() : super(code: _code);
+class PreferClockNow extends DartLintRule {
+  const PreferClockNow() : super(code: _code);
 
   static const _code = LintCode(
-    name: 'avoid_date_time_now',
+    name: 'prefer_clock_now',
     problemMessage: 'Avoid using DateTime.now(). '
         'Use a testable alternative like clock.now() or similar instead.',
   );
