@@ -3,8 +3,3 @@ include: package:altive_lints/altive_lints.yaml
 analyzer:
   plugins:
     - custom_lint
-
-custom_lint:
-  rules:
-    # Unnecessary if not localizing or not using Japanese.
-    # - avoid_hardcoded_japanese: false

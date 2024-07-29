@@ -2,6 +2,7 @@
     "dart.runPubGetOnPubspecChanges": "always",
     "cSpell.words": [
         "altive",
+        "bluefireteam",
         "bools",
         "combinators",
         "diffscrape",
@@ -10,6 +11,7 @@
         "ints",
         "pubspec",
         "redeclares",
+        "subosito",
         "tearoffs",
         "todos",
         "unawaited",
