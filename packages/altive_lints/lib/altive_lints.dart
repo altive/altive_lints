@@ -5,6 +5,7 @@ import 'src/lints/avoid_hardcoded_color.dart';
 import 'src/lints/avoid_hardcoded_japanese.dart';
 import 'src/lints/avoid_shrink_wrap_in_list_view.dart';
 import 'src/lints/avoid_single_child.dart';
+import 'src/lints/prefer_clock_now.dart';
 import 'src/lints/prefer_dedicated_media_query_methods.dart';
 import 'src/lints/prefer_space_between_elements.dart';
 
@@ -18,6 +19,7 @@ class _AltivePlugin extends PluginBase {
         const AvoidHardcodedJapanese(),
         const AvoidShrinkWrapInListView(),
         const AvoidSingleChild(),
+        const PreferClockNow(),
         const PreferDedicatedMediaQueryMethods(),
         const PreferSpaceBetweenElements(),
       ];
