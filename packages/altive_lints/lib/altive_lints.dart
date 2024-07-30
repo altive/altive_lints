@@ -7,8 +7,8 @@ import 'src/lints/avoid_shrink_wrap_in_list_view.dart';
 import 'src/lints/avoid_single_child.dart';
 import 'src/lints/prefer_clock_now.dart';
 import 'src/lints/prefer_dedicated_media_query_methods.dart';
-import 'src/lints/prefer_space_between_elements.dart';
 import 'src/lints/prefer_sliver_prefix.dart';
+import 'src/lints/prefer_space_between_elements.dart';
 
 PluginBase createPlugin() => _AltivePlugin();
 
