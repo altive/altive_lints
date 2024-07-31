@@ -15,6 +15,9 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  analyzer: ^6.4.1
+  # As of 2024/7/31, the latest Flutter Stable cannot use analyzer ^6.5.0 or 
+  # higher due to the version specification of the dependent meta package. 
+  # Therefore, the analyzer version is fixed at 6.4.1.
+  analyzer: 6.4.1
   collection: ^1.18.0
   custom_lint_builder: ^0.6.4
