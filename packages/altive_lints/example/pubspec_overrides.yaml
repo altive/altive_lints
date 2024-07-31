@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: altive_lints
-dependency_overrides:
-  altive_lints:
-    path: ..
