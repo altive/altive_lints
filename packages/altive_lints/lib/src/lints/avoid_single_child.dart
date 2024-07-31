@@ -65,7 +65,9 @@ class AvoidSingleChild extends DartLintRule {
         );
 
         final childrenList = childrenArg is NamedExpression
-            ? childrenArg.expression as ListLiteral
+            ? childrenArg.expression is ListLiteral
+                ? childrenArg.expression as ListLiteral
+                : null
             : null;
 
         if (childrenList != null && childrenList.elements.length == 1) {

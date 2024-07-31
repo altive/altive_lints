@@ -44,6 +44,12 @@ class MyWidget extends StatelessWidget {
             Text('World'),
           ],
         ),
+        ListView(
+          children: List.generate(
+            10,
+            (index) => Text('Hello $index'),
+          ),
+        ),
       ],
     );
   }
