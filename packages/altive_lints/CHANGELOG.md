@@ -1,3 +1,15 @@
+## 1.11.0
+
+ - **FEAT**: Add `prefer_sliver_prefix` rule ([#32](https://github.com/altive/altive_lints/issues/32)). ([6c941e72](https://github.com/altive/altive_lints/commit/6c941e725e1e67a55d25365dfc47a27eace01f0c))
+ - **FEAT**: Add `prefer_clock_now` rule ([#35](https://github.com/altive/altive_lints/issues/35)). ([e5b056ad](https://github.com/altive/altive_lints/commit/e5b056ad8ff2428e191089d46770e18a38f53d7e))
+ - **FEAT**: Add `prefer_dedicated_media_query_methods` rule ([#34](https://github.com/altive/altive_lints/issues/34)). ([945d5e85](https://github.com/altive/altive_lints/commit/945d5e8580fbd7ac77fa3d6a60c6ef8bf522b5f1))
+ - **FEAT**: Add `prefer_space_between_elements` rule ([#33](https://github.com/altive/altive_lints/issues/33)). ([1534bffd](https://github.com/altive/altive_lints/commit/1534bffd9361092f19f0caf2410e58f4b043679a))
+ - **FEAT**: Add `avoid_consecutive_sliver_to_box_adapter` rule ([#29](https://github.com/altive/altive_lints/issues/29)). ([8a22122a](https://github.com/altive/altive_lints/commit/8a22122a48ff47d260f898fa4f8db23587d04773))
+ - **FEAT**: Add `avoid_hardcoded_color` rule ([#31](https://github.com/altive/altive_lints/issues/31)). ([4cfce859](https://github.com/altive/altive_lints/commit/4cfce859348b3ed3cfcc5f1063e706653769f1eb))
+ - **FEAT**: Add `avoid_single_child` rule ([#30](https://github.com/altive/altive_lints/issues/30)). ([ac57d755](https://github.com/altive/altive_lints/commit/ac57d755e66fabd10d271b4073ef9dd8b7f29924))
+ - **FEAT**: Add `avoid_shrink_wrap_in_list_view` rule ([#28](https://github.com/altive/altive_lints/issues/28)). ([b36d165b](https://github.com/altive/altive_lints/commit/b36d165bb48408f16ad977683f702fb747f56bb7))
+ - **FEAT**: Set up custom lint ([#27](https://github.com/altive/altive_lints/issues/27)). ([f6958263](https://github.com/altive/altive_lints/commit/f69582637dd73b71fbd8bef14de5d7a290297215))
+
 ## 1.10.0
 
  - **FEAT**: update all_lint_rules ([#17](https://github.com/altive/altive_lints/issues/17)). ([5cabb1d8](https://github.com/altive/altive_lints/commit/5cabb1d87b593b3ea9f0e088dfb599b9351abdb5))
