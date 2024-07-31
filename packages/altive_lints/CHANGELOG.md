@@ -1,3 +1,7 @@
+## 1.11.1
+
+ - **FIX**: Fixed the potential cast error in `avoid_single_child` ([#41](https://github.com/altive/altive_lints/issues/41)). ([5c0c8b5d](https://github.com/altive/altive_lints/commit/5c0c8b5d732146ed40d2c857e583918c7e2c9671))
+
 ## 1.11.0
 
 ### Add Custom Lint
