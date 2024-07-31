@@ -1,5 +1,10 @@
 ## 1.11.0
 
+### Add Custom Lint
+
+If you want to adopt it, specify custom_lints in analysis_options.yaml.
+Detailed notation is here: [altive_lints/example/analysis_options.yaml](https://github.com/altive/altive_lints/blob/main/packages/altive_lints/example/analysis_options.yaml)
+
  - **FEAT**: Add `prefer_sliver_prefix` rule ([#32](https://github.com/altive/altive_lints/issues/32)). ([6c941e72](https://github.com/altive/altive_lints/commit/6c941e725e1e67a55d25365dfc47a27eace01f0c))
  - **FEAT**: Add `prefer_clock_now` rule ([#35](https://github.com/altive/altive_lints/issues/35)). ([e5b056ad](https://github.com/altive/altive_lints/commit/e5b056ad8ff2428e191089d46770e18a38f53d7e))
  - **FEAT**: Add `prefer_dedicated_media_query_methods` rule ([#34](https://github.com/altive/altive_lints/issues/34)). ([945d5e85](https://github.com/altive/altive_lints/commit/945d5e8580fbd7ac77fa3d6a60c6ef8bf522b5f1))
