@@ -28,9 +28,9 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// );
 /// ```
 class AvoidHardcodedColor extends DartLintRule {
-  const AvoidHardcodedColor() : super(code: _lintCode);
+  const AvoidHardcodedColor() : super(code: _code);
 
-  static const _lintCode = LintCode(
+  static const _code = LintCode(
     name: 'avoid_hardcoded_color',
     problemMessage: 'Avoid using hardcoded color. Use ColorScheme, '
         'ThemeExtension, or other Theme-based color definitions instead. '
@@ -48,7 +48,7 @@ class AvoidHardcodedColor extends DartLintRule {
       final typeName = node.staticType?.getDisplayString();
 
       if (typeName == 'Color') {
-        reporter.atNode(node, _lintCode);
+        reporter.atNode(node, _code);
       }
     });
 
@@ -59,7 +59,7 @@ class AvoidHardcodedColor extends DartLintRule {
         if (element is PropertyAccessorElement) {
           final returnType = element.returnType;
           if (_isColorType(returnType)) {
-            reporter.atNode(node, _lintCode);
+            reporter.atNode(node, _code);
           }
         }
       }
