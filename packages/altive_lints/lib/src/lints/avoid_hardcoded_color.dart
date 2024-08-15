@@ -45,11 +45,10 @@ class AvoidHardcodedColor extends DartLintRule {
     CustomLintContext context,
   ) {
     context.registry.addInstanceCreationExpression((node) {
-      final typeName =
-          node.staticType?.getDisplayString(withNullability: false);
+      final typeName = node.staticType?.getDisplayString();
 
       if (typeName == 'Color') {
-        reporter.reportErrorForNode(code, node);
+        reporter.atNode(node, code);
       }
     });
 
@@ -60,7 +59,7 @@ class AvoidHardcodedColor extends DartLintRule {
         if (element is PropertyAccessorElement) {
           final returnType = element.returnType;
           if (_isColorType(returnType)) {
-            reporter.reportErrorForNode(code, node);
+            reporter.atNode(node, code);
           }
         }
       }
@@ -70,9 +69,8 @@ class AvoidHardcodedColor extends DartLintRule {
   bool _isColorType(DartType? type) {
     return type != null &&
         (type.isDartCoreInt ||
-            type.getDisplayString(withNullability: false) == 'Color' ||
-            type.getDisplayString(withNullability: false) == 'MaterialColor' ||
-            type.getDisplayString(withNullability: false) ==
-                'MaterialAccentColor');
+            type.getDisplayString() == 'Color' ||
+            type.getDisplayString() == 'MaterialColor' ||
+            type.getDisplayString() == 'MaterialAccentColor');
   }
 }

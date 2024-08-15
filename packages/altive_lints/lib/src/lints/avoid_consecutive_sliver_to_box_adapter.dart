@@ -66,7 +66,7 @@ class AvoidConsecutiveSliverToBoxAdapter extends DartLintRule {
       while (iterator.moveNext()) {
         final next = iterator.current;
         if (_useSliverToBoxAdapter(current) && _useSliverToBoxAdapter(next)) {
-          reporter.reportErrorForNode(_code, node);
+          reporter.atNode(node, _code);
           return;
         }
         current = next;
@@ -82,8 +82,7 @@ class AvoidConsecutiveSliverToBoxAdapter extends DartLintRule {
   }
 
   bool _isSliverToBoxAdapter(Expression expression) {
-    final typeName =
-        expression.staticType?.getDisplayString(withNullability: false);
+    final typeName = expression.staticType?.getDisplayString();
     return typeName == 'SliverToBoxAdapter';
   }
 
@@ -96,8 +95,7 @@ class AvoidConsecutiveSliverToBoxAdapter extends DartLintRule {
     for (final argument in arguments) {
       if (argument is NamedExpression && argument.name.label.name == 'sliver') {
         final sliverExpression = argument.expression;
-        final sliverTypeName = sliverExpression.staticType
-            ?.getDisplayString(withNullability: false);
+        final sliverTypeName = sliverExpression.staticType?.getDisplayString();
         if (sliverTypeName == 'SliverToBoxAdapter') {
           return true;
         }

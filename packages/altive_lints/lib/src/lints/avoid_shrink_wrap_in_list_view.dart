@@ -63,7 +63,7 @@ class AvoidShrinkWrapInListView extends DartLintRule {
       if (isListViewWidget(node.staticType) &&
           _hasShrinkWrap(node) &&
           _hasParentList(node)) {
-        reporter.reportErrorForNode(_code, node);
+        reporter.atNode(node, _code);
       }
     });
   }

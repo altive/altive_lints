@@ -45,14 +45,14 @@ class AvoidHardcodedJapanese extends DartLintRule {
         return;
       }
       if (isJapanese(stringValue)) {
-        reporter.reportErrorForNode(_code, node);
+        reporter.atNode(node, _code);
       }
     });
 
     context.registry.addStringInterpolation((node) {
       final stringValue = node.toSource();
       if (isJapanese(stringValue)) {
-        reporter.reportErrorForNode(_code, node);
+        reporter.atNode(node, _code);
       }
     });
   }

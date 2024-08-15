@@ -49,7 +49,7 @@ class PreferDedicatedMediaQueryMethods extends DartLintRule {
       final method = node.methodName.name;
       final target = node.target?.toString();
       if (target == 'MediaQuery' && (method == 'of' || method == 'maybeOf')) {
-        reporter.reportErrorForNode(_code, node);
+        reporter.atNode(node, _code);
       }
     });
   }

@@ -61,14 +61,13 @@ class PreferSliverPrefix extends DartLintRule {
         final returnsSliverWidget = returnStatements.any(
           (returnStatement) {
             final returnType = returnStatement.expression?.staticType;
-            final typeName =
-                returnType?.getDisplayString(withNullability: false);
+            final typeName = returnType?.getDisplayString();
             return typeName?.startsWith('Sliver') ?? false;
           },
         );
 
         if (returnsSliverWidget && !className.startsWith('Sliver')) {
-          reporter.reportErrorForNode(_code, node);
+          reporter.atNode(node, _code);
         }
       }
     });

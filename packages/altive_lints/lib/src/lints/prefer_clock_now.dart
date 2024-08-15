@@ -43,7 +43,7 @@ class PreferClockNow extends DartLintRule {
         return;
       }
       if (node.constructorName.name?.name == 'now') {
-        reporter.reportErrorForNode(_code, node);
+        reporter.atNode(node, _code);
       }
     });
   }
