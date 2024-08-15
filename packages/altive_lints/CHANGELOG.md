@@ -1,3 +1,7 @@
+## 1.11.2
+
+ - Update minimum analyzer version to 6.5.0 ([#39](https://github.com/altive/altive_lints/issues/39)). ([c9e9c33](https://github.com/altive/altive_lints/commit/c9e9c3344fc7b558868fa91847b7ae1e5b0aaa17))
+
 ## 1.11.1
 
  - **FIX**: Fixed the potential cast error in `avoid_single_child` ([#41](https://github.com/altive/altive_lints/issues/41)). ([5c0c8b5d](https://github.com/altive/altive_lints/commit/5c0c8b5d732146ed40d2c857e583918c7e2c9671))
