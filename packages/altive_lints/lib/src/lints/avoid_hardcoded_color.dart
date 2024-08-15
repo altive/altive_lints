@@ -48,7 +48,7 @@ class AvoidHardcodedColor extends DartLintRule {
       final typeName = node.staticType?.getDisplayString();
 
       if (typeName == 'Color') {
-        reporter.atNode(node, code);
+        reporter.atNode(node, _lintCode);
       }
     });
 
@@ -59,7 +59,7 @@ class AvoidHardcodedColor extends DartLintRule {
         if (element is PropertyAccessorElement) {
           final returnType = element.returnType;
           if (_isColorType(returnType)) {
-            reporter.atNode(node, code);
+            reporter.atNode(node, _lintCode);
           }
         }
       }
