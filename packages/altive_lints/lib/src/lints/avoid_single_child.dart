@@ -50,8 +50,7 @@ class AvoidSingleChild extends DartLintRule {
     CustomLintContext context,
   ) {
     context.registry.addInstanceCreationExpression((node) {
-      final className =
-          node.staticType?.getDisplayString(withNullability: false);
+      final className = node.staticType?.getDisplayString();
       if ([
         'Column',
         'Row',
@@ -71,7 +70,7 @@ class AvoidSingleChild extends DartLintRule {
             : null;
 
         if (childrenList != null && childrenList.elements.length == 1) {
-          reporter.reportErrorForNode(_code, node);
+          reporter.atNode(node, _code);
         }
       }
     });

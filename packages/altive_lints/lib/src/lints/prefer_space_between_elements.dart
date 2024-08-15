@@ -69,7 +69,7 @@ class PreferSpaceBetweenElements extends DartLintRule {
             nextMember is MethodDeclaration &&
             nextMember.name.lexeme == 'build') {
           if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.reportErrorForNode(code, nextMember);
+            reporter.atNode(nextMember, _code);
           }
         }
 
@@ -77,7 +77,7 @@ class PreferSpaceBetweenElements extends DartLintRule {
         if (currentMember is FieldDeclaration &&
             nextMember is ConstructorDeclaration) {
           if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.reportErrorForNode(code, nextMember);
+            reporter.atNode(nextMember, _code);
           }
         }
 
@@ -85,7 +85,7 @@ class PreferSpaceBetweenElements extends DartLintRule {
         if (currentMember is ConstructorDeclaration &&
             nextMember is FieldDeclaration) {
           if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.reportErrorForNode(code, nextMember);
+            reporter.atNode(nextMember, _code);
           }
         }
 
@@ -94,7 +94,7 @@ class PreferSpaceBetweenElements extends DartLintRule {
             nextMember is MethodDeclaration &&
             nextMember.name.lexeme == 'build') {
           if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.reportErrorForNode(code, nextMember);
+            reporter.atNode(nextMember, _code);
           }
         }
       }
