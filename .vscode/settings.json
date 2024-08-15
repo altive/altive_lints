@@ -20,6 +20,7 @@
         "writeln"
     ],
     "cSpell.ignorePaths": [
+        "**/.pub-cache",
         "package-lock.json",
         "pubspec.lock",
         "node_modules",
