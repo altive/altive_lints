@@ -33,5 +33,11 @@
         "https://json.schemastore.org/yamllint.json": [
             "*.yaml",
         ]
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/test/data": true
     }
 }
