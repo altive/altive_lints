@@ -1,3 +1,7 @@
+## 1.12.0
+
+ - **FEAT**: Enable public_member_api_docs rule ([#49](https://github.com/altive/altive_lints/issues/49)). ([b46fd8f5](https://github.com/altive/altive_lints/commit/b46fd8f5aa30e499e9c55c044c23be4b5578dacd))
+
 ## 1.11.2
 
  - Update minimum analyzer version to 6.5.0 ([#39](https://github.com/altive/altive_lints/issues/39)). ([c9e9c33](https://github.com/altive/altive_lints/commit/c9e9c3344fc7b558868fa91847b7ae1e5b0aaa17))
