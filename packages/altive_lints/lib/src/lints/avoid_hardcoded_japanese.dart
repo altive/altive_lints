@@ -24,6 +24,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// ```
 ///
 class AvoidHardcodedJapanese extends DartLintRule {
+  /// Creates a new instance of [AvoidHardcodedJapanese].
   const AvoidHardcodedJapanese() : super(code: _code);
 
   static const _code = LintCode(

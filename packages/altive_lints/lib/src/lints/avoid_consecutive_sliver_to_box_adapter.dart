@@ -41,6 +41,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// );
 /// ```
 class AvoidConsecutiveSliverToBoxAdapter extends DartLintRule {
+  /// Creates a new instance of [AvoidConsecutiveSliverToBoxAdapter].
   const AvoidConsecutiveSliverToBoxAdapter() : super(code: _code);
 
   static const _code = LintCode(

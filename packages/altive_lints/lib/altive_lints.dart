@@ -10,6 +10,7 @@ import 'src/lints/prefer_dedicated_media_query_methods.dart';
 import 'src/lints/prefer_sliver_prefix.dart';
 import 'src/lints/prefer_space_between_elements.dart';
 
+/// Returns the Altive Plugin instance.
 PluginBase createPlugin() => _AltivePlugin();
 
 class _AltivePlugin extends PluginBase {

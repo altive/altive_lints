@@ -22,6 +22,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// var now = clock.now(); // Using 'clock' package
 /// ```
 class PreferClockNow extends DartLintRule {
+  /// Creates a new instance of [PreferClockNow].
   const PreferClockNow() : super(code: _code);
 
   static const _code = LintCode(

@@ -42,6 +42,7 @@ import '../utils/types_utils.dart';
 /// );
 /// ```
 class AvoidShrinkWrapInListView extends DartLintRule {
+  /// Creates a new instance of [AvoidShrinkWrapInListView].
   const AvoidShrinkWrapInListView() : super(code: _code);
 
   static const _code = LintCode(

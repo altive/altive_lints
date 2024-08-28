@@ -58,9 +58,6 @@ linter:
     # Too verbose. Use avoid_final_parameters
     prefer_final_parameters: false
 
-    # Too heavy for application. Preferable to enable in public packages
-    public_member_api_docs: false
-
     # Incompatible with `prefer_final_locals`
     # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.
