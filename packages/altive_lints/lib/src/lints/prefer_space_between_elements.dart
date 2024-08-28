@@ -42,6 +42,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// }
 /// ```
 class PreferSpaceBetweenElements extends DartLintRule {
+  /// Creates a new instance of [PreferSpaceBetweenElements].
   const PreferSpaceBetweenElements() : super(code: _code);
 
   static const _code = LintCode(

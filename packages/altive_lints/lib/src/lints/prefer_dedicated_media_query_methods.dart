@@ -29,6 +29,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// var padding = MediaQuery.viewInsetsOf(context);
 /// ```
 class PreferDedicatedMediaQueryMethods extends DartLintRule {
+  /// Creates a new instance of [PreferDedicatedMediaQueryMethods].
   const PreferDedicatedMediaQueryMethods() : super(code: _code);
 
   static const _code = LintCode(

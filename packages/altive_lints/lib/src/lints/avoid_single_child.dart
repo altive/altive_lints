@@ -34,6 +34,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// );
 /// ```
 class AvoidSingleChild extends DartLintRule {
+  /// Creates a new instance of [AvoidSingleChild].
   const AvoidSingleChild() : super(code: _code);
 
   static const _code = LintCode(
