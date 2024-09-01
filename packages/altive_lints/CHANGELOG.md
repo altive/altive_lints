@@ -1,3 +1,8 @@
+## 1.12.1
+
+ - **FIX**: Exclude collection-for from the warning of avoid_single_child ([#52](https://github.com/altive/altive_lints/issues/52)). ([6d662328](https://github.com/altive/altive_lints/commit/6d6623287605be70c7a3df9a157ff2bc9cabb1a1))
+ - **FIX**: Exclude AvoidHardcodedJapanese from warnings for file names ending in _test.dart ([#54](https://github.com/altive/altive_lints/issues/54)). ([3f3ca05](https://github.com/altive/altive_lints/commit/3f3ca05753c98676383c1507cb8a4438b757539e))
+
 ## 1.12.0
 
  - **FEAT**: Enable public_member_api_docs rule ([#49](https://github.com/altive/altive_lints/issues/49)). ([b46fd8f5](https://github.com/altive/altive_lints/commit/b46fd8f5aa30e499e9c55c044c23be4b5578dacd))
