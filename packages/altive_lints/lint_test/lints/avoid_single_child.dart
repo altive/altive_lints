@@ -53,6 +53,26 @@ class MyWidget extends StatelessWidget {
             if (random.nextBool()) const Text('Hello World'),
           ],
         ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if (random.nextBool())
+              const Text('Hello World')
+            else ...[
+              const Text('Hello'),
+              const Text('World'),
+            ],
+          ],
+        ),
+        if (random.nextBool())
+          const Text('Hello World')
+        else
+          const Column(
+            children: [
+              Text('Hello'),
+              Text('World'),
+            ],
+          ),
         ListView(
           children: List.generate(
             10,
