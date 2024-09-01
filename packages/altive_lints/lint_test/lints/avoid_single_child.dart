@@ -64,6 +64,16 @@ class MyWidget extends StatelessWidget {
             ],
           ],
         ),
+        Column(
+          children: random.nextBool()
+              ? [
+                  const Text('Hello World'),
+                ]
+              : [
+                  const Text('Hello'),
+                  const Text('World'),
+                ],
+        ),
         if (random.nextBool())
           const Text('Hello World')
         else
