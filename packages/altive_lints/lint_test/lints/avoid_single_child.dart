@@ -75,6 +75,8 @@ class MyWidget extends StatelessWidget {
             if (random.nextBool()) const Text('Hello 2'),
           ],
         ),
+        const Column(),
+        const Column(children: []), // ignore: avoid_redundant_argument_values
       ],
     );
   }

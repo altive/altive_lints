@@ -72,7 +72,7 @@ class AvoidSingleChild extends DartLintRule {
           return;
         }
 
-        if (childrenList.elements.length > 1) {
+        if (childrenList.elements.length != 1) {
           return;
         }
 
