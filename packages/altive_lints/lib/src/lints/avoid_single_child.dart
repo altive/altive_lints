@@ -64,15 +64,23 @@ class AvoidSingleChild extends DartLintRule {
           (arg) => arg is NamedExpression && arg.name.label.name == 'children',
         );
 
-        final childrenList = childrenArg is NamedExpression
-            ? childrenArg.expression is ListLiteral
-                ? childrenArg.expression as ListLiteral
-                : null
-            : null;
-
-        if (childrenList != null && childrenList.elements.length == 1) {
-          reporter.atNode(node, _code);
+        final ListLiteral childrenList;
+        if (childrenArg is NamedExpression &&
+            childrenArg.expression is ListLiteral) {
+          childrenList = childrenArg.expression as ListLiteral;
+        } else {
+          return;
         }
+
+        if (childrenList.elements.length != 1) {
+          return;
+        }
+
+        final element = childrenList.elements.first;
+        if (element is ForElement) {
+          return;
+        }
+        reporter.atNode(node, _code);
       }
     });
   }
