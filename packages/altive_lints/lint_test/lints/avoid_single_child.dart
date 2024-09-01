@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
@@ -5,6 +7,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final random = Random();
     return ListView(
       children: [
         // expect_lint: avoid_single_child
@@ -44,11 +47,33 @@ class MyWidget extends StatelessWidget {
             Text('World'),
           ],
         ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if (random.nextBool()) const Text('Hello World'),
+          ],
+        ),
         ListView(
           children: List.generate(
             10,
             (index) => Text('Hello $index'),
           ),
+        ),
+        Row(
+          children: [
+            for (var i = 0; i < 10; i++) Text('Hello $i'),
+          ],
+        ),
+        SliverList.list(
+          children: [
+            for (final e in ['a', 'b', 'c']) Text('Hello $e'),
+          ],
+        ),
+        Column(
+          children: [
+            if (random.nextBool()) const Text('Hello 1'),
+            if (random.nextBool()) const Text('Hello 2'),
+          ],
         ),
       ],
     );
