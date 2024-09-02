@@ -23,6 +23,8 @@ There are also Altive-made rules by custom_lint.
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
 - [Lint rules adopted by altive\_lints and why](#lint-rules-adopted-by-altive_lints-and-why)
   - [public\_member\_api\_docs](#public_member_api_docs)
+- [Migration guide](#migration-guide)
+  - [v1.12.0](#v1120)
 
 ## Getting started
 
@@ -319,11 +321,16 @@ class MyWidget extends StatelessWidget {
 
 Reasons for adopting each lint rule.
 
-### public_member_api_docs
+### [public_member_api_docs](https://dart.dev/tools/linter-rules/public_member_api_docs)
 
 Even the best naming is difficult to grasp the big picture unless it is very simple.
 
 An overview of it and documentation of why it exists and how to use it will help your teammates and future self.
+
+> [!NOTE]
+> If there are too many applicable sections,
+> such as when introducing the rule to an existing project,
+> it is recommended to disable the rule once and then gradually address the issue.
 
 **Bad**:
 
@@ -360,3 +367,12 @@ class DashboardCard extends StatelessWidget {
 }
 
 ```
+
+## Migration guide
+
+### v1.12.0
+
+The [public_member_api_docs](https://dart.dev/tools/linter-rules/public_member_api_docs) prompt to add documents has been activated.
+Please add documentation comments to public members.
+
+If there are too many issues, disable them in analysis_options.yaml.
