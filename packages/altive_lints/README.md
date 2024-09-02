@@ -321,6 +321,8 @@ class MyWidget extends StatelessWidget {
 
 Reasons for adopting each lint rule.
 
+All lint rules disabled by altive_lints and their reasons can be found in [altive_lints.yaml](https://github.com/altive/altive_lints/blob/main/packages/altive_lints/lib/altive_lints.yaml).
+
 ### [public_member_api_docs](https://dart.dev/tools/linter-rules/public_member_api_docs)
 
 Even the best naming is difficult to grasp the big picture unless it is very simple.
