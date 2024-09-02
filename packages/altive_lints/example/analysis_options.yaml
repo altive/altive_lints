@@ -4,7 +4,12 @@ analyzer:
   plugins:
     - custom_lint
 
+linter:
+  rules:
+    # Disabled so that you don't have to write a doc since it is an `example`.
+    - public_member_api_docs: false
+
 custom_lint:
   rules:
-    # Unnecessary if not localizing or not using Japanese.
-    # - avoid_hardcoded_japanese: false
+    # Disabled so that you can use hard-coded colors since it is an `example`.
+    - avoid_hardcoded_color: false
