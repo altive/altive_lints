@@ -44,13 +44,13 @@ class MyWidget extends StatelessWidget {
         // expect_lint: avoid_single_child
         ListView(
           children: const [
-            Text('Hello'),
+            Text('World'),
           ],
         ),
         // expect_lint: avoid_single_child
         SliverList.list(
           children: const [
-            Text('World'),
+            Text('Hello'),
           ],
         ),
         // expect_lint: avoid_single_child
