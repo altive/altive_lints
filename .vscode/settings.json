@@ -29,6 +29,7 @@
         ".vscode",
         ".vscode-insiders"
     ],
+    "markdown.extension.toc.levels": "2..3",
     "yaml.schemas": {
         "https://json.schemastore.org/yamllint.json": [
             "*.yaml",
