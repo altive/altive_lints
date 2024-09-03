@@ -6,7 +6,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// An `avoid_single_child` rule that warns against using layout
 /// widgets intended for multiple children with only one child.
 ///
-/// This includes widgets like `Column`, `Row`, `Stack`, `Flex`, `Wrap`
+/// This includes widgets like `Column`, `Row`, `Stack`, `Flex`, `Wrap`,
 /// `ListView`, and `SliverList`.
 ///
 /// Using these widgets with a single child can lead to
