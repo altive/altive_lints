@@ -19,7 +19,7 @@ There are also Altive-made rules by custom_lint.
   - [avoid\_single\_child](#avoid_single_child)
   - [prefer\_clock\_now](#prefer_clock_now)
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
-  - [prefer\_sliver\_prefix](#prefer_sliver_prefix)
+  - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
 - [Lint rules adopted by altive\_lints and why](#lint-rules-adopted-by-altive_lints-and-why)
   - [public\_member\_api\_docs](#public_member_api_docs)
@@ -252,9 +252,9 @@ var size = MediaQuery.sizeOf(context);
 var padding = MediaQuery.viewInsetsOf(context);
 ```
 
-### prefer_sliver_prefix
+### prefer_to_include_sliver_in_name
 
-Prefer to prefix the class name of a Widget that returns a Sliver type Widget with “Sliver”.
+Prefer to include ‘Sliver’ in the class name or named constructor of a widget that returns a Sliver-type widget.
 
 This makes it easy for the user to know at a glance that it is a Sliver type Widget, and improves readability and consistency.
 
