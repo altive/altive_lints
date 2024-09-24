@@ -33,3 +33,33 @@ class MyWidget2 extends StatelessWidget {
     );
   }
 }
+
+class MySliverWidget extends StatelessWidget {
+  const MySliverWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return const Placeholder();
+      },
+    );
+  }
+}
+
+class MyWidget3 extends StatelessWidget {
+  const MyWidget3({super.key});
+
+  const MyWidget3.sliver({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return const Placeholder();
+      },
+    );
+  }
+}

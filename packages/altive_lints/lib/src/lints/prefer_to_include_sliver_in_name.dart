@@ -74,20 +74,30 @@ class PreferToIncludeSliverInName extends DartLintRule {
         },
       );
 
+      if (!returnsSliverWidget) {
+        return;
+      }
+
       final className = node.name.lexeme;
+
+      if (className.contains('Sliver')) {
+        return;
+      }
+
       final constructorNames = node.members
           .whereType<ConstructorDeclaration>()
           .map((constructor) => constructor.name?.lexeme)
-          .whereType<String>();
-      final hasSliverInClassOrConstructor = className.contains('Sliver') ||
-          constructorNames.any(
-            (constructorName) =>
-                constructorName.toLowerCase().contains('sliver'),
-          );
+          .nonNulls;
 
-      if (returnsSliverWidget && !hasSliverInClassOrConstructor) {
-        reporter.atNode(node, _code);
+      final hasSliverInConstructor = constructorNames.any(
+        (constructorName) => constructorName.toLowerCase().contains('sliver'),
+      );
+
+      if (hasSliverInConstructor) {
+        return;
       }
+
+      reporter.atNode(node, _code);
     });
   }
 }
