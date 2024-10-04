@@ -1,3 +1,7 @@
+## 1.14.0
+
+ - **FEAT**: Update all lint rules ([#61](https://github.com/altive/altive_lints/issues/61)). ([cd146c86](https://github.com/altive/altive_lints/commit/cd146c864b6b1ecf243e30a56a5cda7bdb265397))
+
 ## 1.13.0
 
  - **FIX**: Add stack to avoid_single_child ([#57](https://github.com/altive/altive_lints/issues/57)). ([c2e3ccb9](https://github.com/altive/altive_lints/commit/c2e3ccb9c62d2ddaa53196ca55adac00a6f45cd8))
