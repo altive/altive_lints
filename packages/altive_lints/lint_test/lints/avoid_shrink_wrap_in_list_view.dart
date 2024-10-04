@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_single_child
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
@@ -9,6 +8,7 @@ class MyWidget extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
+          const Text('Hello World!'),
           Expanded(
             // expect_lint: avoid_shrink_wrap_in_list_view
             child: ListView(

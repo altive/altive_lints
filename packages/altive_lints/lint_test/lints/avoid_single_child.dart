@@ -112,7 +112,9 @@ class MyWidget extends StatelessWidget {
           ],
         ),
         const Column(),
-        const Column(children: []), // ignore: avoid_redundant_argument_values
+        // Ignore this for the sake of example.
+        // ignore: avoid_redundant_argument_values
+        const Column(children: []),
       ],
     );
   }
