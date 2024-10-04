@@ -1,3 +1,9 @@
+## 1.13.0
+
+ - **FIX**: Add stack to avoid_single_child ([#57](https://github.com/altive/altive_lints/issues/57)). ([c2e3ccb9](https://github.com/altive/altive_lints/commit/c2e3ccb9c62d2ddaa53196ca55adac00a6f45cd8))
+ - **FEAT**: Improve prefer_sliver_prefix to prefer_to_include_sliver_in_name ([#58](https://github.com/altive/altive_lints/issues/58)). ([9e9ceb53](https://github.com/altive/altive_lints/commit/9e9ceb5345742271a79b061411dc9f544f619d4d))
+ - **DOCS**: Add custom-lint rule description to README ([#56](https://github.com/altive/altive_lints/issues/56)). ([b8eeef22](https://github.com/altive/altive_lints/commit/b8eeef2226e9d3904ada7232799a4808ace4c675))
+
 ## 1.12.1
 
  - **FIX**: Exclude collection-for from the warning of avoid_single_child ([#52](https://github.com/altive/altive_lints/issues/52)). ([6d662328](https://github.com/altive/altive_lints/commit/6d6623287605be70c7a3df9a157ff2bc9cabb1a1))
