@@ -118,6 +118,7 @@ CustomScrollView(
 ### avoid_hardcoded_color
 
 Do not use hard-coded Color.
+However, `Colors.transparent` can be used.
 
 **Bad**:
 
