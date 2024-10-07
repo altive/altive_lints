@@ -14,6 +14,8 @@ class MyWidget extends StatelessWidget {
         // expect_lint: avoid_hardcoded_color
         const ColoredBox(color: Colors.green),
         ColoredBox(color: Theme.of(context).colorScheme.primary),
+
+        const ColoredBox(color: Colors.transparent),
       ],
     );
   }
