@@ -1,3 +1,7 @@
+## 1.14.1
+
+ - **FIX**: Exclude Colors.transparent from the target of avoid_hardcoded_color ([#63](https://github.com/altive/altive_lints/issues/63)). ([f1a1f5f5](https://github.com/altive/altive_lints/commit/f1a1f5f5cf2a01bac1c032730ff1c44be1857d12))
+
 ## 1.14.0
 
  - **FEAT**: Update all lint rules ([#61](https://github.com/altive/altive_lints/issues/61)). ([cd146c86](https://github.com/altive/altive_lints/commit/cd146c864b6b1ecf243e30a56a5cda7bdb265397))
