@@ -40,8 +40,8 @@ class AvoidHardcodedJapanese extends DartLintRule {
     ErrorReporter reporter,
     CustomLintContext context,
   ) {
-    if (resolver.source.shortName.endsWith('_test.dart')) {
-      return;
+    if (resolver.source.uri.toString().contains('/test/')) {
+      return; 
     }
     context.registry.addSimpleStringLiteral((node) {
       final stringValue = node.stringValue;

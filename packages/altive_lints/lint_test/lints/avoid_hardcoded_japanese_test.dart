@@ -1,7 +1,6 @@
 // Check the `avoid_hardcoded_japanese` rule.
 //
-// This file ends with the name `_test.dart`,
-// so it should be exempt from the warning.
+// It should exclude warnings for the entire test directory.
 
 const hiragana = 'あいうえお';
 
