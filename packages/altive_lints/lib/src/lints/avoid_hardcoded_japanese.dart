@@ -41,10 +41,10 @@ class AvoidHardcodedJapanese extends DartLintRule {
     CustomLintContext context,
   ) {
     if (resolver.source.uri.toString().contains('/test/')) {
-      return; 
+      return;
     }
-    // Although redundant, _test.dart is temporarily excluded here 
-    // because the warning message appears in the _test.dart file 
+    // Although redundant, _test.dart is temporarily excluded here
+    // because the warning message appears in the _test.dart file
     // in the lint_test directory.
     if (resolver.source.shortName.endsWith('_test.dart')) {
       return;
