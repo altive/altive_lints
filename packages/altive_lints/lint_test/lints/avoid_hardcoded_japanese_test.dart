@@ -1,6 +1,6 @@
 // Check the `avoid_hardcoded_japanese` rule.
 //
-// It should exclude warnings for the entire test directory.
+// It should exclude warnings for the entire `/test/` directory.
 
 const hiragana = 'あいうえお';
 
