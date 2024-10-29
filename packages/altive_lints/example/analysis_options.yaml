@@ -9,7 +9,3 @@ linter:
     # Disabled so that you don't have to write a doc since it is an `example`.
     - public_member_api_docs: false
 
-custom_lint:
-  rules:
-    # Disabled so that you can use hard-coded colors since it is an `example`.
-    - avoid_hardcoded_color: false
