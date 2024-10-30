@@ -13,4 +13,4 @@ dev_dependencies:
   altive_lints:
     path: ../
   clock: ^1.1.2
-  custom_lint: ^0.6.5
+  custom_lint: ^0.7.0
