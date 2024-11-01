@@ -1,3 +1,4 @@
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/error/listener.dart';
@@ -48,7 +49,7 @@ class AvoidHardcodedColor extends DartLintRule {
     context.registry.addInstanceCreationExpression((node) {
       final typeName = node.staticType?.getDisplayString();
 
-      if (typeName == 'Color') {
+      if (typeName == 'Color' && !_isInsideColorScheme(node)) {
         reporter.atNode(node, _code);
       }
     });
@@ -59,11 +60,11 @@ class AvoidHardcodedColor extends DartLintRule {
         final element = node.staticElement;
         if (element is PropertyAccessorElement) {
           final returnType = element.returnType;
-          // Allow Colors.transparent as a valid hardcoded color, as it serves.
+          // Allow Colors.transparent as a valid hardcoded color.
           if (node.identifier.name == 'transparent') {
             return;
           }
-          if (_isColorType(returnType)) {
+          if (_isColorType(returnType) && !_isInsideColorScheme(node)) {
             reporter.atNode(node, _code);
           }
         }
@@ -77,5 +78,17 @@ class AvoidHardcodedColor extends DartLintRule {
             type.getDisplayString() == 'Color' ||
             type.getDisplayString() == 'MaterialColor' ||
             type.getDisplayString() == 'MaterialAccentColor');
+  }
+
+  bool _isInsideColorScheme(AstNode node) {
+    var parent = node.parent;
+    while (parent != null) {
+      if (parent is InstanceCreationExpression &&
+          parent.staticType?.getDisplayString() == 'ColorScheme') {
+        return true;
+      }
+      parent = parent.parent;
+    }
+    return false;
   }
 }
