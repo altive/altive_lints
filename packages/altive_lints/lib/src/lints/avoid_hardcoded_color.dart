@@ -60,7 +60,7 @@ class AvoidHardcodedColor extends DartLintRule {
         final element = node.staticElement;
         if (element is PropertyAccessorElement) {
           final returnType = element.returnType;
-          // Allow Colors.transparent as a valid hardcoded color.
+          // Allow Colors.transparent as a valid hardcoded color, as it serves.
           if (node.identifier.name == 'transparent') {
             return;
           }
