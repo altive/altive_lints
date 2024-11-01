@@ -1,3 +1,8 @@
+## 1.15.0
+
+ - **FIX**: No warnings in test directory ([#70](https://github.com/altive/altive_lints/issues/70)). ([02d2fa8a](https://github.com/altive/altive_lints/commit/02d2fa8abb7249232f7eca6b3f99df20239b5fc8))
+ - **FEAT**: update all_lint_rules ([#69](https://github.com/altive/altive_lints/issues/69)). ([bce2f105](https://github.com/altive/altive_lints/commit/bce2f105048733af9c77c81481f719a0fe08b146))
+
 ## 1.14.1
 
  - **FIX**: Exclude Colors.transparent from the target of avoid_hardcoded_color ([#63](https://github.com/altive/altive_lints/issues/63)). ([f1a1f5f5](https://github.com/altive/altive_lints/commit/f1a1f5f5cf2a01bac1c032730ff1c44be1857d12))
