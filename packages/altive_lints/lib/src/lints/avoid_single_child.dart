@@ -78,7 +78,6 @@ class AvoidSingleChild extends DartLintRule {
         }
         for (final element in childrenList.elements) {
           if (element is IfElement) {
-
             if (_hasSingleChild(element.thenElement)) {
               return;
             }
@@ -97,6 +96,7 @@ class AvoidSingleChild extends DartLintRule {
       }
     });
   }
+
   bool _hasSingleChild(CollectionElement element) {
     if (element is ListLiteral) {
       return element.elements.length == 1;
