@@ -7,6 +7,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isValued = Random().nextBool();
     final random = Random();
     return ListView(
       children: [
@@ -66,7 +67,6 @@ class MyWidget extends StatelessWidget {
               const Text('Hello World')
             else ...[
               const Text('Hello'),
-              const Text('World'),
             ],
           ],
         ),
@@ -115,6 +115,17 @@ class MyWidget extends StatelessWidget {
         // Ignore this for the sake of example.
         // ignore: avoid_redundant_argument_values
         const Column(children: []),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ]else...[
+              Container(),
+            ],
+          ],
+        ),
+
       ],
     );
   }
