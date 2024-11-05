@@ -1,3 +1,4 @@
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/error/listener.dart';
@@ -46,6 +47,9 @@ class AvoidHardcodedColor extends DartLintRule {
     CustomLintContext context,
   ) {
     context.registry.addInstanceCreationExpression((node) {
+      if (_isInsideColorScheme(node)) {
+        return;
+      }
       final typeName = node.staticType?.getDisplayString();
 
       if (typeName == 'Color') {
@@ -77,5 +81,17 @@ class AvoidHardcodedColor extends DartLintRule {
             type.getDisplayString() == 'Color' ||
             type.getDisplayString() == 'MaterialColor' ||
             type.getDisplayString() == 'MaterialAccentColor');
+  }
+
+  bool _isInsideColorScheme(AstNode node) {
+    var parent = node.parent;
+    while (parent != null) {
+      if (parent is InstanceCreationExpression &&
+          parent.staticType?.getDisplayString() == 'ColorScheme') {
+        return true;
+      }
+      parent = parent.parent;
+    }
+    return false;
   }
 }
