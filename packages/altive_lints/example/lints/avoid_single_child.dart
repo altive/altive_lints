@@ -7,7 +7,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isValued = Random().nextBool();
+    final isValued = Random().nextBool();
     final random = Random();
     return ListView(
       children: [
