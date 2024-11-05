@@ -98,11 +98,9 @@ class AvoidSingleChild extends DartLintRule {
   }
 
   bool _hasSingleChild(CollectionElement element) {
-    if (element is SpreadElement) {
-      if (element.expression is ListLiteral) {
-        final spreadElement = element.expression as ListLiteral;
-        return spreadElement.elements.length != 1;
-      }
+    if (element is SpreadElement && element.expression is ListLiteral) {
+      final spreadElement = element.expression as ListLiteral;
+      return spreadElement.elements.length != 1;
     }
     return false;
   }
