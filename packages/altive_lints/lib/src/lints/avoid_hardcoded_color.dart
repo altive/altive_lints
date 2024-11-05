@@ -47,8 +47,11 @@ class AvoidHardcodedColor extends DartLintRule {
     CustomLintContext context,
   ) {
     context.registry.addInstanceCreationExpression((node) {
+     if (_isInsideColorScheme(node)) {
+          return;
+      }
       final typeName = node.staticType?.getDisplayString();
-
+      
       if (typeName == 'Color' && !_isInsideColorScheme(node)) {
         reporter.atNode(node, _code);
       }
