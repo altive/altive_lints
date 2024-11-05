@@ -125,7 +125,6 @@ class MyWidget extends StatelessWidget {
             ],
           ],
         ),
-
       ],
     );
   }
