@@ -47,12 +47,12 @@ class AvoidHardcodedColor extends DartLintRule {
     CustomLintContext context,
   ) {
     context.registry.addInstanceCreationExpression((node) {
-     if (_isInsideColorScheme(node)) {
-          return;
+      if (_isInsideColorScheme(node)) {
+        return;
       }
       final typeName = node.staticType?.getDisplayString();
       
-      if (typeName == 'Color' && !_isInsideColorScheme(node)) {
+      if (typeName == 'Color') {
         reporter.atNode(node, _code);
       }
     });
@@ -67,7 +67,7 @@ class AvoidHardcodedColor extends DartLintRule {
           if (node.identifier.name == 'transparent') {
             return;
           }
-          if (_isColorType(returnType) && !_isInsideColorScheme(node)) {
+          if (_isColorType(returnType)) {
             reporter.atNode(node, _code);
           }
         }
