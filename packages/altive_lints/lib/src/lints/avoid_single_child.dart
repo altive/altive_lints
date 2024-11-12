@@ -78,12 +78,12 @@ class AvoidSingleChild extends DartLintRule {
         }
         for (final element in childrenList.elements) {
           if (element is IfElement) {
-            if (_hasSingleChild(element.thenElement)) {
+            if (_hasMultipleChild(element.thenElement)) {
               return;
             }
 
             if (element.elseElement != null &&
-                _hasSingleChild(element.elseElement!)) {
+                _hasMultipleChild(element.elseElement!)) {
               return;
             }
           }
@@ -97,7 +97,7 @@ class AvoidSingleChild extends DartLintRule {
     });
   }
 
-  bool _hasSingleChild(CollectionElement element) {
+  bool _hasMultipleChild(CollectionElement element) {
     if (element is SpreadElement && element.expression is ListLiteral) {
       final spreadElement = element.expression as ListLiteral;
       return spreadElement.elements.length != 1;
