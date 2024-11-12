@@ -60,14 +60,48 @@ class MyWidget extends StatelessWidget {
             if (random.nextBool()) const Text('Hello World'),
           ],
         ),
-        // expect_lint: avoid_single_child
         Column(
           children: [
             if (random.nextBool())
               const Text('Hello World')
             else ...[
               const Text('Hello'),
+              const Text('World'),
             ],
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ]else...[
+              Container(),
+            ],
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ],
+          ],
+        ),
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+              Container(),
+            ],
+          ],
+        ),
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ],
+            Container(),
           ],
         ),
         Column(
@@ -77,7 +111,6 @@ class MyWidget extends StatelessWidget {
                 ]
               : [
                   const Text('Hello'),
-                  const Text('World'),
                 ],
         ),
         if (random.nextBool())
@@ -115,16 +148,6 @@ class MyWidget extends StatelessWidget {
         // Ignore this for the sake of example.
         // ignore: avoid_redundant_argument_values
         const Column(children: []),
-        // expect_lint: avoid_single_child
-        Column(
-          children: [
-            if(isValued)...[
-              Container(),
-            ]else...[
-              Container(),
-            ],
-          ],
-        ),
       ],
     );
   }
