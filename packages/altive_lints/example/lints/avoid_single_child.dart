@@ -112,6 +112,7 @@ class MyWidget extends StatelessWidget {
             ]
           ],
         ),
+        
         Column(
           children: [
             if(isValued)...[
