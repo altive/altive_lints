@@ -7,6 +7,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isValued = Random().nextBool();
     final random = Random();
     return ListView(
       children: [
@@ -59,7 +60,6 @@ class MyWidget extends StatelessWidget {
             if (random.nextBool()) const Text('Hello World'),
           ],
         ),
-        // expect_lint: avoid_single_child
         Column(
           children: [
             if (random.nextBool())
@@ -68,6 +68,56 @@ class MyWidget extends StatelessWidget {
               const Text('Hello'),
               const Text('World'),
             ],
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ]else...[
+              Container(),
+            ],
+          ],
+        ),
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ],
+            Container(),
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ],
+          ],
+        ),
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+              Container(),
+            ],
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[]
+            else...[]
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[]
+            else...[
+              Container(),
+            ]
           ],
         ),
         Column(
