@@ -82,8 +82,8 @@ class AvoidSingleChild extends DartLintRule {
               return;
             }
 
-            if (element.elseElement != null &&
-                _hasMultipleChild(element.elseElement!)) {
+            if (element.elseElement case final CollectionElement ce
+                when _hasMultipleChild(ce)) {
               return;
             }
           }
