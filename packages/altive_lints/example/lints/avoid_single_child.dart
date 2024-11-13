@@ -112,7 +112,7 @@ class MyWidget extends StatelessWidget {
             ]
           ],
         ),
-        
+
         Column(
           children: [
             if(isValued)...[
@@ -128,6 +128,7 @@ class MyWidget extends StatelessWidget {
                 ]
               : [
                   const Text('Hello'),
+                  const Text('World'),
                 ],
         ),
         if (random.nextBool())
