@@ -96,6 +96,22 @@ class MyWidget extends StatelessWidget {
             ],
           ],
         ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[]
+            else...[]
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        Column(
+          children: [
+            if(isValued)...[]
+            else...[
+              Container(),
+            ]
+          ],
+        ),
         Column(
           children: [
             if(isValued)...[
