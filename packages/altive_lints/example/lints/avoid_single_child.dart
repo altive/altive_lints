@@ -80,6 +80,14 @@ class MyWidget extends StatelessWidget {
             ],
           ],
         ),
+        Column(
+          children: [
+            if(isValued)...[
+              Container(),
+            ],
+            Container(),
+          ],
+        ),
         // expect_lint: avoid_single_child
         Column(
           children: [
@@ -110,15 +118,6 @@ class MyWidget extends StatelessWidget {
             else...[
               Container(),
             ]
-          ],
-        ),
-
-        Column(
-          children: [
-            if(isValued)...[
-              Container(),
-            ],
-            Container(),
           ],
         ),
         Column(
