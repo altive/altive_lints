@@ -1,3 +1,17 @@
+## 1.16.0
+
+ - **FIX**: No warning if the number of elements in the spread operator using the if statement is more than two. ([#74](https://github.com/altive/altive_lints/issues/74)). ([ad65c006](https://github.com/altive/altive_lints/commit/ad65c00659977b511ef4f6b0dbf9c72647953584)) for `avoid_single_child`.
+ - **FIX**: Resolved warnings false detection in ColorScheme definition ([#73](https://github.com/altive/altive_lints/issues/73)). ([4dc4b4e6](https://github.com/altive/altive_lints/commit/4dc4b4e6c264d018bd5bdbb353af0ec02a8cd8da)) for `avoid_hardcoded_color`.
+ - **FEAT**: update all_lint_rules ([#76](https://github.com/altive/altive_lints/issues/76)). ([de9ac8ca](https://github.com/altive/altive_lints/commit/de9ac8ca0de01b925167713ad42beeb747a0c147))
+   - Added
+     - [avoid_futureor_void](https://dart.dev/tools/linter-rules/avoid_futureor_void)
+     - [avoid_null_checks_in_equality_operators](https://dart.dev/tools/linter-rules/avoid_null_checks_in_equality_operators)
+     - [omit_obvious_local_variable_types](https://dart.dev/tools/linter-rules/omit_obvious_local_variable_types)
+     - [specify_nonobvious_local_variable_types](https://dart.dev/tools/linter-rules/specify_nonobvious_local_variable_types)
+     - [use_truncating_division](https://dart.dev/tools/linter-rules/use_truncating_division)
+   - Removed
+     - [unsafe_html](https://dart.dev/tools/linter-rules/unsafe_html)
+
 ## 1.15.0
 
  - **FIX**: No warnings in test directory ([#70](https://github.com/altive/altive_lints/issues/70)). ([02d2fa8a](https://github.com/altive/altive_lints/commit/02d2fa8abb7249232f7eca6b3f99df20239b5fc8))
