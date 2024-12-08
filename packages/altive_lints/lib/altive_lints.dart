@@ -1,5 +1,8 @@
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
+import 'src/assists/add_macro_document_comments.dart';
+import 'src/assists/add_macro_template_document_comment.dart';
+import 'src/assists/wrap_with_macro_template_document_comment.dart';
 import 'src/lints/avoid_consecutive_sliver_to_box_adapter.dart';
 import 'src/lints/avoid_hardcoded_color.dart';
 import 'src/lints/avoid_hardcoded_japanese.dart';
@@ -25,5 +28,12 @@ class _AltivePlugin extends PluginBase {
         const PreferDedicatedMediaQueryMethods(),
         const PreferSpaceBetweenElements(),
         const PreferToIncludeSliverInName(),
+      ];
+
+  @override
+  List<Assist> getAssists() => [
+        AddMacroDocumentComment(),
+        AddMacroTemplateDocumentComment(),
+        WrapWithMacroTemplateDocumentComment(),
       ];
 }
