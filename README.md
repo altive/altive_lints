@@ -1,4 +1,4 @@
-[![Check all lint rule diffs](https://github.com/altive/altive_lints/actions/workflows/check-all-lint-rule-diffs.yaml/badge.svg)](https://github.com/altive/altive_lints/actions/workflows/check-all-lint-rule-diffs.yaml)
+[![Check all lint rule diffs](https://github.com/altive/altive_lints/actions/workflows/update-all-lint-rules.yaml/badge.svg)](https://github.com/altive/altive_lints/actions/workflows/update-all-lint-rules.yaml)
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 # Altive Lints
