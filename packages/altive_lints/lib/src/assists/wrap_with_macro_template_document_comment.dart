@@ -56,6 +56,12 @@ class WrapWithMacroTemplateDocumentComment extends DartAssist {
         return;
       }
 
+      final currentComment = node.tokens.join();
+      if (currentComment.contains('{@template') &&
+          currentComment.contains('{@endtemplate}')) {
+        return;
+      }
+
       if (!node.isDocumentation) {
         return;
       }
