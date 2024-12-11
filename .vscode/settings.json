@@ -6,6 +6,7 @@
         "bools",
         "combinators",
         "diffscrape",
+        "endtemplate",
         "gocolly",
         "interps",
         "ints",

@@ -21,6 +21,10 @@ There are also Altive-made rules by custom_lint.
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
   - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
+- [All assists in altive\_lints](#all-assists-in-altive_lints)
+  - [Add macro template documentation comment](#add-macro-template-documentation-comment)
+  - [Add macro documentation comment](#add-macro-documentation-comment)
+  - [Wrap with macro template documentation comment](#wrap-with-macro-template-documentation-comment)
 - [Lint rules adopted by altive\_lints and why](#lint-rules-adopted-by-altive_lints-and-why)
   - [public\_member\_api\_docs](#public_member_api_docs)
 - [Migration guide](#migration-guide)
@@ -315,6 +319,81 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(title);
   }
+}
+```
+
+## All assists in altive_lints
+
+### Add macro template documentation comment
+
+Adds a Macros template to class declarations.  
+When you place the cursor on the class declaration and execute **"Add macro template documentation comment"**, the documentation is created.
+
+**Before:**
+
+```dart
+class MyClass {
+  // Class implementation
+}
+```
+
+**After applying the assist:**
+
+```dart
+/// {@template my_package.MyClass}
+///
+/// {@endtemplate}
+class MyClass {
+  // Class implementation
+}
+```
+
+### Add macro documentation comment
+
+Adds Macros comments to constructors and method declarations.  
+When you place the cursor on a constructor or method declaration and execute **"Add macro documentation comment"**, the documentation is created.
+
+**Before:**
+
+```dart
+void myFunction() {
+  // Function implementation
+}
+```
+
+**After applying the assist:**
+
+```dart
+/// {@macro my_package.myFunction}
+void myFunction() {
+  // Function implementation
+}
+```
+
+### Wrap with macro template documentation comment
+
+Wraps existing documentation comments with a Macros template.  
+When you select the documentation comment and execute **"Wrap with macro template documentation comment"**, the documentation is created.
+
+**Before:**
+
+```dart
+/// Some comment
+/// More comments
+class MyClass {
+  // Class implementation
+}
+```
+
+**After applying the assist:**
+
+```dart
+/// {@template my_package.MyClass}
+/// Some comment
+/// More comments
+/// {@endtemplate}
+class MyClass {
+  // Class implementation
 }
 ```
 
