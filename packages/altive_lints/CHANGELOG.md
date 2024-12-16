@@ -1,3 +1,7 @@
+## 1.17.0
+
+ - **FEAT**: Disable specify_nonobvious_local_variable_types to avoid conflicts ([#80](https://github.com/altive/altive_lints/issues/80)). ([cc54fcc3](https://github.com/altive/altive_lints/commit/cc54fcc35efc7620f5e12ebb82c9ee328d5c95db))
+
 ## 1.16.0
 
  - **FIX**: No warning if the number of elements in the spread operator using the if statement is more than two. ([#74](https://github.com/altive/altive_lints/issues/74)). ([ad65c006](https://github.com/altive/altive_lints/commit/ad65c00659977b511ef4f6b0dbf9c72647953584)) for `avoid_single_child`.
