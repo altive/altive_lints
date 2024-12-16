@@ -58,6 +58,9 @@ linter:
     # Too verbose. Use avoid_final_parameters
     prefer_final_parameters: false
 
+    # Conflicts with `omit_local_variable_types`
+    specify_nonobvious_local_variable_types: false
+
     # Incompatible with `prefer_final_locals`
     # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.
