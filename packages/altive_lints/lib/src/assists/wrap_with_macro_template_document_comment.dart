@@ -62,10 +62,6 @@ class WrapWithMacroTemplateDocumentComment extends DartAssist {
         return;
       }
 
-      if (!node.isDocumentation) {
-        return;
-      }
-
       final changeBuilder = reporter.createChangeBuilder(
         message: 'Wrap with macro template documentation comment',
         priority: 20,
