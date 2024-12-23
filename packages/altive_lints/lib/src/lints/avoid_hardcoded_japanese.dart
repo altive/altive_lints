@@ -1,6 +1,8 @@
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
+import '../utils/files_utils.dart';
+
 /// An `avoid_hardcoded_japanese` rule which detects
 /// and reports hardcoded Japanese text strings within the code.
 ///
@@ -40,10 +42,7 @@ class AvoidHardcodedJapanese extends DartLintRule {
     ErrorReporter reporter,
     CustomLintContext context,
   ) {
-    if (resolver.source.uri.pathSegments.contains('test')) {
-      return;
-    }
-    if (resolver.source.shortName.endsWith('_test.dart')) {
+    if (isTestFile(resolver.source)) {
       return;
     }
     context.registry.addSimpleStringLiteral((node) {
