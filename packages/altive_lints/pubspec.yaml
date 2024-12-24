@@ -18,3 +18,6 @@ dependencies:
   analyzer: ^6.7.0
   collection: ^1.18.0
   custom_lint_builder: ^0.7.0
+
+dev_dependencies:
+  test: ^1.25.14

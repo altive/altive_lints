@@ -4,6 +4,8 @@ import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
+import '../utils/files_utils.dart';
+
 /// An `avoid_hardcoded_color` rule that discourages the use of
 /// hardcoded colors directly in the code, promoting the use of `ColorScheme`,
 /// `ThemeExtension`, or other Theme-based systems for defining colors.
@@ -46,6 +48,9 @@ class AvoidHardcodedColor extends DartLintRule {
     ErrorReporter reporter,
     CustomLintContext context,
   ) {
+    if (isTestFile(resolver.source)) {
+      return;
+    }
     context.registry.addInstanceCreationExpression((node) {
       if (_isInsideColorScheme(node)) {
         return;
