@@ -1,3 +1,8 @@
+## 1.18.0
+
+ - **FEAT**: disable avoid_hardcoded_color lint if it's a test file ([#83](https://github.com/altive/altive_lints/issues/83)). ([6003c83f](https://github.com/altive/altive_lints/commit/6003c83f929a8e402dbda83bc519437567adfc75))
+ - **FEAT**: Add assists for macro documentation comments ([#78](https://github.com/altive/altive_lints/issues/78)). ([8126ddc0](https://github.com/altive/altive_lints/commit/8126ddc0ed0ec97b98c43ab565efa738cfb9e7d4))
+
 ## 1.17.0
 
  - **FEAT**: Disable specify_nonobvious_local_variable_types to avoid conflicts ([#80](https://github.com/altive/altive_lints/issues/80)). ([cc54fcc3](https://github.com/altive/altive_lints/commit/cc54fcc35efc7620f5e12ebb82c9ee328d5c95db))
