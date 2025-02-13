@@ -5,8 +5,6 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   errors:
-    todo: ignore
-    fixme: ignore
     # Suppresses warnings caused by rule collisions in `include all_lint_rules`
     included_file_warning: ignore
     # false positive when using Freezed
