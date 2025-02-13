@@ -1,3 +1,7 @@
+## 1.19.0
+
+ - **FEAT**: update all_lint_rules ([#87](https://github.com/altive/altive_lints/issues/87)). ([a8fb7593](https://github.com/altive/altive_lints/commit/a8fb7593f0721daf323f70744b5b902be5af1db0))
+
 ## 1.18.0
 
  - **FEAT**: disable avoid_hardcoded_color lint if it's a test file ([#83](https://github.com/altive/altive_lints/issues/83)). ([6003c83f](https://github.com/altive/altive_lints/commit/6003c83f929a8e402dbda83bc519437567adfc75))
