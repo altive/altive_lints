@@ -1,3 +1,17 @@
+## 1.19.0
+
+ - **FEAT**: update all_lint_rules ([#87](https://github.com/altive/altive_lints/issues/87)). ([a8fb7593](https://github.com/altive/altive_lints/commit/a8fb7593f0721daf323f70744b5b902be5af1db0))
+   - Added
+     - [omit_obvious_property_types](https://dart.dev/tools/linter-rules/omit_obvious_property_types)
+     - [specify_nonobvious_property_types](https://dart.dev/tools/linter-rules/specify_nonobvious_property_types)
+     - [strict_top_level_inference](https://dart.dev/tools/linter-rules/strict_top_level_inference)
+     - [unnecessary_async](https://dart.dev/tools/linter-rules/unnecessary_async)
+     - [unnecessary_ignore](https://dart.dev/tools/linter-rules/unnecessary_ignore)
+     - [unnecessary_underscores](https://dart.dev/tools/linter-rules/unnecessary_underscores)
+     - [unsafe_variance](https://dart.dev/tools/linter-rules/unsafe_variance)
+   - Removed
+     - [package_api_docs](https://dart.dev/tools/linter-rules/package_api_docs)
+
 ## 1.18.0
 
  - **FEAT**: disable avoid_hardcoded_color lint if it's a test file ([#83](https://github.com/altive/altive_lints/issues/83)). ([6003c83f](https://github.com/altive/altive_lints/commit/6003c83f929a8e402dbda83bc519437567adfc75))
