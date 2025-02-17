@@ -37,17 +37,4 @@ https://dart.dev/tools/linter-rules/all
 
 ## Development
 
-### Publication
-
-1. Create a release branch.
-1. Run `melos version` command.
-1. Open a pull-request.
-1. Merge after approving pull-request.
-1. Run `melos publish` command on the `main` branch.
-
-```shell
-# Use melos version command.
-melos version
-# Example of manually specifying a version.
-melos version --manual-version altive_lints:patch
-```
+See [CONTRIBUTING.md](/docs/CONTRIBUTING.md).
