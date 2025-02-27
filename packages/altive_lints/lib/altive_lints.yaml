@@ -59,6 +59,13 @@ linter:
     # Conflicts with `omit_local_variable_types`
     specify_nonobvious_local_variable_types: false
 
+    # Conflicts with `discarded_futures` and `unnecessary_await_in_return` with arrow syntax.
+    # Lint patterns:
+    # - onTap: () => someFuture(arg: someValue), // LINT: discarded_futures
+    # - onTap: () async => await someFuture(arg: someValue), // LINT: unnecessary_await_in_return
+    # - onTap: () async => someFuture(arg: someValue), // LINT: unnecessary_async
+    unnecessary_async: false
+
     # Incompatible with `prefer_final_locals`
     # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.
