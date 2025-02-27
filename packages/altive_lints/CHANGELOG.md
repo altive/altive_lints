@@ -1,3 +1,8 @@
+## 1.19.1
+
+ - **FIX**: disable unnecessary_async lint rule to resolve conflicts with other lint patterns ([#92](https://github.com/altive/altive_lints/issues/92)). ([72c9323a](https://github.com/altive/altive_lints/commit/72c9323aaf049836f46073866aee539fb819ff8a))
+ - **FIX**: remove todo and fixme ignore settings from altive_lints.yaml ([#89](https://github.com/altive/altive_lints/issues/89)). ([2b2d7c3a](https://github.com/altive/altive_lints/commit/2b2d7c3aa94fe58feef5ad22ae51b4095ae8f8a5))
+
 ## 1.19.0
 
  - **FEAT**: update all_lint_rules ([#87](https://github.com/altive/altive_lints/issues/87)). ([a8fb7593](https://github.com/altive/altive_lints/commit/a8fb7593f0721daf323f70744b5b902be5af1db0))
