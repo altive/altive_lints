@@ -58,7 +58,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate GitHub App token
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ secrets.PR_WRITER_APP_ID }}
           private-key: ${{ secrets.PR_WRITER_PRIVATE_KEY }}
