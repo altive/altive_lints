@@ -1,3 +1,13 @@
+## 1.20.0
+
+ - **FEAT**: update all_lint_rules ([#97](https://github.com/altive/altive_lints/issues/97)). ([cefae16b](https://github.com/altive/altive_lints/commit/cefae16b2abb231497e5c0e1b25615854e0028a7))
+   - Added
+     - [unnecessary_ignore](https://dart.dev/tools/linter-rules/unnecessary_ignore)
+     - [use_null_aware_elements](https://dart.dev/tools/linter-rules/use_null_aware_elements)
+ - **FEAT**: update all_lint_rules ([#94](https://github.com/altive/altive_lints/issues/94)). ([4291b32d](https://github.com/altive/altive_lints/commit/4291b32d7909e45491edd981b141c495f80b11dd))
+   - Removed
+     - [unnecessary_ignore](https://dart.dev/tools/linter-rules/unnecessary_ignore)
+
 ## 1.19.1
 
  - **FIX**: disable unnecessary_async lint rule to resolve conflicts with other lint patterns ([#92](https://github.com/altive/altive_lints/issues/92)). ([72c9323a](https://github.com/altive/altive_lints/commit/72c9323aaf049836f46073866aee539fb819ff8a))
