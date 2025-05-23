@@ -232,3 +232,4 @@ linter:
     - use_truncating_division
     - valid_regexps
     - void_checks
+    - avoid_hardcoded_unicode
