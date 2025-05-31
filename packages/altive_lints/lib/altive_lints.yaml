@@ -42,6 +42,9 @@ linter:
     # StatefulWidget will give you a warning
     library_private_types_in_public_api: false
 
+    # Conflicts with `type_annotate_public_apis`
+    omit_obvious_property_types: false
+
     # Too heavy for application. Preferable to enable in public packages
     prefer_asserts_with_message: false
 
@@ -70,3 +73,6 @@ linter:
     # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.
     unnecessary_final: false
+
+    # Because there is no simple and safe solution.
+    unsafe_variance: false
