@@ -9,6 +9,11 @@ analyzer:
     included_file_warning: ignore
     # false positive when using Freezed
     invalid_annotation_target: ignore
+
+formatter:
+  # The default setting conflicts with require_trailing_commas.
+  trailing_commas: preserve
+
 linter:
   rules:
     # Conflicts with the convention used by flutter, which puts `Key key`
