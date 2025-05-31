@@ -1,3 +1,9 @@
+## 1.21.0
+
+ - **FIX**: disable omit_obvious_property_types and unsafe_variance ([#101](https://github.com/altive/altive_lints/issues/101)). ([68727270](https://github.com/altive/altive_lints/commit/68727270dbb8979ea2476e66a8c4ed6fa6d7f0e5))
+ - **FEAT**: preserve trailing_commas ([#102](https://github.com/altive/altive_lints/issues/102)). ([12d05633](https://github.com/altive/altive_lints/commit/12d05633e21a1a117e52122c6220288d5218697f))
+ - **FEAT**: update all_lint_rules ([#97](https://github.com/altive/altive_lints/issues/97)). ([cefae16b](https://github.com/altive/altive_lints/commit/cefae16b2abb231497e5c0e1b25615854e0028a7))
+
 ## 1.20.0
 
  - **FEAT**: update all_lint_rules ([#97](https://github.com/altive/altive_lints/issues/97)). ([cefae16b](https://github.com/altive/altive_lints/commit/cefae16b2abb231497e5c0e1b25615854e0028a7))
