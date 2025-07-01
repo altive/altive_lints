@@ -82,7 +82,7 @@ bool _isWidget(DartType? type) => type?.getDisplayString() == 'Widget';
 bool _isSubclassOfWidget(DartType? type) =>
     type is InterfaceType && type.allSupertypes.any(_isWidget);
 
-bool _isWidgetState(DartType? type) => type?.element?.displayName == 'State';
+bool _isWidgetState(DartType? type) => type?.element3?.displayName == 'State';
 
 bool _isSubclassOfWidgetState(DartType? type) =>
     type is InterfaceType && type.allSupertypes.any(_isWidgetState);

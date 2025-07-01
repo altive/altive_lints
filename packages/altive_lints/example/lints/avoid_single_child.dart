@@ -55,6 +55,18 @@ class MyWidget extends StatelessWidget {
           ],
         ),
         // expect_lint: avoid_single_child
+        SliverMainAxisGroup(
+          slivers: [
+            SliverToBoxAdapter(child: Text('Hello')),
+          ],
+        ),
+        // expect_lint: avoid_single_child
+        SliverCrossAxisGroup(
+          slivers: [
+            SliverToBoxAdapter(child: Text('Hello')),
+          ],
+        ),
+        // expect_lint: avoid_single_child
         Column(
           children: [
             if (random.nextBool()) const Text('Hello World'),
@@ -73,16 +85,16 @@ class MyWidget extends StatelessWidget {
         // expect_lint: avoid_single_child
         Column(
           children: [
-            if(isValued)...[
+            if (isValued) ...[
               Container(),
-            ]else...[
+            ] else ...[
               Container(),
             ],
           ],
         ),
         Column(
           children: [
-            if(isValued)...[
+            if (isValued) ...[
               Container(),
             ],
             Container(),
@@ -91,14 +103,14 @@ class MyWidget extends StatelessWidget {
         // expect_lint: avoid_single_child
         Column(
           children: [
-            if(isValued)...[
+            if (isValued) ...[
               Container(),
             ],
           ],
         ),
         Column(
           children: [
-            if(isValued)...[
+            if (isValued) ...[
               Container(),
               Container(),
             ],
@@ -106,16 +118,14 @@ class MyWidget extends StatelessWidget {
         ),
         // expect_lint: avoid_single_child
         Column(
-          children: [
-            if(isValued)...[]
-            else...[]
-          ],
+          children: [if (isValued) ...[] else ...[]],
         ),
         // expect_lint: avoid_single_child
         Column(
           children: [
-            if(isValued)...[]
-            else...[
+            if (isValued)
+              ...[]
+            else ...[
               Container(),
             ]
           ],
@@ -153,6 +163,26 @@ class MyWidget extends StatelessWidget {
         SliverList.list(
           children: [
             for (final e in ['a', 'b', 'c']) Text('Hello $e'),
+          ],
+        ),
+        SliverMainAxisGroup(
+          slivers: [
+            SliverAppBar(
+              title: const Text('Sliver App Bar'),
+            ),
+            SliverToBoxAdapter(
+              child: const Text('Hello World'),
+            ),
+          ],
+        ),
+        SliverCrossAxisGroup(
+          slivers: [
+            SliverAppBar(
+              title: const Text('Sliver App Bar'),
+            ),
+            SliverToBoxAdapter(
+              child: const Text('Hello World'),
+            ),
           ],
         ),
         Column(

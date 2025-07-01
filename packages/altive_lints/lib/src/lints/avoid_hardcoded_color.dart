@@ -1,5 +1,5 @@
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
@@ -65,8 +65,8 @@ class AvoidHardcodedColor extends DartLintRule {
     context.registry.addPrefixedIdentifier((node) {
       final prefix = node.prefix.name;
       if (prefix == 'Colors') {
-        final element = node.staticElement;
-        if (element is PropertyAccessorElement) {
+        final element = node.element;
+        if (element is PropertyAccessorElement2) {
           final returnType = element.returnType;
           // Allow Colors.transparent as a valid hardcoded color, as it serves.
           if (node.identifier.name == 'transparent') {

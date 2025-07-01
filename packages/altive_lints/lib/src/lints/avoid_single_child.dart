@@ -7,7 +7,7 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// widgets intended for multiple children with only one child.
 ///
 /// This includes widgets like `Column`, `Row`, `Stack`, `Flex`, `Wrap`,
-/// `ListView`, and `SliverList`.
+/// `ListView`, `SliverList`, `SliverMainAxisGroup`, and `SliverCrossAxisGroup`.
 ///
 /// Using these widgets with a single child can lead to
 /// unnecessary overhead and less efficient layouts.
@@ -60,9 +60,14 @@ class AvoidSingleChild extends DartLintRule {
         'Stack',
         'ListView',
         'SliverList',
+        'SliverMainAxisGroup',
+        'SliverCrossAxisGroup',
       ].contains(className)) {
         final childrenArg = node.argumentList.arguments.firstWhereOrNull(
-          (arg) => arg is NamedExpression && arg.name.label.name == 'children',
+          (arg) =>
+              arg is NamedExpression &&
+              (arg.name.label.name == 'children' ||
+                  arg.name.label.name == 'slivers'),
         );
 
         final ListLiteral childrenList;
