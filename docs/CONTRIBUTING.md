@@ -8,11 +8,12 @@ TODO
 
 1. Create a release branch.
     - `git switch -c release` & `git push -u origin release`
+    - If the release branch already exists, delete it.
 1. Create a release commit.
     - `melos version`
 1. Push a commit with a tag.
     -  `git push origin release --tags`
-    -  Open a pull-request.
+    -  Open a pull-request. (`gh pr create --fill`)
 1. Merge after approving pull-request.
 1. Publish to pub.dev.
     - `melos publish` on the `main` branch.

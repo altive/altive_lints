@@ -1,3 +1,12 @@
+## 1.22.0
+
+ - **FEAT**: Update all lint rules (#105).
+   - Added
+     - [switch_on_type](https://dart.dev/tools/linter-rules/switch_on_type)
+     - [unnecessary_unawaited](https://dart.dev/tools/linter-rules/unnecessary_unawaited)
+ - **FEAT**: update avoid_single_child lint to include SliverMainAxisGroup and SliverCrossAxisGroup (#103).
+ - Update the minimum Dart SDK version to 3.5.0. (using pub_workspace and Melos v7)
+
 ## 1.21.0
 
  - **FIX**: disable `omit_obvious_property_types` and `unsafe_variance` ([#101](https://github.com/altive/altive_lints/issues/101)). ([68727270](https://github.com/altive/altive_lints/commit/68727270dbb8979ea2476e66a8c4ed6fa6d7f0e5))
