@@ -2,9 +2,40 @@ name: altive_lints_workspace
 publish_to: none
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.5.0
+
+workspace:
+  - packages/altive_lints
+  - packages/diffscrape
 
 dev_dependencies:
   altive_lints:
     path: packages/altive_lints
-  melos: ^6.3.3
+  melos: ^7.0.0
+
+melos:
+
+  command:
+    version:
+      workspaceChangelog: false
+
+  scripts:
+    analyze:
+      exec: dart analyze --fatal-infos lib
+      description: Run melos analyze.
+
+    custom_lint:
+      exec: dart run custom_lint
+      description: Run custom_lint.
+      packageFilters:
+        dependsOn: "custom_lint"
+
+    # Issue on file exclusion feature: https://github.com/dart-lang/dart_style/issues/864
+    # NOTE: Using the `exec:` format causes processing to stop
+    format:ci:
+      run: |
+        melos exec -- \
+          dart format --set-exit-if-changed lib/
+      description: Run dart format for CI.
+      packageFilters:
+        dirExists: lib
