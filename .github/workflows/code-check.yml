@@ -28,7 +28,7 @@ jobs:
         uses: bluefireteam/melos-action@v3
 
       - name: Analyze packages
-        run: melos analyze --fatal-infos
+        run: melos run analyze
 
       - name: Custom lint
         run: melos custom_lint
