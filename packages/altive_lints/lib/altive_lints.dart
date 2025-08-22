@@ -6,6 +6,7 @@ import 'src/assists/wrap_with_macro_template_document_comment.dart';
 import 'src/lints/avoid_consecutive_sliver_to_box_adapter.dart';
 import 'src/lints/avoid_hardcoded_color.dart';
 import 'src/lints/avoid_hardcoded_japanese.dart';
+import 'src/lints/avoid_hardcoded_unicode.dart';
 import 'src/lints/avoid_shrink_wrap_in_list_view.dart';
 import 'src/lints/avoid_single_child.dart';
 import 'src/lints/prefer_clock_now.dart';
@@ -22,6 +23,7 @@ class _AltivePlugin extends PluginBase {
         const AvoidConsecutiveSliverToBoxAdapter(),
         const AvoidHardcodedColor(),
         const AvoidHardcodedJapanese(),
+        const AvoidHardcodedUnicode(),
         const AvoidShrinkWrapInListView(),
         const AvoidSingleChild(),
         const PreferClockNow(),
