@@ -19,7 +19,7 @@ resolution: workspace
 dependencies:
   analyzer: ^7.4.5
   collection: ^1.19.1
-  custom_lint_builder: ^0.7.5
+  custom_lint_builder: ">=0.7.5 <0.9.0"
 
 dev_dependencies:
   test: ^1.26.2
