@@ -1,3 +1,7 @@
+## 1.22.1
+
+ - bump custom_lint_builder to 0.8.0 (thanks to @masa-tokyo)
+
 ## 1.22.0
 
  - **FEAT**: Update all lint rules (#105).
