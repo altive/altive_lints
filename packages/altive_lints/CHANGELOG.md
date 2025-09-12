@@ -1,3 +1,8 @@
+## 1.23.0
+
+ - **FEAT**: specify_nonobvious_property_types: false (#112).
+ - **FEAT**: update all_lint_rules (#111).
+
 ## 1.22.1
 
  - bump custom_lint_builder to 0.8.0 (thanks to @masa-tokyo)
