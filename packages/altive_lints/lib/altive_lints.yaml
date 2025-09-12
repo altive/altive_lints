@@ -67,6 +67,9 @@ linter:
     # Conflicts with `omit_local_variable_types`
     specify_nonobvious_local_variable_types: false
 
+    # Prefer inference; annotate properties only when it improves clarity.
+    specify_nonobvious_property_types: false
+
     # Conflicts with `discarded_futures` and `unnecessary_await_in_return` with arrow syntax.
     # Lint patterns:
     # - onTap: () => someFuture(arg: someValue), // LINT: discarded_futures
