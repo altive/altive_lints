@@ -1,3 +1,7 @@
+## 1.24.0
+
+ - **FEAT**: update all_lint_rules (#113).
+
 ## 1.23.0
 
  - **FEAT**: specify_nonobvious_property_types: false (#112).
