@@ -1,6 +1,8 @@
 ## 1.24.0
 
  - **FEAT**: update all_lint_rules (#113).
+   - Added
+     - [remove_deprecations_in_breaking_versions](https://dart.dev/tools/linter-rules/remove_deprecations_in_breaking_versions)
 
 ## 1.23.0
 
