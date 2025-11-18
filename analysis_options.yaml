@@ -1,6 +1,1 @@
 include: package:altive_lints/altive_lints.yaml
-analyzer:
-  errors:
-    # Remove once we require analyzer 8.0.0
-    # We currently support both 7.0 and 8.0, so we can't migrate yet.
-    deprecated_member_use: ignore
