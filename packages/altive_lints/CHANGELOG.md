@@ -1,3 +1,8 @@
+## 1.25.0
+
+ - **FEAT**: Support analyzer 7.x - 9.x (#116).
+ - **DOCS**: update CHANGELOG.
+
 ## 1.24.0
 
  - **FEAT**: update all_lint_rules (#113).
