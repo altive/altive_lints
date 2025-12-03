@@ -1,7 +1,10 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/listener.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 import 'package:collection/collection.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 import '../utils/types_utils.dart';
 
@@ -41,13 +44,14 @@ import '../utils/types_utils.dart';
 ///   ],
 /// );
 /// ```
-class AvoidShrinkWrapInListView extends DartLintRule {
+class AvoidShrinkWrapInListView extends AnalysisRule {
   /// Creates a new instance of [AvoidShrinkWrapInListView].
-  const AvoidShrinkWrapInListView() : super(code: _code);
+  AvoidShrinkWrapInListView()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'avoid_shrink_wrap_in_list_view',
-    problemMessage: 'Avoid using ListView with shrinkWrap, '
+    'avoid_shrink_wrap_in_list_view',
+    'Avoid using ListView with shrinkWrap, '
         'since it might degrade the performance.\n'
         'Consider using slivers instead. '
         'Or, it is originally intended to be used for shrinking '
@@ -55,18 +59,31 @@ class AvoidShrinkWrapInListView extends DartLintRule {
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addInstanceCreationExpression((node) {
-      if (isListViewWidget(node.staticType) &&
-          _hasShrinkWrap(node) &&
-          _hasParentList(node)) {
-        reporter.atNode(node, _code);
-      }
-    });
+    final visitor = _Visitor(this, context);
+    registry.addInstanceCreationExpression(this, visitor);
+  }
+}
+
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
+
+  final AnalysisRule rule;
+  final RuleContext context;
+
+  @override
+  void visitInstanceCreationExpression(InstanceCreationExpression node) {
+    if (isListViewWidget(node.staticType) &&
+        _hasShrinkWrap(node) &&
+        _hasParentList(node)) {
+      rule.reportAtNode(node);
+    }
   }
 
   bool _hasShrinkWrap(InstanceCreationExpression node) =>

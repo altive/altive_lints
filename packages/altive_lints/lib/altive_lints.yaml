@@ -14,6 +14,10 @@ formatter:
   # The default setting conflicts with require_trailing_commas.
   trailing_commas: preserve
 
+plugins:
+  altive_lints:
+    path: ../../altive_lints
+
 linter:
   rules:
     # Conflicts with the convention used by flutter, which puts `Key key`

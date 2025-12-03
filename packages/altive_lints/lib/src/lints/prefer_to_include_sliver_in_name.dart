@@ -1,7 +1,10 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/listener.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 import 'package:collection/collection.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 /// A `prefer_to_include_sliver_in_name` rule that ensures widgets returning
 /// a Sliver-type widget include "Sliver" in their class names.
@@ -36,68 +39,80 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///   }
 /// }
 /// ```
-class PreferToIncludeSliverInName extends DartLintRule {
+class PreferToIncludeSliverInName extends AnalysisRule {
   /// Creates a new instance of [PreferToIncludeSliverInName].
-  const PreferToIncludeSliverInName() : super(code: _code);
+  PreferToIncludeSliverInName()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'prefer_to_include_sliver_in_name',
-    problemMessage: 'Widgets returning Sliver should include "Sliver" '
+    'prefer_to_include_sliver_in_name',
+    'Widgets returning Sliver should include "Sliver" '
         'in the class name or named constructor.',
-    correctionMessage:
-        'Consider adding "Sliver" to the class name or a named constructor.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addClassDeclaration((node) {
-      final methodBody = node.members
-          .whereType<MethodDeclaration>()
-          .firstWhereOrNull((method) => method.name.lexeme == 'build')
-          ?.body;
+    final visitor = _Visitor(this, context);
+    registry.addClassDeclaration(this, visitor);
+  }
+}
 
-      if (methodBody is! BlockFunctionBody) {
-        return;
-      }
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
 
-      final returnStatements =
-          methodBody.block.statements.whereType<ReturnStatement>();
-      final returnsSliverWidget = returnStatements.any(
-        (returnStatement) {
-          final returnType = returnStatement.expression?.staticType;
-          final typeName = returnType?.getDisplayString();
-          return typeName?.startsWith('Sliver') ?? false;
-        },
-      );
+  final AnalysisRule rule;
+  final RuleContext context;
 
-      if (!returnsSliverWidget) {
-        return;
-      }
+  @override
+  void visitClassDeclaration(ClassDeclaration node) {
+    final methodBody = node.members
+        .whereType<MethodDeclaration>()
+        .firstWhereOrNull((method) => method.name.lexeme == 'build')
+        ?.body;
 
-      final className = node.name.lexeme;
+    if (methodBody is! BlockFunctionBody) {
+      return;
+    }
 
-      if (className.contains('Sliver')) {
-        return;
-      }
+    final returnStatements = methodBody.block.statements
+        .whereType<ReturnStatement>();
+    final returnsSliverWidget = returnStatements.any(
+      (returnStatement) {
+        final returnType = returnStatement.expression?.staticType;
+        final typeName = returnType?.getDisplayString();
+        return typeName?.startsWith('Sliver') ?? false;
+      },
+    );
 
-      final constructorNames = node.members
-          .whereType<ConstructorDeclaration>()
-          .map((constructor) => constructor.name?.lexeme)
-          .nonNulls;
+    if (!returnsSliverWidget) {
+      return;
+    }
 
-      final hasSliverInConstructor = constructorNames.any(
-        (constructorName) => constructorName.toLowerCase().contains('sliver'),
-      );
+    final className = node.name.lexeme;
 
-      if (hasSliverInConstructor) {
-        return;
-      }
+    if (className.contains('Sliver')) {
+      return;
+    }
 
-      reporter.atNode(node, _code);
-    });
+    final constructorNames = node.members
+        .whereType<ConstructorDeclaration>()
+        .map((constructor) => constructor.name?.lexeme)
+        .nonNulls;
+
+    final hasSliverInConstructor = constructorNames.any(
+      (constructorName) => constructorName.toLowerCase().contains('sliver'),
+    );
+
+    if (hasSliverInConstructor) {
+      return;
+    }
+
+    rule.reportAtNode(node);
   }
 }

@@ -1,5 +1,9 @@
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
+import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 
 import '../utils/files_utils.dart';
 
@@ -25,46 +29,67 @@ import '../utils/files_utils.dart';
 /// print(AppLocalizations.of(context).errorOccurred);
 /// ```
 ///
-class AvoidHardcodedJapanese extends DartLintRule {
+class AvoidHardcodedJapanese extends AnalysisRule {
   /// Creates a new instance of [AvoidHardcodedJapanese].
-  const AvoidHardcodedJapanese() : super(code: _code);
+  AvoidHardcodedJapanese()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'avoid_hardcoded_japanese',
-    problemMessage: 'This string appears to be untranslated to Japanese.\n'
+    'avoid_hardcoded_japanese',
+    'This string appears to be untranslated to Japanese.\n'
         'Ensure all user-facing text is properly internationalized for '
         'Japanese localization.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    if (isTestFile(resolver.source)) {
+    final visitor = _Visitor(this, context);
+    registry.addCompilationUnit(this, visitor);
+  }
+}
+
+class _Visitor extends RecursiveAstVisitor<void> {
+  _Visitor(this.rule, this.context);
+
+  final AnalysisRule rule;
+  final RuleContext context;
+
+  bool get _isTestFile => isTestFile(context.definingUnit.file);
+
+  @override
+  void visitSimpleStringLiteral(SimpleStringLiteral node) {
+    if (_isTestFile) {
+      super.visitSimpleStringLiteral(node);
       return;
     }
-    context.registry.addSimpleStringLiteral((node) {
-      final stringValue = node.stringValue;
-      if (stringValue == null) {
-        return;
-      }
-      if (isJapanese(stringValue)) {
-        reporter.atNode(node, _code);
-      }
-    });
+    final stringValue = node.stringValue;
+    if (stringValue != null && _isJapanese(stringValue)) {
+      rule.reportAtNode(node);
+    }
+    super.visitSimpleStringLiteral(node);
+  }
 
-    context.registry.addStringInterpolation((node) {
-      final stringValue = node.toSource();
-      if (isJapanese(stringValue)) {
-        reporter.atNode(node, _code);
-      }
-    });
+  @override
+  void visitStringInterpolation(StringInterpolation node) {
+    if (_isTestFile) {
+      super.visitStringInterpolation(node);
+      return;
+    }
+    final stringValue = node.toSource();
+    if (_isJapanese(stringValue)) {
+      rule.reportAtNode(node);
+    }
+    super.visitStringInterpolation(node);
   }
 
   /// Checks if the string contains Japanese characters
   /// (Hiragana, Katakana, Kanji).
-  bool isJapanese(String value) =>
+  bool _isJapanese(String value) =>
       RegExp(r'[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FD0]').hasMatch(value);
 }

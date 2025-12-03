@@ -1,7 +1,10 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/listener.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 import 'package:analyzer/source/line_info.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 /// A `prefer_space_between_elements` rule that enforces
 /// spacing conventions within class definitions by requiring
@@ -41,72 +44,89 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///   }
 /// }
 /// ```
-class PreferSpaceBetweenElements extends DartLintRule {
+class PreferSpaceBetweenElements extends AnalysisRule {
   /// Creates a new instance of [PreferSpaceBetweenElements].
-  const PreferSpaceBetweenElements() : super(code: _code);
+  PreferSpaceBetweenElements()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'prefer_space_between_elements',
-    problemMessage:
-        'Ensure there is a blank line between constructor and fields, '
+    'prefer_space_between_elements',
+    'Ensure there is a blank line between constructor and fields, '
         'and between constructor and build method.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addClassDeclaration((node) {
-      final lineInfo = resolver.lineInfo;
-      final members = node.members;
-      for (var i = 0; i < members.length - 1; i++) {
-        final currentMember = members[i];
-        final nextMember = members[i + 1];
+    final visitor = _Visitor(this, context);
+    registry.addClassDeclaration(this, visitor);
+  }
+}
 
-        // No blank line between constructor and build method.
-        if (currentMember is ConstructorDeclaration &&
-            nextMember is MethodDeclaration &&
-            nextMember.name.lexeme == 'build') {
-          if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.atNode(nextMember, _code);
-          }
-        }
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
 
-        // No blank line between fields and constructor.
-        if (currentMember is FieldDeclaration &&
-            nextMember is ConstructorDeclaration) {
-          if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.atNode(nextMember, _code);
-          }
-        }
+  final AnalysisRule rule;
+  final RuleContext context;
 
-        // No blank line between constructor and fields.
-        if (currentMember is ConstructorDeclaration &&
-            nextMember is FieldDeclaration) {
-          if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.atNode(nextMember, _code);
-          }
-        }
+  @override
+  void visitClassDeclaration(ClassDeclaration node) {
+    final lineInfo = node.thisOrAncestorOfType<CompilationUnit>()?.lineInfo;
+    if (lineInfo == null) {
+      return;
+    }
+    final members = node.members;
+    for (var i = 0; i < members.length - 1; i++) {
+      final currentMember = members[i];
+      final nextMember = members[i + 1];
 
-        // No blank line between constructor and fields.
-        if (currentMember is FieldDeclaration &&
-            nextMember is MethodDeclaration &&
-            nextMember.name.lexeme == 'build') {
-          if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
-            reporter.atNode(nextMember, _code);
-          }
+      // No blank line between constructor and build method.
+      if (currentMember is ConstructorDeclaration &&
+          nextMember is MethodDeclaration &&
+          nextMember.name.lexeme == 'build') {
+        if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
+          rule.reportAtNode(nextMember);
         }
       }
-    });
+
+      // No blank line between fields and constructor.
+      if (currentMember is FieldDeclaration &&
+          nextMember is ConstructorDeclaration) {
+        if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
+          rule.reportAtNode(nextMember);
+        }
+      }
+
+      // No blank line between constructor and fields.
+      if (currentMember is ConstructorDeclaration &&
+          nextMember is FieldDeclaration) {
+        if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
+          rule.reportAtNode(nextMember);
+        }
+      }
+
+      // No blank line between fields and build method.
+      if (currentMember is FieldDeclaration &&
+          nextMember is MethodDeclaration &&
+          nextMember.name.lexeme == 'build') {
+        if (!_hasBlankLineBetween(currentMember, nextMember, lineInfo)) {
+          rule.reportAtNode(nextMember);
+        }
+      }
+    }
   }
 
   /// Returns `true` if there is a blank line between [first] and [second].
   bool _hasBlankLineBetween(AstNode first, AstNode second, LineInfo lineInfo) {
     final firstEndLine = lineInfo.getLocation(first.endToken.end).lineNumber;
-    final secondStartLine =
-        lineInfo.getLocation(second.beginToken.offset).lineNumber;
+    final secondStartLine = lineInfo
+        .getLocation(second.beginToken.offset)
+        .lineNumber;
     return (secondStartLine - firstEndLine) > 1;
   }
 }

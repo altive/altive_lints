@@ -1,5 +1,9 @@
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
+import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 
 /// A `prefer_clock_now` rule that discourages the use of
 /// `DateTime.now()` due to its non-testability in unit tests.
@@ -21,31 +25,45 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// ```dart
 /// var now = clock.now(); // Using 'clock' package
 /// ```
-class PreferClockNow extends DartLintRule {
-  /// Creates a new instance of [PreferClockNow].
-  const PreferClockNow() : super(code: _code);
+class PreferClockNow extends AnalysisRule {
+  ///
+  PreferClockNow() : super(name: _code.name, description: _code.problemMessage);
 
+  ///
   static const _code = LintCode(
-    name: 'prefer_clock_now',
-    problemMessage: 'Avoid using DateTime.now(). '
+    'prefer_clock_now',
+    'Avoid using DateTime.now(). '
         'Use a testable alternative like clock.now() or similar instead.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addInstanceCreationExpression((node) {
-      final constructorName = node.constructorName;
-      final type = constructorName.type.name2.lexeme;
-      if (type != 'DateTime') {
-        return;
-      }
-      if (node.constructorName.name?.name == 'now') {
-        reporter.atNode(node, _code);
-      }
-    });
+    final visitor = _Visitor(this, context);
+    registry.addInstanceCreationExpression(this, visitor);
+  }
+}
+
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
+
+  final AnalysisRule rule;
+  final RuleContext context;
+
+  @override
+  void visitInstanceCreationExpression(InstanceCreationExpression node) {
+    final constructorName = node.constructorName;
+    final type = constructorName.type.name.lexeme;
+    if (type != 'DateTime') {
+      return;
+    }
+    if (node.constructorName.name?.name == 'now') {
+      rule.reportAtNode(node);
+    }
   }
 }

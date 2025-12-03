@@ -1,17 +1,17 @@
 # Altive Lints
 
-Provides `all_lint_rules.yaml` that activates all rules and `altive_lints.yaml` with Altive recommended rule selection.
+Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.yaml` with Altive recommended lint rule selection.
 
-There are also Altive-made rules by custom_lint.
+`altive_lints` also includes Altive-made analysis rules created with the Analyzer Plugin (analysis_server_plugin).
 
 ## Table of content
 
 - [Table of content](#table-of-content)
 - [Getting started](#getting-started)
   - [altive\_lints](#altive_lints)
-  - [Enable custom\_lint](#enable-custom_lint)
-  - [Disabling lint rules](#disabling-lint-rules)
-- [All custom-lint rules in altive\_lints](#all-custom-lint-rules-in-altive_lints)
+  - [Disabling lint rules/analysis rules](#disabling-lint-rulesanalysis-rules)
+  - [Ignoring analysis rules](#ignoring-analysis-rules)
+- [All custom analysis rules in altive\_lints](#all-custom-analysis-rules-in-altive_lints)
   - [avoid\_consecutive\_sliver\_to\_box\_adapter](#avoid_consecutive_sliver_to_box_adapter)
   - [avoid\_hardcoded\_color](#avoid_hardcoded_color)
   - [avoid\_hardcoded\_japanese](#avoid_hardcoded_japanese)
@@ -19,8 +19,8 @@ There are also Altive-made rules by custom_lint.
   - [avoid\_single\_child](#avoid_single_child)
   - [prefer\_clock\_now](#prefer_clock_now)
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
-  - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
+  - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
 - [All assists in altive\_lints](#all-assists-in-altive_lints)
   - [Add macro template documentation comment](#add-macro-template-documentation-comment)
   - [Add macro documentation comment](#add-macro-documentation-comment)
@@ -46,48 +46,49 @@ If not, create a new one or copy [analysis_options.yaml](https://github.com/alti
   include: package:altive_lints/altive_lints.yaml
   ```
 
-### Enable custom_lint
-
-altive_lints comes bundled with its own rules using custom_lints.
-
-- Add both altive_lints and custom_lint to your `pubspec.yaml`:
-  ```yaml
-  dev_dependencies:
-    altive_lints:
-    custom_lint: # <- add this
-  ```
-- Enable `custom_lint`'s plugin in your `analysis_options.yaml`:
-
-  ```yaml
-  include: package:altive_lints/altive_lints.yaml
-  analyzer:
-    plugins:
-      - custom_lint
-  ```
-
-### Disabling lint rules
+### Disabling lint rules/analysis rules
 
 By default when installing altive_lints, most of the lints will be enabled.
 To change this, you have a few options.
 
 ```yaml
 include: package:altive_lints/altive_lints.yaml
-analyzer:
-  plugins:
-    - custom_lint
-
 linter:
   rules:
     # Explicitly disable one lint rule.
     - public_member_api_docs: false
 
-custom_lint:
-  rules:
-    # Explicitly disable one custom-lint rule.
-    - avoid_hardcoded_color: false
+plugins:
+  altive_lints: ^2.0.0
+    diagnostics:
+      # Explicitly disable one analysis rule.
+      avoid_consecutive_sliver_to_box_adapter: false
+      avoid_hardcoded_color: false
+      avoid_hardcoded_japanese: false
+      avoid_shrink_wrap_in_list_view: false
+      avoid_single_child: false
+      prefer_clock_now: false
+      prefer_dedicated_media_query_methods: false
+      prefer_space_between_elements: false
+      prefer_to_include_sliver_in_name: false
 ```
 
-## All custom-lint rules in altive_lints
+### Ignoring analysis rules
+
+You can ignore analysis rules by using `ignore: altive_lints/{rule_name}`.
+
+```dart
+// for file.
+// ignore_for_file: altive_lints/avoid_hardcoded_color
+
+...
+
+// for line.
+// ignore: altive_lints/avoid_hardcoded_color
+Color(0xFF00FF00);
+```
+
+## All custom analysis rules in altive_lints
 
 ### avoid_consecutive_sliver_to_box_adapter
 
@@ -247,43 +248,20 @@ This is to reduce unnecessary widget rebuilding and improve performance by using
 
 ```dart
 var size = MediaQuery.of(context).size; // LINT
+var width = MediaQuery.sizeOf(context).width; // LINT
+var height = MediaQuery.sizeOf(context).height; // LINT
 var padding = MediaQuery.maybeOf(context)?.padding; // LINT
+var viewInsets = MediaQuery.viewInsetsOf(context); // LINT
 ```
 
 **Good**:
 
 ```dart
 var size = MediaQuery.sizeOf(context);
-var padding = MediaQuery.viewInsetsOf(context);
-```
-
-### prefer_to_include_sliver_in_name
-
-Prefer to include ‘Sliver’ in the class name or named constructor of a widget that returns a Sliver-type widget.
-
-This makes it easy for the user to know at a glance that it is a Sliver type Widget, and improves readability and consistency.
-
-**Bad**:
-
-```dart
-class MyCustomList extends StatelessWidget { // LINT
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(...);
-  }
-}
-
-```
-
-**Good**:
-
-```dart
-class SliverMyCustomList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(...);
-  }
-}
+var width = MediaQuery.widthOf(context);
+var height = MediaQuery.heightOf(context);
+var padding = MediaQuery.paddingOf(context);
+var viewInsets = MediaQuery.viewInsetsOf(context);
 ```
 
 ### prefer_space_between_elements
@@ -322,6 +300,35 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
+### prefer_to_include_sliver_in_name
+
+Prefer to include ‘Sliver’ in the class name or named constructor of a widget that returns a Sliver-type widget.
+
+This makes it easy for the user to know at a glance that it is a Sliver type Widget, and improves readability and consistency.
+
+**Bad**:
+
+```dart
+class MyCustomList extends StatelessWidget { // LINT
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(...);
+  }
+}
+
+```
+
+**Good**:
+
+```dart
+class SliverMyCustomList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(...);
+  }
+}
+```
+
 ## All assists in altive_lints
 
 ### Add macro template documentation comment
@@ -356,18 +363,14 @@ When you place the cursor on a constructor or method declaration and execute **"
 **Before:**
 
 ```dart
-void myFunction() {
-  // Function implementation
-}
+const myClass();
 ```
 
 **After applying the assist:**
 
 ```dart
 /// {@macro my_package.myFunction}
-void myFunction() {
-  // Function implementation
-}
+const myClass();
 ```
 
 ### Wrap with macro template documentation comment
@@ -380,9 +383,7 @@ When you select the documentation comment and execute **"Wrap with macro templat
 ```dart
 /// Some comment
 /// More comments
-class MyClass {
-  // Class implementation
-}
+class MyClass {}
 ```
 
 **After applying the assist:**
@@ -392,10 +393,10 @@ class MyClass {
 /// Some comment
 /// More comments
 /// {@endtemplate}
-class MyClass {
-  // Class implementation
-}
+class MyClass {}
 ```
+
+For class, enum, mixin, and extension type.
 
 ## Lint rules adopted by altive_lints and why
 

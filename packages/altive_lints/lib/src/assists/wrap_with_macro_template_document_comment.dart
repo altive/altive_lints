@@ -1,6 +1,10 @@
+import 'package:analysis_server_plugin/edit/dart/correction_producer.dart';
+import 'package:analysis_server_plugin/edit/dart/dart_fix_kind_priority.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/source/source_range.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer_plugin/utilities/assist/assist.dart';
+import 'package:analyzer_plugin/utilities/change_builder/change_builder_core.dart';
+
+import '../utils/package_utils.dart';
 
 /// {@template altive_lints.WrapWithMacroTemplateDocumentComment}
 /// A Dart assist that wraps an existing documentation comment with a macro
@@ -14,9 +18,9 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// The macro template comment follows the format:
 ///
 /// ```dart
-/// /// {[@]template packageName.className}
+/// /// {@template packageName.className}
 /// /// Existing documentation comment.
-/// /// {[@]endtemplate}
+/// /// {@endtemplate}
 /// ```
 ///
 /// Example usage:
@@ -31,57 +35,82 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///
 /// After running the assist:
 /// ```dart
-/// /// {[@]template my_package.MyClass}
+/// /// {@template my_package.MyClass}
 /// /// This is a class.
-/// /// {[@]endtemplate}
+/// /// {@endtemplate}
 /// class MyClass {
 ///   // Class implementation
 /// }
 /// ```
 ///
 /// {@endtemplate}
-class WrapWithMacroTemplateDocumentComment extends DartAssist {
+class WrapWithMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
   /// {@macro altive_lints.WrapWithMacroTemplateDocumentComment}
-  WrapWithMacroTemplateDocumentComment();
+  WrapWithMacroTemplateDocumentComment({required super.context});
+
+  static const _kind = AssistKind(
+    'dart.assist.wrapWithMacroTemplateDocumentComment',
+    DartFixKindPriority.standard,
+    'Wrap with a macro template documentation comment',
+  );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ChangeReporter reporter,
-    CustomLintContext context,
-    SourceRange target,
-  ) {
-    context.registry.addComment((node) {
-      if (!target.intersects(node.sourceRange)) {
+  CorrectionApplicability get applicability => .singleLocation;
+
+  @override
+  AssistKind get assistKind => _kind;
+
+  @override
+  Future<void> compute(ChangeBuilder builder) async {
+    final node = this.node;
+
+    // Locate the ancestor declaration (Class, Mixin, Enum, etc.)
+    final declaration = node.thisOrAncestorOfType<NamedCompilationUnitMember>();
+    if (declaration == null) {
+      return;
+    }
+
+    // Get the documentation comment directly from the declaration
+    final comment = declaration.documentationComment;
+    if (comment == null) {
+      return;
+    }
+
+    // Check cursor position validity
+    // Allow execution if cursor is:
+    // A) Inside the documentation comment
+    // B) On the class/member name (UX improvement)
+    final selectionInComment =
+        selectionOffset >= comment.offset && selectionOffset <= comment.end;
+
+    final nameToken = declaration.name;
+    final selectionOnName =
+        selectionOffset >= nameToken.offset && selectionOffset <= nameToken.end;
+
+    if (!selectionInComment && !selectionOnName) {
+      return;
+    }
+
+    // Prevent double wrapping
+    for (final token in comment.tokens) {
+      if (token.lexeme.contains('{@template')) {
         return;
       }
+    }
 
-      final currentComment = node.tokens.join();
-      if (currentComment.contains('{@template') &&
-          currentComment.contains('{@endtemplate}')) {
-        return;
-      }
+    // --- Generation Logic ---
 
-      final changeBuilder = reporter.createChangeBuilder(
-        message: 'Wrap with macro template documentation comment',
-        priority: 20,
-      );
+    final className = declaration.name.lexeme;
 
-      final packageName = context.pubspec.name;
-      final classNode = node.parent;
-      var className = '';
-      if (classNode is ClassDeclaration) {
-        className = classNode.name.lexeme;
-      }
+    final templateStart = '/// {@template $packageName.$className}';
+    const templateEnd = '/// {@endtemplate}';
 
-      final templateStart = '/// {@template $packageName.$className}';
-      const templateEnd = '/// {@endtemplate}';
-
-      changeBuilder.addDartFileEdit((builder) {
-        builder
-          ..addSimpleInsertion(node.offset, '$templateStart\n')
-          ..addSimpleInsertion(node.end, '\n$templateEnd');
-      });
+    await builder.addDartFileEdit(file, (builder) {
+      builder
+        // Insert header at the very beginning of the existing comment
+        ..addSimpleInsertion(comment.offset, '$templateStart\n')
+        // Insert footer at the very end of the existing comment
+        ..addSimpleInsertion(comment.end, '\n$templateEnd');
     });
   }
 }

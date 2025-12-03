@@ -3,7 +3,7 @@ description: A example of altive_lints.
 publish_to: none
 version: 1.0.0
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.10.0
 
 dependencies:
   flutter:
@@ -13,4 +13,3 @@ dev_dependencies:
   altive_lints:
     path: ../
   clock: ^1.1.2
-  custom_lint: ^0.8.1

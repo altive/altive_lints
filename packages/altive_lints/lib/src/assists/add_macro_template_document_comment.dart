@@ -1,5 +1,10 @@
-import 'package:analyzer/source/source_range.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analysis_server_plugin/edit/dart/correction_producer.dart';
+import 'package:analysis_server_plugin/edit/dart/dart_fix_kind_priority.dart';
+import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer_plugin/utilities/assist/assist.dart';
+import 'package:analyzer_plugin/utilities/change_builder/change_builder_core.dart';
+
+import '../utils/package_utils.dart';
 
 /// {@template altive_lints.AddMacroTemplateDocumentComment}
 /// A Dart assist that adds a macro template documentation comment to a class
@@ -12,9 +17,9 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// The macro template comment follows the format:
 ///
 /// ```dart
-/// /// {[@]template packageName.className}
+/// /// {@template packageName.className}
 /// ///
-/// /// {[@]endtemplate}
+/// /// {@endtemplate}
 /// ```
 ///
 /// Example usage:
@@ -28,53 +33,68 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///
 /// After running the assist:
 /// ```dart
-/// /// {[@]template my_package.MyClass}
+/// /// {@template my_package.MyClass}
 /// ///
-/// /// {[@]endtemplate}
+/// /// {@endtemplate}
 /// class MyClass {
 ///   // Class implementation
 /// }
 /// ```
 ///
 /// {@endtemplate}
-class AddMacroTemplateDocumentComment extends DartAssist {
+class AddMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
   /// {@macro altive_lints.AddMacroTemplateDocumentComment}
-  AddMacroTemplateDocumentComment();
+  AddMacroTemplateDocumentComment({required super.context});
+
+  static const _kind = AssistKind(
+    'dart.assist.addMacroTemplateDocumentComment',
+    DartFixKindPriority.standard,
+    'Add a macro template documentation comment',
+  );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ChangeReporter reporter,
-    CustomLintContext context,
-    SourceRange target,
-  ) {
-    context.registry.addClassDeclaration((node) {
-      if (!target.intersects(node.sourceRange)) {
-        return;
-      }
+  CorrectionApplicability get applicability => .singleLocation;
 
-      final docComment = node.documentationComment;
-      if (docComment != null) {
-        return;
-      }
+  @override
+  AssistKind get assistKind => _kind;
 
-      final changeBuilder = reporter.createChangeBuilder(
-        message: 'Add macro template documentation comment',
-        priority: 20,
-      );
+  @override
+  Future<void> compute(ChangeBuilder builder) async {
+    final node = this.node;
 
-      final packageName = context.pubspec.name;
-      final className = node.name.lexeme;
+    // Locate the ancestor declaration (Class, Mixin, Enum, etc.)
+    final declaration = node.thisOrAncestorOfType<NamedCompilationUnitMember>();
+    if (declaration == null) {
+      return;
+    }
 
-      final template = [
-        '/// {@template $packageName.$className}',
-        '/// ',
-        '/// {@endtemplate}',
-      ].join('\n');
+    // Check for existing docs.
+    if (declaration.documentationComment != null) {
+      return;
+    }
 
-      changeBuilder.addDartFileEdit((builder) {
-        builder.addSimpleInsertion(node.offset, '$template\n');
-      });
+    // Validate cursor position (Must be on the name).
+    final nameToken = declaration.name;
+
+    // Check if cursor is strictly within the name token range.
+    if (selectionOffset < nameToken.offset || selectionOffset > nameToken.end) {
+      return;
+    }
+
+    // --- Generation Logic ---
+
+    final name = nameToken.lexeme;
+
+    final template = [
+      '/// {@template $packageName.$name}',
+      '/// ',
+      '/// {@endtemplate}',
+    ].join('\n');
+
+    await builder.addDartFileEdit(file, (builder) {
+      // Insert at the very beginning of the declaration (before annotations),
+      //       not at the cursor position (node.offset).
+      builder.addSimpleInsertion(declaration.offset, '$template\n');
     });
   }
 }

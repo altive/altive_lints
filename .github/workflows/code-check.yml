@@ -21,18 +21,14 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
 
-      - name: Install Melos
-        uses: bluefireteam/melos-action@v3
+      - name: Format
+        run: dart format --set-exit-if-changed packages/altive_lints/lib
 
-      - name: Analyze packages
-        run: melos run analyze
+      - name: Analyze
+        run: flutter analyze
 
-      - name: Custom lint
-        run: melos custom_lint
-
-      - name: Check for the existence of unformatted files
-        # Cannot use `melos format` as it requires excluding files generated from the target file
-        run: melos run format:ci --no-select
+      - name: Test
+        run: dart test packages/altive_lints --fail-fast

@@ -1,7 +1,10 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/listener.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 import 'package:collection/collection.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 /// An `avoid_single_child` rule that warns against using layout
 /// widgets intended for multiple children with only one child.
@@ -33,73 +36,86 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///   children: <Widget>[YourWidget1(), YourWidget2()],
 /// );
 /// ```
-class AvoidSingleChild extends DartLintRule {
+class AvoidSingleChild extends AnalysisRule {
   /// Creates a new instance of [AvoidSingleChild].
-  const AvoidSingleChild() : super(code: _code);
+  AvoidSingleChild()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'avoid_single_child',
-    problemMessage:
-        'Avoid using a single child in widgets that expect multiple children. '
+    'avoid_single_child',
+    'Avoid using a single child in widgets that expect multiple children. '
         'Consider using a single child widget or adding more children.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addInstanceCreationExpression((node) {
-      final className = node.staticType?.getDisplayString();
-      if ([
-        'Column',
-        'Row',
-        'Flex',
-        'Wrap',
-        'Stack',
-        'ListView',
-        'SliverList',
-        'SliverMainAxisGroup',
-        'SliverCrossAxisGroup',
-      ].contains(className)) {
-        final childrenArg = node.argumentList.arguments.firstWhereOrNull(
-          (arg) =>
-              arg is NamedExpression &&
-              (arg.name.label.name == 'children' ||
-                  arg.name.label.name == 'slivers'),
-        );
+    final visitor = _Visitor(this, context);
+    registry.addInstanceCreationExpression(this, visitor);
+  }
+}
 
-        final ListLiteral childrenList;
-        if (childrenArg is NamedExpression &&
-            childrenArg.expression is ListLiteral) {
-          childrenList = childrenArg.expression as ListLiteral;
-        } else {
-          return;
-        }
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
 
-        if (childrenList.elements.length != 1) {
-          return;
-        }
-        for (final element in childrenList.elements) {
-          if (element is IfElement) {
-            if (_hasMultipleChild(element.thenElement)) {
-              return;
-            }
+  final AnalysisRule rule;
+  final RuleContext context;
 
-            if (element.elseElement case final CollectionElement ce
-                when _hasMultipleChild(ce)) {
-              return;
-            }
+  @override
+  void visitInstanceCreationExpression(InstanceCreationExpression node) {
+    final className = node.staticType?.getDisplayString();
+    if ([
+      'Column',
+      'Row',
+      'Flex',
+      'Wrap',
+      'Stack',
+      'ListView',
+      'SliverList',
+      'SliverMainAxisGroup',
+      'SliverCrossAxisGroup',
+    ].contains(className)) {
+      final childrenArg = node.argumentList.arguments.firstWhereOrNull(
+        (arg) =>
+            arg is NamedExpression &&
+            (arg.name.label.name == 'children' ||
+                arg.name.label.name == 'slivers'),
+      );
+
+      final ListLiteral childrenList;
+      if (childrenArg is NamedExpression &&
+          childrenArg.expression is ListLiteral) {
+        childrenList = childrenArg.expression as ListLiteral;
+      } else {
+        return;
+      }
+
+      if (childrenList.elements.length != 1) {
+        return;
+      }
+      for (final element in childrenList.elements) {
+        if (element is IfElement) {
+          if (_hasMultipleChild(element.thenElement)) {
+            return;
+          }
+
+          if (element.elseElement case final CollectionElement ce
+              when _hasMultipleChild(ce)) {
+            return;
           }
         }
-        final element = childrenList.elements.first;
-        if (element is ForElement) {
-          return;
-        }
-        reporter.atNode(node, _code);
       }
-    });
+      final element = childrenList.elements.first;
+      if (element is ForElement) {
+        return;
+      }
+      rule.reportAtNode(node);
+    }
   }
 
   bool _hasMultipleChild(CollectionElement element) {

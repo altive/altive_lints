@@ -1,6 +1,5 @@
 include: lib/altive_lints.yaml
-analyzer:
-  errors:
-    # Remove once we require analyzer 8.0.0
-    # We currently support both 7.0 and 8.0, so we can't migrate yet.
-    deprecated_member_use: ignore
+linter:
+  rules:
+    # use `test_` prefix in test_reflective_loader
+    non_constant_identifier_names: false

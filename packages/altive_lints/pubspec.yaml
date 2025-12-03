@@ -11,15 +11,18 @@ topics:
   - analysis
   - code-style
 
-environment:
-  sdk: ^3.5.0
-
 resolution: workspace
 
+environment:
+  sdk: ^3.10.0
+
 dependencies:
-  analyzer: ">=7.0.0 <10.0.0"
+  analysis_server_plugin: ^0.3.0
+  analyzer: ">=8.0.0 <10.0.0"
+  analyzer_plugin: ^0.13.11
   collection: ^1.19.1
-  custom_lint_builder: ^0.8.0
 
 dev_dependencies:
+  analyzer_testing: ^0.1.7
   test: ^1.26.2
+  test_reflective_loader: ^0.4.0
