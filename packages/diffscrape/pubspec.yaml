@@ -15,5 +15,6 @@ dependencies:
   http: ^1.4.0
 
 dev_dependencies:
-  altive_lints: ^1.25.0
+  altive_lints:
+    path: ../altive_lints
   test: ^1.26.2

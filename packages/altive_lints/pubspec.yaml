@@ -2,14 +2,14 @@ name: altive_lints
 description: >-
   Provides `all_lint_rules.yaml` that activates all rules and
   `altive_lints.yaml` with Altive recommended rule selection.
-version: 1.25.0
+version: 2.0.0-dev.1
 homepage: https://altive.dev
 repository: https://github.com/altive/altive_lints
 issue_tracker: https://github.com/altive/altive_lints/issues
 topics:
-  - lints
   - analysis
-  - code-style
+  - analyzer
+  - lints
 
 resolution: workspace
 

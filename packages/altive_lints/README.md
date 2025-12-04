@@ -59,7 +59,7 @@ linter:
     - public_member_api_docs: false
 
 plugins:
-  altive_lints: ^2.0.0
+  altive_lints: ^2.0.0-dev.1
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false
