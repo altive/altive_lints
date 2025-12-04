@@ -6,6 +6,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 import 'package:analyzer/source/line_info.dart';
 
+/// {@template altive_lints.PreferSpaceBetweenElements}
 /// A `prefer_space_between_elements` rule that enforces
 /// spacing conventions within class definitions by requiring
 /// a blank line between the constructor and fields,
@@ -44,8 +45,9 @@ import 'package:analyzer/source/line_info.dart';
 ///   }
 /// }
 /// ```
+/// {@endtemplate}
 class PreferSpaceBetweenElements extends AnalysisRule {
-  /// Creates a new instance of [PreferSpaceBetweenElements].
+  /// {@macro altive_lints.PreferSpaceBetweenElements}
   PreferSpaceBetweenElements()
     : super(name: _code.name, description: _code.problemMessage);
 

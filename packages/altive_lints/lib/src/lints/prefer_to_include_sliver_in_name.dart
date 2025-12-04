@@ -6,6 +6,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 import 'package:collection/collection.dart';
 
+/// {@template altive_lints.PreferToIncludeSliverInName}
 /// A `prefer_to_include_sliver_in_name` rule that ensures widgets returning
 /// a Sliver-type widget include "Sliver" in their class names.
 ///
@@ -39,8 +40,9 @@ import 'package:collection/collection.dart';
 ///   }
 /// }
 /// ```
+/// {@endtemplate}
 class PreferToIncludeSliverInName extends AnalysisRule {
-  /// Creates a new instance of [PreferToIncludeSliverInName].
+  /// {@macro altive_lints.PreferToIncludeSliverInName}
   PreferToIncludeSliverInName()
     : super(name: _code.name, description: _code.problemMessage);
 

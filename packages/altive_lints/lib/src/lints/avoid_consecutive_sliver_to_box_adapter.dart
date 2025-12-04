@@ -5,6 +5,7 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 
+/// {@template altive_lints.AvoidConsecutiveSliverToBoxAdapter}
 /// A `avoid_consecutive_sliver_to_box_adapter` rule that
 /// identifies and discourages the use of consecutive
 /// `SliverToBoxAdapter` widgets within a list.
@@ -43,8 +44,9 @@ import 'package:analyzer/error/error.dart';
 ///   ],
 /// );
 /// ```
+/// {@endtemplate}
 class AvoidConsecutiveSliverToBoxAdapter extends AnalysisRule {
-  /// Creates a new instance of [AvoidConsecutiveSliverToBoxAdapter].
+  /// {@macro altive_lints.AvoidConsecutiveSliverToBoxAdapter}
   AvoidConsecutiveSliverToBoxAdapter()
     : super(name: _code.name, description: _code.problemMessage);
 

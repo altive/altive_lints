@@ -5,6 +5,7 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 
+/// {@template altive_lints.PreferDedicatedMediaQueryMethods}
 /// A `prefer_dedicated_media_query_methods` rule that encourages
 /// the use of dedicated `MediaQuery` methods instead of
 /// the generic `MediaQuery.of` or `MediaQuery.maybeOf`.
@@ -32,8 +33,9 @@ import 'package:analyzer/error/error.dart';
 /// var size = MediaQuery.sizeOf(context);
 /// var padding = MediaQuery.viewInsetsOf(context);
 /// ```
+/// {@endtemplate}
 class PreferDedicatedMediaQueryMethods extends AnalysisRule {
-  /// Creates a new instance of [PreferDedicatedMediaQueryMethods].
+  /// {@macro altive_lints.PreferDedicatedMediaQueryMethods}
   PreferDedicatedMediaQueryMethods()
     : super(name: _code.name, description: _code.problemMessage);
 

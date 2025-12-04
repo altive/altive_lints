@@ -7,6 +7,7 @@ import 'package:analyzer/error/error.dart';
 
 import '../utils/files_utils.dart';
 
+/// {@template altive_lints.AvoidHardcodedJapanese}
 /// An `avoid_hardcoded_japanese` rule which detects
 /// and reports hardcoded Japanese text strings within the code.
 ///
@@ -29,8 +30,9 @@ import '../utils/files_utils.dart';
 /// print(AppLocalizations.of(context).errorOccurred);
 /// ```
 ///
+/// {@endtemplate}
 class AvoidHardcodedJapanese extends AnalysisRule {
-  /// Creates a new instance of [AvoidHardcodedJapanese].
+  /// {@macro altive_lints.AvoidHardcodedJapanese}
   AvoidHardcodedJapanese()
     : super(name: _code.name, description: _code.problemMessage);
 

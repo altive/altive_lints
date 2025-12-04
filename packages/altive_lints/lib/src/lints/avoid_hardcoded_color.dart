@@ -75,8 +75,6 @@ class _Visitor extends SimpleAstVisitor<void> {
       return;
     }
 
-    // constructorName.staticElement が存在しない場合があるため、
-    // 生成される型 (staticType) からクラス要素を取得する方法に変更
     final type = node.staticType;
     if (_isColorClass(type?.element)) {
       rule.reportAtNode(node);
@@ -89,19 +87,16 @@ class _Visitor extends SimpleAstVisitor<void> {
       return;
     }
 
-    // methodName.staticElement -> methodName.element (互換性のため)
     final element = node.methodName.element;
 
-    // コンストラクタ呼び出しの場合のチェック
     if (element is ConstructorElement) {
-      // enclosingElement3 -> enclosingElement (互換性のため)
       if (_isColorClass(element.enclosingElement)) {
         rule.reportAtNode(node);
       }
       return;
     }
 
-    // 静的メソッド (Color.fromARGBなど) の場合
+    // e.g. Color.fromARGB
     if (element is MethodElement && element.isStatic) {
       if (_isColorClass(element.enclosingElement)) {
         rule.reportAtNode(node);
@@ -118,7 +113,6 @@ class _Visitor extends SimpleAstVisitor<void> {
     final element = node.element;
 
     if (element is PropertyAccessorElement || element is FieldElement) {
-      // enclosingElement3 -> enclosingElement
       final parentClass = element?.enclosingElement;
       if (parentClass is ClassElement && parentClass.name == 'Colors') {
         // Colors.transparent is allowed
@@ -160,26 +154,22 @@ class _Visitor extends SimpleAstVisitor<void> {
   bool _isInsideColorScheme(AstNode node) {
     var parent = node.parent;
     while (parent != null) {
-      // 1. Check if we are inside a ColorScheme(...) constructor
+      // Check if we are inside a ColorScheme(...) constructor
       if (parent is InstanceCreationExpression) {
         final type = parent.staticType;
-        // type.element は古いバージョンでも存在します
         if (type != null && type.element?.name == 'ColorScheme') {
           return true;
         }
       }
 
-      // 2. Check if we are inside a method call on a ColorScheme object
+      // Check if we are inside a method call on a ColorScheme object
       if (parent is MethodInvocation) {
         final targetType = parent.target?.staticType;
         if (targetType != null && targetType.element?.name == 'ColorScheme') {
           return true;
         }
 
-        // Fallback
-        // methodName.staticElement -> methodName.element
         final methodElement = parent.methodName.element;
-        // enclosingElement3 -> enclosingElement
         if (methodElement?.enclosingElement?.name == 'ColorScheme') {
           return true;
         }

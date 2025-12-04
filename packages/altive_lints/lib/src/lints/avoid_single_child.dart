@@ -6,6 +6,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 import 'package:collection/collection.dart';
 
+/// {@template altive_lints.AvoidSingleChild}
 /// An `avoid_single_child` rule that warns against using layout
 /// widgets intended for multiple children with only one child.
 ///
@@ -36,8 +37,9 @@ import 'package:collection/collection.dart';
 ///   children: <Widget>[YourWidget1(), YourWidget2()],
 /// );
 /// ```
+/// {@endtemplate}
 class AvoidSingleChild extends AnalysisRule {
-  /// Creates a new instance of [AvoidSingleChild].
+  /// {@macro altive_lints.AvoidSingleChild}
   AvoidSingleChild()
     : super(name: _code.name, description: _code.problemMessage);
 

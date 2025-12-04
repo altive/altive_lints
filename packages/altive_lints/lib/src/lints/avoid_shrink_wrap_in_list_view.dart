@@ -8,6 +8,7 @@ import 'package:collection/collection.dart';
 
 import '../utils/types_utils.dart';
 
+/// {@template altive_lints.AvoidShrinkWrapInListView}
 /// An `avoid_shrink_wrap_in_list_view` rule that discourages
 /// using `shrinkWrap` with `ListView`.
 ///
@@ -44,8 +45,9 @@ import '../utils/types_utils.dart';
 ///   ],
 /// );
 /// ```
+/// {@endtemplate}
 class AvoidShrinkWrapInListView extends AnalysisRule {
-  /// Creates a new instance of [AvoidShrinkWrapInListView].
+  /// {@macro altive_lints.AvoidShrinkWrapInListView}
   AvoidShrinkWrapInListView()
     : super(name: _code.name, description: _code.problemMessage);
 

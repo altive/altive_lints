@@ -5,6 +5,7 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 
+/// {@template altive_lints.PreferClockNow}
 /// A `prefer_clock_now` rule that discourages the use of
 /// `DateTime.now()` due to its non-testability in unit tests.
 ///
@@ -25,11 +26,11 @@ import 'package:analyzer/error/error.dart';
 /// ```dart
 /// var now = clock.now(); // Using 'clock' package
 /// ```
+/// {@endtemplate}
 class PreferClockNow extends AnalysisRule {
-  ///
+  /// {@macro altive_lints.PreferClockNow}
   PreferClockNow() : super(name: _code.name, description: _code.problemMessage);
 
-  ///
   static const _code = LintCode(
     'prefer_clock_now',
     'Avoid using DateTime.now(). '
