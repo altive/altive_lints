@@ -1,3 +1,12 @@
+## 2.0.0-dev.1
+
+ - Bumped minimum Dart SDK to 3.10 (required by the analyzer plugin).
+ - Raised supported minimum analyzer version from 7 to 8.
+ - **FEAT**: Migrate to analysis_server_plugin from custom_lint.
+ - **FEAT**: prefer_dedicated_media_query_methods warns against using MediaQuery.sizeOf(context).width/height.
+ use MediaQuery.widthOf(context) and MediaQuery.heightOf(context) instead.
+
+
 ## 1.25.0
 
  - **FEAT**: Support analyzer 7.x - 9.x (#116).
