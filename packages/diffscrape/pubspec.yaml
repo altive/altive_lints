@@ -5,7 +5,7 @@ publish_to: none
 repository: https://github.com/altive/altive_lints
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.10.0
 
 resolution: workspace
 
@@ -15,5 +15,6 @@ dependencies:
   http: ^1.4.0
 
 dev_dependencies:
-  altive_lints: ^1.25.0
+  altive_lints:
+    path: ../altive_lints
   test: ^1.26.2

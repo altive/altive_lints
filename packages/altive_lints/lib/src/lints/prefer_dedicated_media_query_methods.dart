@@ -1,6 +1,11 @@
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
+import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 
+/// {@template altive_lints.PreferDedicatedMediaQueryMethods}
 /// A `prefer_dedicated_media_query_methods` rule that encourages
 /// the use of dedicated `MediaQuery` methods instead of
 /// the generic `MediaQuery.of` or `MediaQuery.maybeOf`.
@@ -28,30 +33,66 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 /// var size = MediaQuery.sizeOf(context);
 /// var padding = MediaQuery.viewInsetsOf(context);
 /// ```
-class PreferDedicatedMediaQueryMethods extends DartLintRule {
-  /// Creates a new instance of [PreferDedicatedMediaQueryMethods].
-  const PreferDedicatedMediaQueryMethods() : super(code: _code);
+/// {@endtemplate}
+class PreferDedicatedMediaQueryMethods extends AnalysisRule {
+  /// {@macro altive_lints.PreferDedicatedMediaQueryMethods}
+  PreferDedicatedMediaQueryMethods()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'prefer_dedicated_media_query_methods',
-    problemMessage: 'Prefer using dedicated MediaQuery methods instead of '
-        'MediaQuery.of or MediaQuery.maybeOf.',
-    correctionMessage: 'Consider using methods like MediaQuery.sizeOf or '
-        'MediaQuery.viewInsetsOf.',
+    'prefer_dedicated_media_query_methods',
+    'Prefer using dedicated MediaQuery methods.',
+    correctionMessage:
+        'Consider using MediaQuery.sizeOf, widthOf, heightOf, etc. '
+        'instead of accessing properties on generic methods.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addMethodInvocation((node) {
-      final method = node.methodName.name;
-      final target = node.target?.toString();
-      if (target == 'MediaQuery' && (method == 'of' || method == 'maybeOf')) {
-        reporter.atNode(node, _code);
+    final visitor = _Visitor(this, context);
+    registry.addMethodInvocation(this, visitor);
+  }
+}
+
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
+
+  final AnalysisRule rule;
+  final RuleContext context;
+
+  @override
+  void visitMethodInvocation(MethodInvocation node) {
+    final method = node.methodName.name;
+    final target = node.target?.toString();
+
+    // Ignore if target is not MediaQuery
+    if (target != 'MediaQuery') {
+      return;
+    }
+
+    // Check for MediaQuery.of / maybeOf
+    if (method == 'of' || method == 'maybeOf') {
+      rule.reportAtNode(node);
+      return;
+    }
+
+    // Check for MediaQuery.sizeOf(context).width / height
+    if (method == 'sizeOf') {
+      // Check if the parent node is a property access (.width or .height)
+      final parent = node.parent;
+      if (parent is PropertyAccess) {
+        final propertyName = parent.propertyName.name;
+        if (propertyName == 'width' || propertyName == 'height') {
+          // Report on the entire expression including .width or .height
+          rule.reportAtNode(parent);
+        }
       }
-    });
+    }
   }
 }

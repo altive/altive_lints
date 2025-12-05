@@ -1,11 +1,7 @@
 # https://pub.dev/packages/altive_lints
 include: package:altive_lints/altive_lints.yaml
-analyzer:
-  plugins:
-    - custom_lint
 
 linter:
   rules:
     # Disabled so that you don't have to write a doc since it is an `example`.
     - public_member_api_docs: false
-

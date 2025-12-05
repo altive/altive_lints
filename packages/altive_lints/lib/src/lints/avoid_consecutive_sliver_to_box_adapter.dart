@@ -1,7 +1,11 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/error/error.dart';
 
+/// {@template altive_lints.AvoidConsecutiveSliverToBoxAdapter}
 /// A `avoid_consecutive_sliver_to_box_adapter` rule that
 /// identifies and discourages the use of consecutive
 /// `SliverToBoxAdapter` widgets within a list.
@@ -40,39 +44,54 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 ///   ],
 /// );
 /// ```
-class AvoidConsecutiveSliverToBoxAdapter extends DartLintRule {
-  /// Creates a new instance of [AvoidConsecutiveSliverToBoxAdapter].
-  const AvoidConsecutiveSliverToBoxAdapter() : super(code: _code);
+/// {@endtemplate}
+class AvoidConsecutiveSliverToBoxAdapter extends AnalysisRule {
+  /// {@macro altive_lints.AvoidConsecutiveSliverToBoxAdapter}
+  AvoidConsecutiveSliverToBoxAdapter()
+    : super(name: _code.name, description: _code.problemMessage);
 
   static const _code = LintCode(
-    name: 'avoid_consecutive_sliver_to_box_adapter',
-    problemMessage: 'Avoid using consecutive `SliverToBoxAdapter`. '
+    'avoid_consecutive_sliver_to_box_adapter',
+    'Avoid using consecutive `SliverToBoxAdapter`. '
         'Consider using `SliverList.list` instead.',
   );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    ErrorReporter reporter,
-    CustomLintContext context,
+  DiagnosticCode get diagnosticCode => _code;
+
+  @override
+  void registerNodeProcessors(
+    RuleVisitorRegistry registry,
+    RuleContext context,
   ) {
-    context.registry.addListLiteral((node) {
-      final iterator = node.elements.iterator;
-      if (!iterator.moveNext()) {
-        // if there are no elements, there is nothing to check.
+    final visitor = _Visitor(this, context);
+    registry.addListLiteral(this, visitor);
+  }
+}
+
+class _Visitor extends SimpleAstVisitor<void> {
+  _Visitor(this.rule, this.context);
+
+  final AnalysisRule rule;
+  final RuleContext context;
+
+  @override
+  void visitListLiteral(ListLiteral node) {
+    final iterator = node.elements.iterator;
+    if (!iterator.moveNext()) {
+      // if there are no elements, there is nothing to check.
+      return;
+    }
+
+    var current = iterator.current;
+    while (iterator.moveNext()) {
+      final next = iterator.current;
+      if (_useSliverToBoxAdapter(current) && _useSliverToBoxAdapter(next)) {
+        rule.reportAtNode(node);
         return;
       }
-
-      var current = iterator.current;
-      while (iterator.moveNext()) {
-        final next = iterator.current;
-        if (_useSliverToBoxAdapter(current) && _useSliverToBoxAdapter(next)) {
-          reporter.atNode(node, _code);
-          return;
-        }
-        current = next;
-      }
-    });
+      current = next;
+    }
   }
 
   bool _useSliverToBoxAdapter(CollectionElement element) {
