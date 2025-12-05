@@ -1,3 +1,7 @@
+## 2.0.0-dev.2
+
+ - **FIX**: Changed the AnalysisRule that had been registered as a Warning rule to be registered as a Lint rule.
+
 ## 2.0.0-dev.1
 
  - Bumped minimum Dart SDK to 3.10 (required by the analyzer plugin).

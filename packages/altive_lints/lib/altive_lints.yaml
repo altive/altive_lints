@@ -17,6 +17,16 @@ formatter:
 plugins:
   altive_lints:
     path: ../../altive_lints
+    diagnostics:
+      avoid_consecutive_sliver_to_box_adapter: true
+      avoid_hardcoded_color: true
+      avoid_hardcoded_japanese: true
+      avoid_shrink_wrap_in_list_view: true
+      avoid_single_child: true
+      prefer_clock_now: true
+      prefer_dedicated_media_query_methods: true
+      prefer_space_between_elements: true
+      prefer_to_include_sliver_in_name: true
 
 linter:
   rules:
