@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:analysis_server_plugin/plugin.dart';
 import 'package:analysis_server_plugin/registry.dart';
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
 
 import 'src/assists/add_macro_document_comments.dart';
 import 'src/assists/add_macro_template_document_comment.dart';
@@ -25,19 +26,21 @@ class _Plugin extends Plugin {
 
   @override
   Future<void> register(PluginRegistry registry) async {
+    <AnalysisRule>[
+      AvoidConsecutiveSliverToBoxAdapter(),
+      AvoidHardcodedColor(),
+      AvoidHardcodedJapanese(),
+      AvoidShrinkWrapInListView(),
+      AvoidSingleChild(),
+      PreferClockNow(),
+      PreferDedicatedMediaQueryMethods(),
+      PreferSpaceBetweenElements(),
+      PreferToIncludeSliverInName(),
+    ].forEach(registry.registerLintRule);
+
     registry
-      ..registerLintRule(AvoidConsecutiveSliverToBoxAdapter())
-      ..registerLintRule(AvoidHardcodedColor())
-      ..registerLintRule(AvoidHardcodedJapanese())
-      ..registerLintRule(AvoidShrinkWrapInListView())
-      ..registerLintRule(AvoidSingleChild())
-      ..registerLintRule(PreferClockNow())
-      ..registerLintRule(PreferDedicatedMediaQueryMethods())
-      ..registerLintRule(PreferSpaceBetweenElements())
-      ..registerLintRule(PreferToIncludeSliverInName())
       ..registerAssist(AddMacroDocumentComment.new)
       ..registerAssist(AddMacroTemplateDocumentComment.new)
-      ..registerAssist(WrapWithMacroTemplateDocumentComment.new)
-    /* */;
+      ..registerAssist(WrapWithMacroTemplateDocumentComment.new);
   }
 }

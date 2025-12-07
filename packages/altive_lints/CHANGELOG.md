@@ -1,3 +1,9 @@
+<!-- cSpell:words masa -->
+## 2.0.0-dev.3
+
+ - **DOCS**: Fix the notation for enabling the plugin in README.md.
+ - **FIX**: Change plugin specification in altive_lints from path to version.
+
 ## 2.0.0-dev.2
 
  - **FIX**: Changed the AnalysisRule that had been registered as a Warning rule to be registered as a Lint rule.
