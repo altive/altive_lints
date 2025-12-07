@@ -16,7 +16,7 @@ formatter:
 
 plugins:
   altive_lints:
-    path: ../../altive_lints
+    version: ^2.0.0-dev.3
     diagnostics:
       avoid_consecutive_sliver_to_box_adapter: true
       avoid_hardcoded_color: true

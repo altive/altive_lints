@@ -35,16 +35,19 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
 ### altive_lints
 
 1. Add altive_lints to your `pubspec.yaml`:
-  ```yaml
-  dev_dependencies:
-    altive_lints:
-  ```
+```yaml
+dev_dependencies:
+  altive_lints:
+```
 2. Include altive_lints in analysis_options.yaml.<br/>
 If not, create a new one or copy [analysis_options.yaml](https://github.com/altive/altive_lints/blob/main/packages/altive_lints/example/analysis_options.yaml) and use it.
 
-  ```yaml
-  include: package:altive_lints/altive_lints.yaml
-  ```
+```yaml
+include: package:altive_lints/altive_lints.yaml
+plugins:
+  altive_lints:
+    version: ^2.0.0-dev.3
+```
 
 ### Disabling lint rules/analysis rules
 
@@ -60,6 +63,7 @@ linter:
 
 plugins:
   altive_lints:
+    version: ^2.0.0-dev.3
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false
