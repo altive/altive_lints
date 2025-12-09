@@ -44,9 +44,6 @@ If not, create a new one or copy [analysis_options.yaml](https://github.com/alti
 
 ```yaml
 include: package:altive_lints/altive_lints.yaml
-plugins:
-  altive_lints:
-    version: ^2.0.0-dev.3
 ```
 
 ### Disabling lint rules/analysis rules
@@ -63,7 +60,7 @@ linter:
 
 plugins:
   altive_lints:
-    version: ^2.0.0-dev.3
+    version: ^2.0.0
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false

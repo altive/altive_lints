@@ -1,4 +1,14 @@
-<!-- cSpell:words masa -->
+<!-- cSpell:ignore masa -->
+## 2.0.0
+
+ A stable release for altive_lints 2.0.
+
+ - Upgrade minimum required Dart SDK version to 3.10.0.
+ - Upgrade minimum required analyzer version to 9.0.0.
+ - **FEAT**: Migrate to Analyzer Plugin (analysis_server_plugin) from custom_lint.
+ - **FEAT**: prefer_dedicated_media_query_methods warns against using MediaQuery.sizeOf(context).width/height.
+ use MediaQuery.widthOf(context) and MediaQuery.heightOf(context) instead.
+ 
 ## 2.0.0-dev.3
 
  - **DOCS**: Fix the notation for enabling the plugin in README.md.
@@ -15,7 +25,6 @@
  - **FEAT**: Migrate to analysis_server_plugin from custom_lint.
  - **FEAT**: prefer_dedicated_media_query_methods warns against using MediaQuery.sizeOf(context).width/height.
  use MediaQuery.widthOf(context) and MediaQuery.heightOf(context) instead.
-
 
 ## 1.25.0
 
