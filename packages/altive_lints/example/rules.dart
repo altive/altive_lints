@@ -90,7 +90,75 @@ class PreferDedicatedMediaQueryMethodsExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _ = MediaQuery.of(context).accessibleNavigation;
+    final _ = MediaQuery.accessibleNavigationOf(context);
+
+    final _ = MediaQuery.of(context).alwaysUse24HourFormat;
+    final _ = MediaQuery.alwaysUse24HourFormatOf(context);
+
+    final _ = MediaQuery.of(context).boldText;
+    final _ = MediaQuery.boldTextOf(context);
+
+    final _ = MediaQuery.of(context).devicePixelRatio;
+    final _ = MediaQuery.devicePixelRatioOf(context);
+
+    final _ = MediaQuery.of(context).disableAnimations;
+    final _ = MediaQuery.disableAnimationsOf(context);
+
+    final _ = MediaQuery.of(context).displayFeatures;
+    final _ = MediaQuery.displayFeaturesOf(context);
+
+    final _ = MediaQuery.of(context).gestureSettings;
+    final _ = MediaQuery.gestureSettingsOf(context);
+
+    final _ = MediaQuery.of(context).highContrast;
+    final _ = MediaQuery.highContrastOf(context);
+
+    final _ = MediaQuery.of(context).invertColors;
+    final _ = MediaQuery.invertColorsOf(context);
+
+    final _ = MediaQuery.of(context).navigationMode;
+    final _ = MediaQuery.navigationModeOf(context);
+
+    final _ = MediaQuery.of(context).onOffSwitchLabels;
+    final _ = MediaQuery.onOffSwitchLabelsOf(context);
+
+    final _ = MediaQuery.of(context).orientation;
+    final _ = MediaQuery.orientationOf(context);
+
+    final _ = MediaQuery.of(context).padding;
+    final _ = MediaQuery.paddingOf(context);
+
+    final _ = MediaQuery.of(context).platformBrightness;
+    final _ = MediaQuery.platformBrightnessOf(context);
+
     final _ = MediaQuery.of(context).size;
+    final _ = MediaQuery.sizeOf(context);
+
+    final _ = MediaQuery.sizeOf(context).width;
+    final _ = MediaQuery.widthOf(context);
+
+    final _ = MediaQuery.sizeOf(context).height;
+    final _ = MediaQuery.heightOf(context);
+
+    final _ = MediaQuery.of(context).supportsAnnounce;
+    final _ = MediaQuery.supportsAnnounceOf(context);
+
+    final _ = MediaQuery.of(context).supportsShowingSystemContextMenu;
+    final _ = MediaQuery.supportsShowingSystemContextMenu(context);
+
+    final _ = MediaQuery.of(context).systemGestureInsets;
+    final _ = MediaQuery.systemGestureInsetsOf(context);
+
+    final _ = MediaQuery.of(context).textScaler;
+    final _ = MediaQuery.textScalerOf(context);
+
+    final _ = MediaQuery.of(context).viewInsets;
+    final _ = MediaQuery.viewInsetsOf(context);
+
+    final _ = MediaQuery.of(context).viewPadding;
+    final _ = MediaQuery.viewPaddingOf(context);
+
     return const SizedBox.shrink();
   }
 }

@@ -1,4 +1,10 @@
-<!-- cSpell:ignore masa -->
+## 2.1.0
+
+ - **FEAT**: update all_lint_rules (#124).
+   - Added
+     - [simplify_variable_pattern](https://dart.dev/tools/linter-rules/simplify_variable_pattern)
+ - **CHORE**: remove dependency on package:collection.
+
 ## 2.0.0
 
  A stable release for altive_lints 2.0.
@@ -270,3 +276,5 @@ Detailed notation is here: [altive_lints/example/analysis_options.yaml](https://
 ## 1.0.0
 
 Initial release
+
+<!-- cSpell:ignore masa -->

@@ -4,7 +4,6 @@ import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
-import 'package:collection/collection.dart';
 
 import '../utils/types_utils.dart';
 
@@ -89,10 +88,9 @@ class _Visitor extends SimpleAstVisitor<void> {
   }
 
   bool _hasShrinkWrap(InstanceCreationExpression node) =>
-      node.argumentList.arguments.firstWhereOrNull(
+      node.argumentList.arguments.any(
         (arg) => arg is NamedExpression && arg.name.label.name == 'shrinkWrap',
-      ) !=
-      null;
+      );
 
   bool _hasParentList(InstanceCreationExpression node) =>
       node.thisOrAncestorMatching(

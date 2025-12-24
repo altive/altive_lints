@@ -1,6 +1,5 @@
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
-import 'package:collection/collection.dart';
 
 /// Whether the given [type] is a widget type or its subclass.
 bool hasWidgetType(DartType type) =>
@@ -90,17 +89,17 @@ bool _isSubclassOfWidgetState(DartType? type) =>
 bool _isIterable(DartType type) =>
     type.isDartCoreIterable &&
     type is InterfaceType &&
-    isWidgetOrSubclass(type.typeArguments.firstOrNull);
+    isWidgetOrSubclass(_firstTypeArgumentOrNull(type));
 
 bool _isList(DartType type) =>
     type.isDartCoreList &&
     type is InterfaceType &&
-    isWidgetOrSubclass(type.typeArguments.firstOrNull);
+    isWidgetOrSubclass(_firstTypeArgumentOrNull(type));
 
 bool _isFuture(DartType type) =>
     type.isDartAsyncFuture &&
     type is InterfaceType &&
-    isWidgetOrSubclass(type.typeArguments.firstOrNull);
+    isWidgetOrSubclass(_firstTypeArgumentOrNull(type));
 
 bool _isListenable(DartType type) => type.getDisplayString() == 'Listenable';
 
@@ -134,17 +133,20 @@ bool _isInheritedProvider(DartType? type) =>
 bool _isIterableInheritedProvider(DartType type) =>
     type.isDartCoreIterable &&
     type is InterfaceType &&
-    _isSubclassOfInheritedProvider(type.typeArguments.firstOrNull);
+    _isSubclassOfInheritedProvider(_firstTypeArgumentOrNull(type));
 
 bool _isListInheritedProvider(DartType type) =>
     type.isDartCoreList &&
     type is InterfaceType &&
-    _isSubclassOfInheritedProvider(type.typeArguments.firstOrNull);
+    _isSubclassOfInheritedProvider(_firstTypeArgumentOrNull(type));
 
 bool _isFutureInheritedProvider(DartType type) =>
     type.isDartAsyncFuture &&
     type is InterfaceType &&
-    _isSubclassOfInheritedProvider(type.typeArguments.firstOrNull);
+    _isSubclassOfInheritedProvider(_firstTypeArgumentOrNull(type));
+
+DartType? _firstTypeArgumentOrNull(InterfaceType type) =>
+    type.typeArguments.isNotEmpty ? type.typeArguments.first : null;
 
 /// Whether the given [type] is a Iterable type or its subclass.
 bool isIterableOrSubclass(DartType? type) =>

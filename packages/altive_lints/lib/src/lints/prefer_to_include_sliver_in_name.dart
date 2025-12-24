@@ -4,7 +4,6 @@ import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
-import 'package:collection/collection.dart';
 
 /// {@template altive_lints.PreferToIncludeSliverInName}
 /// A `prefer_to_include_sliver_in_name` rule that ensures widgets returning
@@ -73,10 +72,13 @@ class _Visitor extends SimpleAstVisitor<void> {
 
   @override
   void visitClassDeclaration(ClassDeclaration node) {
-    final methodBody = node.members
-        .whereType<MethodDeclaration>()
-        .firstWhereOrNull((method) => method.name.lexeme == 'build')
-        ?.body;
+    FunctionBody? methodBody;
+    for (final method in node.members.whereType<MethodDeclaration>()) {
+      if (method.name.lexeme == 'build') {
+        methodBody = method.body;
+        break;
+      }
+    }
 
     if (methodBody is! BlockFunctionBody) {
       return;

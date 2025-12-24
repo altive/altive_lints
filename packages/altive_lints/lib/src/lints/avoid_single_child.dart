@@ -4,7 +4,6 @@ import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
-import 'package:collection/collection.dart';
 
 /// {@template altive_lints.AvoidSingleChild}
 /// An `avoid_single_child` rule that warns against using layout
@@ -82,12 +81,15 @@ class _Visitor extends SimpleAstVisitor<void> {
       'SliverMainAxisGroup',
       'SliverCrossAxisGroup',
     ].contains(className)) {
-      final childrenArg = node.argumentList.arguments.firstWhereOrNull(
-        (arg) =>
-            arg is NamedExpression &&
+      NamedExpression? childrenArg;
+      for (final arg in node.argumentList.arguments) {
+        if (arg is NamedExpression &&
             (arg.name.label.name == 'children' ||
-                arg.name.label.name == 'slivers'),
-      );
+                arg.name.label.name == 'slivers')) {
+          childrenArg = arg;
+          break;
+        }
+      }
 
       final ListLiteral childrenList;
       if (childrenArg is NamedExpression &&
