@@ -1,3 +1,9 @@
+## 2.2.0
+
+ - **FEAT**: update all_lint_rules (#126).
+   - Added
+     - [var_with_no_type_annotation](https://dart.dev/tools/linter-rules/var_with_no_type_annotation)
+
 ## 2.1.0
 
  - **FEAT**: update all_lint_rules (#124).
