@@ -1,0 +1,4 @@
+interface:
+  display_name: "Altive Lints Release"
+  short_description: "Run the altive_lints release workflow end to end"
+  default_prompt: "Use $altive-lints-release to review changes since the latest altive_lints tag, update the changelog and version, create the release commit and tag, and provide the final push and pub.dev publish commands."
