@@ -1,3 +1,9 @@
+## 2.3.0
+
+ - **FEAT**: update all_lint_rules (#127).
+   - Added
+     - [simple_directive_paths](https://dart.dev/tools/linter-rules/simple_directive_paths)
+
 ## 2.2.0
 
  - **FEAT**: update all_lint_rules (#126).
