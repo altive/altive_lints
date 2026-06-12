@@ -19,7 +19,7 @@ extension ResolvedCorrectionProducerExtension on ResolvedCorrectionProducer {
       final contextRoot = result.session.analysisContext.contextRoot;
 
       // Look for pubspec.yaml in the context root
-      final pubspecFile = contextRoot.root.getFile('pubspec.yaml');
+      final pubspecFile = contextRoot.root.getChildAssumingFile('pubspec.yaml');
 
       if (pubspecFile.exists) {
         final content = pubspecFile.readAsStringSync();

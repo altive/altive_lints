@@ -125,7 +125,7 @@ _namedDeclaration(AstNode node) {
   if (extensionTypeDeclaration != null) {
     return (
       documentationComment: extensionTypeDeclaration.documentationComment,
-      nameToken: extensionTypeDeclaration.namePart.typeName,
+      nameToken: extensionTypeDeclaration.primaryConstructor.typeName,
       offset: extensionTypeDeclaration.offset,
     );
   }
