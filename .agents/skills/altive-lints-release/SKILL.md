@@ -36,6 +36,7 @@ Prepare a release for `packages/altive_lints` using a consistent workflow. Cover
 7. Provide the final execution commands.
    - Present the `push` command in one line.
    - Present the `publish` command in one line without changing the caller's working directory.
+   - Always include the `pub.dev` publish command in the final response.
 
 ## Command Output Rules
 
@@ -69,3 +70,4 @@ git push origin main altive_lints-vX.Y.Z
 - Start by briefly stating the latest tag and the main changes since that tag.
 - At the end, state which files were updated, which commit was created, and which tag was created.
 - Finish by presenting the exact commands the user can run as-is.
+- Always include the `pub.dev` publish command, and include the dry-run command when it is useful.
