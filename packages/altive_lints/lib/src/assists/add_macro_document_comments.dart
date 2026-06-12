@@ -101,7 +101,7 @@ class AddMacroDocumentComment extends ResolvedCorrectionProducer {
 
     // --- Generation Logic ---
 
-    final className = classDeclaration.name.lexeme;
+    final className = classDeclaration.namePart.typeName.lexeme;
 
     var macroReference = '$packageName.$className';
     if (nameSuffix != null && nameSuffix.isNotEmpty) {

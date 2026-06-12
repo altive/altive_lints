@@ -40,7 +40,7 @@ import 'package:analyzer/error/error.dart';
 class AvoidSingleChild extends AnalysisRule {
   /// {@macro altive_lints.AvoidSingleChild}
   AvoidSingleChild()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'avoid_single_child',
@@ -81,20 +81,19 @@ class _Visitor extends SimpleAstVisitor<void> {
       'SliverMainAxisGroup',
       'SliverCrossAxisGroup',
     ].contains(className)) {
-      NamedExpression? childrenArg;
+      NamedArgument? childrenArg;
       for (final arg in node.argumentList.arguments) {
-        if (arg is NamedExpression &&
-            (arg.name.label.name == 'children' ||
-                arg.name.label.name == 'slivers')) {
+        if (arg is NamedArgument &&
+            (arg.name.lexeme == 'children' || arg.name.lexeme == 'slivers')) {
           childrenArg = arg;
           break;
         }
       }
 
       final ListLiteral childrenList;
-      if (childrenArg is NamedExpression &&
-          childrenArg.expression is ListLiteral) {
-        childrenList = childrenArg.expression as ListLiteral;
+      if (childrenArg != null &&
+          childrenArg.argumentExpression is ListLiteral) {
+        childrenList = childrenArg.argumentExpression as ListLiteral;
       } else {
         return;
       }

@@ -1,6 +1,7 @@
 import 'package:analysis_server_plugin/edit/dart/correction_producer.dart';
 import 'package:analysis_server_plugin/edit/dart/dart_fix_kind_priority.dart';
 import 'package:analyzer/dart/ast/ast.dart';
+import 'package:analyzer/dart/ast/token.dart';
 import 'package:analyzer_plugin/utilities/assist/assist.dart';
 import 'package:analyzer_plugin/utilities/change_builder/change_builder_core.dart';
 
@@ -65,7 +66,7 @@ class WrapWithMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
     final node = this.node;
 
     // Locate the ancestor declaration (Class, Mixin, Enum, etc.)
-    final declaration = node.thisOrAncestorOfType<NamedCompilationUnitMember>();
+    final declaration = _namedDeclaration(node);
     if (declaration == null) {
       return;
     }
@@ -83,7 +84,7 @@ class WrapWithMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
     final selectionInComment =
         selectionOffset >= comment.offset && selectionOffset <= comment.end;
 
-    final nameToken = declaration.name;
+    final nameToken = declaration.nameToken;
     final selectionOnName =
         selectionOffset >= nameToken.offset && selectionOffset <= nameToken.end;
 
@@ -100,7 +101,7 @@ class WrapWithMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
 
     // --- Generation Logic ---
 
-    final className = declaration.name.lexeme;
+    final className = declaration.nameToken.lexeme;
 
     final templateStart = '/// {@template $packageName.$className}';
     const templateEnd = '/// {@endtemplate}';
@@ -113,4 +114,55 @@ class WrapWithMacroTemplateDocumentComment extends ResolvedCorrectionProducer {
         ..addSimpleInsertion(comment.end, '\n$templateEnd');
     });
   }
+}
+
+({Comment? documentationComment, Token nameToken, int offset})?
+_namedDeclaration(AstNode node) {
+  final classDeclaration = node.thisOrAncestorOfType<ClassDeclaration>();
+  if (classDeclaration != null) {
+    return (
+      documentationComment: classDeclaration.documentationComment,
+      nameToken: classDeclaration.namePart.typeName,
+      offset: classDeclaration.offset,
+    );
+  }
+
+  final enumDeclaration = node.thisOrAncestorOfType<EnumDeclaration>();
+  if (enumDeclaration != null) {
+    return (
+      documentationComment: enumDeclaration.documentationComment,
+      nameToken: enumDeclaration.namePart.typeName,
+      offset: enumDeclaration.offset,
+    );
+  }
+
+  final extensionTypeDeclaration = node
+      .thisOrAncestorOfType<ExtensionTypeDeclaration>();
+  if (extensionTypeDeclaration != null) {
+    return (
+      documentationComment: extensionTypeDeclaration.documentationComment,
+      nameToken: extensionTypeDeclaration.namePart.typeName,
+      offset: extensionTypeDeclaration.offset,
+    );
+  }
+
+  final mixinDeclaration = node.thisOrAncestorOfType<MixinDeclaration>();
+  if (mixinDeclaration != null) {
+    return (
+      documentationComment: mixinDeclaration.documentationComment,
+      nameToken: mixinDeclaration.name,
+      offset: mixinDeclaration.offset,
+    );
+  }
+
+  final typeAlias = node.thisOrAncestorOfType<TypeAlias>();
+  if (typeAlias != null) {
+    return (
+      documentationComment: typeAlias.documentationComment,
+      nameToken: typeAlias.name,
+      offset: typeAlias.offset,
+    );
+  }
+
+  return null;
 }

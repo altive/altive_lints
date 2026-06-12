@@ -38,7 +38,7 @@ import '../utils/files_utils.dart';
 class AvoidHardcodedColor extends AnalysisRule {
   /// {@macro altive_lints.AvoidHardcodedColor}
   AvoidHardcodedColor()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'avoid_hardcoded_color',

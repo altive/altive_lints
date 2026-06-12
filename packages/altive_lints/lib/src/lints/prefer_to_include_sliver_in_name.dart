@@ -43,7 +43,7 @@ import 'package:analyzer/error/error.dart';
 class PreferToIncludeSliverInName extends AnalysisRule {
   /// {@macro altive_lints.PreferToIncludeSliverInName}
   PreferToIncludeSliverInName()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'prefer_to_include_sliver_in_name',
@@ -73,7 +73,13 @@ class _Visitor extends SimpleAstVisitor<void> {
   @override
   void visitClassDeclaration(ClassDeclaration node) {
     FunctionBody? methodBody;
-    for (final method in node.members.whereType<MethodDeclaration>()) {
+    final body = node.body;
+    if (body is! BlockClassBody) {
+      return;
+    }
+    final members = body.members;
+
+    for (final method in members.whereType<MethodDeclaration>()) {
       if (method.name.lexeme == 'build') {
         methodBody = method.body;
         break;
@@ -98,13 +104,13 @@ class _Visitor extends SimpleAstVisitor<void> {
       return;
     }
 
-    final className = node.name.lexeme;
+    final className = node.namePart.typeName.lexeme;
 
     if (className.contains('Sliver')) {
       return;
     }
 
-    final constructorNames = node.members
+    final constructorNames = members
         .whereType<ConstructorDeclaration>()
         .map((constructor) => constructor.name?.lexeme)
         .nonNulls;

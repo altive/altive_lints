@@ -48,7 +48,7 @@ import 'package:analyzer/error/error.dart';
 class AvoidConsecutiveSliverToBoxAdapter extends AnalysisRule {
   /// {@macro altive_lints.AvoidConsecutiveSliverToBoxAdapter}
   AvoidConsecutiveSliverToBoxAdapter()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'avoid_consecutive_sliver_to_box_adapter',
@@ -113,8 +113,8 @@ class _Visitor extends SimpleAstVisitor<void> {
     final constructor = element;
     final arguments = constructor.argumentList.arguments;
     for (final argument in arguments) {
-      if (argument is NamedExpression && argument.name.label.name == 'sliver') {
-        final sliverExpression = argument.expression;
+      if (argument is NamedArgument && argument.name.lexeme == 'sliver') {
+        final sliverExpression = argument.argumentExpression;
         final sliverTypeName = sliverExpression.staticType?.getDisplayString();
         if (sliverTypeName == 'SliverToBoxAdapter') {
           return true;

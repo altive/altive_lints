@@ -48,7 +48,7 @@ import '../utils/types_utils.dart';
 class AvoidShrinkWrapInListView extends AnalysisRule {
   /// {@macro altive_lints.AvoidShrinkWrapInListView}
   AvoidShrinkWrapInListView()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'avoid_shrink_wrap_in_list_view',
@@ -89,7 +89,7 @@ class _Visitor extends SimpleAstVisitor<void> {
 
   bool _hasShrinkWrap(InstanceCreationExpression node) =>
       node.argumentList.arguments.any(
-        (arg) => arg is NamedExpression && arg.name.label.name == 'shrinkWrap',
+        (arg) => arg is NamedArgument && arg.name.lexeme == 'shrinkWrap',
       );
 
   bool _hasParentList(InstanceCreationExpression node) =>

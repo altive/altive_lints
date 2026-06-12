@@ -49,7 +49,7 @@ import 'package:analyzer/source/line_info.dart';
 class PreferSpaceBetweenElements extends AnalysisRule {
   /// {@macro altive_lints.PreferSpaceBetweenElements}
   PreferSpaceBetweenElements()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'prefer_space_between_elements',
@@ -82,7 +82,11 @@ class _Visitor extends SimpleAstVisitor<void> {
     if (lineInfo == null) {
       return;
     }
-    final members = node.members;
+    final body = node.body;
+    if (body is! BlockClassBody) {
+      return;
+    }
+    final members = body.members;
     for (var i = 0; i < members.length - 1; i++) {
       final currentMember = members[i];
       final nextMember = members[i + 1];

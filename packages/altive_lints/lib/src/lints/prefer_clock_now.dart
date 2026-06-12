@@ -29,7 +29,8 @@ import 'package:analyzer/error/error.dart';
 /// {@endtemplate}
 class PreferClockNow extends AnalysisRule {
   /// {@macro altive_lints.PreferClockNow}
-  PreferClockNow() : super(name: _code.name, description: _code.problemMessage);
+  PreferClockNow()
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'prefer_clock_now',

@@ -37,7 +37,7 @@ import 'package:analyzer/error/error.dart';
 class PreferDedicatedMediaQueryMethods extends AnalysisRule {
   /// {@macro altive_lints.PreferDedicatedMediaQueryMethods}
   PreferDedicatedMediaQueryMethods()
-    : super(name: _code.name, description: _code.problemMessage);
+    : super(name: _code.lowerCaseName, description: _code.problemMessage);
 
   static const _code = LintCode(
     'prefer_dedicated_media_query_methods',
