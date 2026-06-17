@@ -11,9 +11,3 @@ workspace:
 dev_dependencies:
   altive_lints:
     path: packages/altive_lints
-  melos: ^7.8.2
-
-melos:
-  command:
-    version:
-      workspaceChangelog: false
