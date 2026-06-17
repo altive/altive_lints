@@ -7,11 +7,10 @@
      - [initialize_in_field_declaration](https://dart.dev/tools/linter-rules/initialize_in_field_declaration)
      - [no_dynamic_casts](https://dart.dev/tools/linter-rules/no_dynamic_casts)
      - [no_raw_types](https://dart.dev/tools/linter-rules/no_raw_types)
-     - [no_runtimetype_tostring](https://dart.dev/tools/linter-rules/no_runtimetype_tostring)
      - [unnecessary_primary_constructor_body](https://dart.dev/tools/linter-rules/unnecessary_primary_constructor_body)
      - [use_declaring_parameters](https://dart.dev/tools/linter-rules/use_declaring_parameters)
-   - Removed
-     - [no_runtimeType_toString](https://dart.dev/tools/linter-rules/no_runtimeType_toString)
+   - Renamed
+     - `no_runtimeType_toString` to [no_runtimetype_tostring](https://dart.dev/tools/linter-rules/no_runtimetype_tostring)
 
 ## 3.0.0
 
