@@ -1,3 +1,18 @@
+## 3.1.0
+
+ - **FEAT**: update all_lint_rules (#130).
+   - Added
+     - [async_return_with_no_await](https://dart.dev/tools/linter-rules/async_return_with_no_await)
+     - [empty_container_bodies](https://dart.dev/tools/linter-rules/empty_container_bodies)
+     - [initialize_in_field_declaration](https://dart.dev/tools/linter-rules/initialize_in_field_declaration)
+     - [no_dynamic_casts](https://dart.dev/tools/linter-rules/no_dynamic_casts)
+     - [no_raw_types](https://dart.dev/tools/linter-rules/no_raw_types)
+     - [no_runtimetype_tostring](https://dart.dev/tools/linter-rules/no_runtimetype_tostring)
+     - [unnecessary_primary_constructor_body](https://dart.dev/tools/linter-rules/unnecessary_primary_constructor_body)
+     - [use_declaring_parameters](https://dart.dev/tools/linter-rules/use_declaring_parameters)
+   - Removed
+     - [no_runtimeType_toString](https://dart.dev/tools/linter-rules/no_runtimeType_toString)
+
 ## 3.0.0
 
 This release updates the analyzer plugin dependencies so that
