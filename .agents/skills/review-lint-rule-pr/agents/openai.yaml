@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Lint Rule PR"
+  short_description: "Review added Dart lint rules in PRs"
+  default_prompt: "Use $review-lint-rule-pr to review a PR that adds Dart lint rules and advise whether each rule should be adopted."
