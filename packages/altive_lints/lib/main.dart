@@ -7,6 +7,7 @@ import 'package:analyzer/analysis_rule/analysis_rule.dart';
 import 'src/assists/add_macro_document_comments.dart';
 import 'src/assists/add_macro_template_document_comment.dart';
 import 'src/assists/wrap_with_macro_template_document_comment.dart';
+import 'src/fixes/replace_datetime_with_clock_now.dart';
 import 'src/lints/avoid_consecutive_sliver_to_box_adapter.dart';
 import 'src/lints/avoid_hardcoded_color.dart';
 import 'src/lints/avoid_hardcoded_japanese.dart';
@@ -39,6 +40,10 @@ class _Plugin extends Plugin {
     ].forEach(registry.registerLintRule);
 
     registry
+      ..registerFixForRule(
+        PreferClockNow.code,
+        ReplaceDateTimeWithClockNow.new,
+      )
       ..registerAssist(AddMacroDocumentComment.new)
       ..registerAssist(AddMacroTemplateDocumentComment.new)
       ..registerAssist(WrapWithMacroTemplateDocumentComment.new);

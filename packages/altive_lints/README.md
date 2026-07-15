@@ -223,7 +223,7 @@ Column(
 
 ### prefer_clock_now
 
-Prefer using clock.now() instead of DateTime.now().
+Prefer using clock.now() instead of DateTime.now() or DateTime.timestamp().
 
 By using the [clock](https://pub.dev/packages/clock) package and clock.now(), you can use the withClock method to replace the date and time at test time.
 
@@ -231,13 +231,18 @@ By using the [clock](https://pub.dev/packages/clock) package and clock.now(), yo
 
 ```dart
 var now = DateTime.now(); // LINT
+var timestamp = DateTime.timestamp(); // LINT
 ```
 
 **Good**:
 
 ```dart
 var now = clock.now(); // Using 'clock' package
+var timestamp = clock.now().toUtc(); // Preserve timestamp's UTC behavior
 ```
+
+When the `clock` package is available, the lint offers a quick fix that adds
+the required import and preserves whether the original value is local or UTC.
 
 ### prefer_dedicated_media_query_methods
 

@@ -7,11 +7,12 @@ import 'package:analyzer/error/error.dart';
 
 /// {@template altive_lints.PreferClockNow}
 /// A `prefer_clock_now` rule that discourages the use of
-/// `DateTime.now()` due to its non-testability in unit tests.
+/// `DateTime.now()` and `DateTime.timestamp()` due to their non-testability in
+/// unit tests.
 ///
-/// Instead of `DateTime.now()`, it recommends using a testable alternative,
-/// such as `clock.now()` from the `clock` package or similar functions,
-/// which allow for time manipulation in tests using methods like `withClock`.
+/// Instead of these constructors, it recommends using a testable alternative,
+/// such as `clock.now()` from the `clock` package or similar functions, which
+/// allow for time manipulation in tests using methods like `withClock`.
 ///
 /// ### Example
 ///
@@ -19,6 +20,7 @@ import 'package:analyzer/error/error.dart';
 ///
 /// ```dart
 /// var now = DateTime.now(); // LINT
+/// var timestamp = DateTime.timestamp(); // LINT
 /// ```
 ///
 /// #### GOOD:
@@ -30,16 +32,17 @@ import 'package:analyzer/error/error.dart';
 class PreferClockNow extends AnalysisRule {
   /// {@macro altive_lints.PreferClockNow}
   PreferClockNow()
-    : super(name: _code.lowerCaseName, description: _code.problemMessage);
+    : super(name: code.lowerCaseName, description: code.problemMessage);
 
-  static const _code = LintCode(
+  /// The diagnostic code for this rule.
+  static const code = LintCode(
     'prefer_clock_now',
-    'Avoid using DateTime.now(). '
+    'Avoid using DateTime.now() or DateTime.timestamp(). '
         'Use a testable alternative like clock.now() or similar instead.',
   );
 
   @override
-  DiagnosticCode get diagnosticCode => _code;
+  DiagnosticCode get diagnosticCode => code;
 
   @override
   void registerNodeProcessors(
@@ -60,11 +63,14 @@ class _Visitor extends SimpleAstVisitor<void> {
   @override
   void visitInstanceCreationExpression(InstanceCreationExpression node) {
     final constructorName = node.constructorName;
-    final type = constructorName.type.name.lexeme;
-    if (type != 'DateTime') {
+    final type = node.staticType;
+    if (type?.element?.name != 'DateTime' ||
+        type?.element?.library?.isDartCore != true) {
       return;
     }
-    if (node.constructorName.name?.name == 'now') {
+
+    final name = constructorName.name?.name;
+    if (name == 'now' || name == 'timestamp') {
       rule.reportAtNode(node);
     }
   }
