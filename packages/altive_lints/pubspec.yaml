@@ -1,8 +1,8 @@
 name: altive_lints
 description: >-
-  Provides `all_lint_rules.yaml` that activates all rules and
-  `altive_lints.yaml` with Altive recommended rule selection.
-version: 3.1.0
+  Analyzer-independent lint presets with Altive's recommended rule selection
+  and optional Analyzer Plugin integration.
+version: 4.0.0
 homepage: https://altive.dev
 repository: https://github.com/altive/altive_lints
 issue_tracker: https://github.com/altive/altive_lints/issues
@@ -17,13 +17,3 @@ resolution: workspace
 
 environment:
   sdk: ^3.10.0
-
-dependencies:
-  analysis_server_plugin: ">=0.3.15 <0.3.16"
-  analyzer: ">=13.0.0 <13.1.0"
-  analyzer_plugin: ">=0.14.9 <0.14.10"
-
-dev_dependencies:
-  analyzer_testing: ^0.2.6
-  test: ^1.28.0
-  test_reflective_loader: ^0.4.0

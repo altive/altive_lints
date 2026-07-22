@@ -1,0 +1,27 @@
+name: altive_lints_plugin
+description: Analyzer Plugin providing Altive custom lint rules, fixes, and assists.
+version: 1.0.0
+homepage: https://altive.dev
+repository: https://github.com/altive/altive_lints/tree/main/packages/altive_lints_plugin
+issue_tracker: https://github.com/altive/altive_lints/issues
+topics:
+  - lint
+  - linter
+  - analyzer
+  - analyzer-plugin
+
+resolution: workspace
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  analysis_server_plugin: ">=0.3.15 <0.3.16"
+  analyzer: ">=13.0.0 <13.1.0"
+  analyzer_plugin: ">=0.14.9 <0.14.10"
+
+dev_dependencies:
+  altive_lints: ">=3.1.0 <5.0.0"
+  analyzer_testing: ^0.2.6
+  test: ^1.31.1
+  test_reflective_loader: ^0.4.0

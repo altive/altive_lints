@@ -1,0 +1,6 @@
+include: package:altive_lints/all_lint_rules.yaml
+
+linter:
+  rules:
+    # Test names follow the test_reflective_loader convention.
+    non_constant_identifier_names: false

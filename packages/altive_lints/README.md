@@ -2,7 +2,8 @@
 
 Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.yaml` with Altive recommended lint rule selection.
 
-`altive_lints` also includes Altive-made analysis rules created with the Analyzer Plugin (analysis_server_plugin).
+`altive_lints` enables Altive-made analysis rules from the separately resolved
+`altive_lints_plugin` Analyzer Plugin.
 
 ## Table of content
 
@@ -12,7 +13,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [SDK and package compatibility](#sdk-and-package-compatibility)
   - [Disabling lint rules/analysis rules](#disabling-lint-rulesanalysis-rules)
   - [Ignoring analysis rules](#ignoring-analysis-rules)
-- [All custom analysis rules in altive\_lints](#all-custom-analysis-rules-in-altive_lints)
+- [All custom analysis rules](#all-custom-analysis-rules)
   - [avoid\_consecutive\_sliver\_to\_box\_adapter](#avoid_consecutive_sliver_to_box_adapter)
   - [avoid\_hardcoded\_color](#avoid_hardcoded_color)
   - [avoid\_hardcoded\_japanese](#avoid_hardcoded_japanese)
@@ -22,13 +23,14 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
   - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
-- [All assists in altive\_lints](#all-assists-in-altive_lints)
+- [All assists](#all-assists)
   - [Add macro template documentation comment](#add-macro-template-documentation-comment)
   - [Add macro documentation comment](#add-macro-documentation-comment)
   - [Wrap with macro template documentation comment](#wrap-with-macro-template-documentation-comment)
 - [Lint rules adopted by altive\_lints and why](#lint-rules-adopted-by-altive_lints-and-why)
   - [public\_member\_api\_docs](#public_member_api_docs)
 - [Migration guide](#migration-guide)
+  - [v4.0.0](#v400)
   - [v1.12.0](#v1120)
 
 ## Getting started
@@ -47,16 +49,25 @@ If not, create a new one or copy [analysis_options.yaml](https://github.com/alti
 include: package:altive_lints/altive_lints.yaml
 ```
 
+This enables both the YAML preset and custom analysis rules. Do not add
+`altive_lints_plugin` to `pubspec.yaml`; the analysis server resolves it
+separately from the consuming pub workspace.
+
+To use only the analyzer-independent YAML preset, include:
+
+```yaml
+include: package:altive_lints/altive_lints_preset.yaml
+```
+
 ### SDK and package compatibility
 
-`altive_lints` 3.x ships the YAML presets and Analyzer Plugin implementation
-in one pub package. Adding that package therefore brings its `analyzer`
-dependencies into the consuming pub workspace, where SDK-pinned testing
-packages can constrain them even though linting and testing are otherwise
-unrelated.
+`altive_lints` 4.x is analyzer-independent. Its bundled analysis options enable
+`altive_lints_plugin`, which the analysis server resolves in a synthetic
+package outside the consuming pub workspace.
 
 | `altive_lints` | Dart SDK | `analysis_server_plugin` | `analyzer` | Compatible `test` setup |
 | --- | --- | --- | --- | --- |
+| 4.x | `>=3.10.0 <4.0.0` | separately resolved by `altive_lints_plugin` | no direct dependency | `test 1.31.0` / `test_api 0.7.11` can resolve |
 | 3.x | `>=3.10.0 <4.0.0` | `0.3.15` | `13.0.0` | `test 1.31.1` / `test_api 0.7.12` can resolve |
 | 2.x | `>=3.10.0 <4.0.0` | resolves to `0.3.4` | `9.0.0` | `test 1.31.0` / `test_api 0.7.11` can resolve, but this line does not include 3.x changes |
 
@@ -64,15 +75,13 @@ Flutter 3.44.7 / Dart 3.12.2 pins `test_api` to `0.7.11` through
 `flutter_test`. If the same pub workspace also contains a Dart package that
 depends on `test`, pub selects `test 1.31.0`, which requires
 `analyzer >=8.0.0 <13.0.0`. This conflicts with the `analyzer 13.0.0`
-required by `altive_lints` 3.x, so that workspace cannot resolve 3.x.
+required by `altive_lints` 3.x, so that workspace cannot resolve 3.x. Upgrade
+to `altive_lints` 4.x for this SDK combination. Do not force analyzer 13 with
+`dependency_overrides`: it violates `test 1.31.0`'s supported range.
 
-For that SDK combination, use `altive_lints: ^2.3.0` as a temporary
-dependency-resolution workaround, or keep Flutter and Dart test packages in
-separate pub workspaces. Do not force analyzer 13 with
-`dependency_overrides`: it violates `test 1.31.0`'s supported range. If only
-the YAML preset is needed, note that 3.x still brings Analyzer Plugin
-dependencies; the preset and plugin are not separate packages in this major
-version.
+On Flutter 3.44.x, use `dart analyze` when command-line output must include
+Analyzer Plugin diagnostics. `flutter analyze` can finish before those plugin
+results are reported.
 
 ### Disabling lint rules/analysis rules
 
@@ -87,8 +96,8 @@ linter:
     - public_member_api_docs: false
 
 plugins:
-  altive_lints:
-    version: ^3.0.0
+  altive_lints_plugin:
+    version: ^1.0.0
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false
@@ -104,20 +113,21 @@ plugins:
 
 ### Ignoring analysis rules
 
-You can ignore analysis rules by using `ignore: altive_lints/{rule_name}`.
+You can ignore analysis rules by using
+`ignore: altive_lints_plugin/{rule_name}`.
 
 ```dart
 // for file.
-// ignore_for_file: altive_lints/avoid_hardcoded_color
+// ignore_for_file: altive_lints_plugin/avoid_hardcoded_color
 
 ...
 
 // for line.
-// ignore: altive_lints/avoid_hardcoded_color
+// ignore: altive_lints_plugin/avoid_hardcoded_color
 Color(0xFF00FF00);
 ```
 
-## All custom analysis rules in altive_lints
+## All custom analysis rules
 
 ### avoid_consecutive_sliver_to_box_adapter
 
@@ -363,7 +373,7 @@ class SliverMyCustomList extends StatelessWidget {
 }
 ```
 
-## All assists in altive_lints
+## All assists
 
 ### Add macro template documentation comment
 
@@ -486,6 +496,27 @@ class DashboardCard extends StatelessWidget {
 ```
 
 ## Migration guide
+
+### v4.0.0
+
+The YAML presets and Analyzer Plugin implementation are now separate packages.
+The standard setup is unchanged:
+
+```yaml
+# pubspec.yaml
+dev_dependencies:
+  altive_lints: ^4.0.0
+```
+
+```yaml
+# analysis_options.yaml
+include: package:altive_lints/altive_lints.yaml
+```
+
+Replace diagnostic ignore prefixes from `altive_lints/` with
+`altive_lints_plugin/`, then restart the Dart Analysis Server. Do not add
+`altive_lints_plugin` to `pubspec.yaml`, because doing so would bring its
+analyzer dependency back into the consuming workspace.
 
 ### v1.12.0
 

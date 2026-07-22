@@ -21,14 +21,21 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          flutter-version: "3.44.7"
           cache: true
 
       - name: Format
-        run: dart format --set-exit-if-changed packages/altive_lints/lib
+        run: >-
+          dart format --set-exit-if-changed
+          packages/altive_lints_plugin/lib
+          packages/altive_lints_plugin/test
+          tool
 
       - name: Analyze
         run: flutter analyze
 
       - name: Test
-        run: dart test packages/altive_lints --fail-fast
+        run: dart test packages/altive_lints_plugin --fail-fast
+
+      - name: Verify v4 dependency isolation
+        run: dart run tool/verify_v4_split.dart

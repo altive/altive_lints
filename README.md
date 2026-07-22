@@ -13,9 +13,10 @@ dev_dependencies:
 
 ### Compatibility
 
-`altive_lints` 3.x requires analyzer 13. Flutter 3.44.7 workspaces that contain
-both `flutter_test` and Dart packages using `test` cannot resolve that version;
-use `altive_lints: ^2.3.0` temporarily. See the
+`altive_lints` 4.x keeps the preset analyzer-independent and resolves its
+Analyzer Plugin separately. It can therefore be used by Flutter 3.44.7
+workspaces that contain both `flutter_test` and Dart packages using `test`.
+See the
 [SDK and package compatibility table](packages/altive_lints/README.md#sdk-and-package-compatibility)
 for details.
 

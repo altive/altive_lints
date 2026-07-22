@@ -1,4 +1,4 @@
-include: package:altive_lints/altive_lints.yaml
+include: package:altive_lints/altive_lints_preset.yaml
 
 linter:
   rules:

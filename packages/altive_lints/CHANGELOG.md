@@ -1,3 +1,21 @@
+## 4.0.0
+
+### Breaking changes
+
+ - Split the Analyzer Plugin implementation into the separately resolved
+   `altive_lints_plugin` package.
+ - Remove all analyzer dependencies from `altive_lints`, allowing its presets
+   to resolve in Flutter 3.44.7 workspaces that use `test_api 0.7.11`.
+ - Change custom diagnostic ignore prefixes from `altive_lints/` to
+   `altive_lints_plugin/`.
+
+### Migration
+
+ - Keep `altive_lints: ^4.0.0` in `dev_dependencies` and continue including
+   `package:altive_lints/altive_lints.yaml`.
+ - Do not add `altive_lints_plugin` to the consuming package's dependencies.
+ - Restart the Dart Analysis Server after updating analysis options.
+
 ## 3.1.0
 
  - **FEAT**: update all_lint_rules (#130).

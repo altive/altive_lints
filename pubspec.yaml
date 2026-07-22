@@ -6,6 +6,7 @@ environment:
 
 workspace:
   - packages/altive_lints
+  - packages/altive_lints_plugin
   - packages/diffscrape
 
 dev_dependencies:

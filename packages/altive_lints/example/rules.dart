@@ -2,7 +2,7 @@
 // Please remove the ignore comment below
 // if a warning appears, the check is working correctly.
 //
-// ignore_for_file: altive_lints/avoid_consecutive_sliver_to_box_adapter, altive_lints/avoid_hardcoded_color, altive_lints/avoid_hardcoded_japanese, altive_lints/avoid_shrink_wrap_in_list_view, altive_lints/avoid_single_child, altive_lints/prefer_clock_now, altive_lints/prefer_dedicated_media_query_methods, altive_lints/prefer_space_between_elements, altive_lints/prefer_to_include_sliver_in_name
+// ignore_for_file: altive_lints_plugin/avoid_consecutive_sliver_to_box_adapter, altive_lints_plugin/avoid_hardcoded_color, altive_lints_plugin/avoid_hardcoded_japanese, altive_lints_plugin/avoid_shrink_wrap_in_list_view, altive_lints_plugin/avoid_single_child, altive_lints_plugin/prefer_clock_now, altive_lints_plugin/prefer_dedicated_media_query_methods, altive_lints_plugin/prefer_space_between_elements, altive_lints_plugin/prefer_to_include_sliver_in_name
 import 'package:flutter/material.dart';
 
 class AvoidConsecutiveSliverToBoxAdaptersExample extends StatelessWidget {
