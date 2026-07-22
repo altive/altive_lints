@@ -60,7 +60,7 @@ linter:
 
 plugins:
   altive_lints:
-    version: ^2.0.0
+    version: ^3.0.0
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false
