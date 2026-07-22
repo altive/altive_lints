@@ -163,6 +163,29 @@ void f() {
 ''');
   }
 
+  Future<void> test_fix_uses_prefix_when_clock_is_shadowed() async {
+    const content = '''
+void f() {
+  final clock = Object();
+  final now = DateTime.now();
+  print(clock);
+}
+''';
+    await assertDiagnostics(content, [lint(content.indexOf('DateTime'), 14)]);
+
+    final fixed = await _applyFix(content);
+
+    expect(fixed, '''
+import 'package:clock/clock.dart' as clock_package;
+
+void f() {
+  final clock = Object();
+  final now = clock_package.clock.now();
+  print(clock);
+}
+''');
+  }
+
   Future<void> test_no_custom_datetime_now() async {
     await assertNoDiagnostics('''
 class DateTime {
