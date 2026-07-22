@@ -32,11 +32,10 @@ newer Dart and Flutter SDKs.
    - `analyzer` to `>=13.0.0 <13.1.0`
    - `analyzer_plugin` to `>=0.14.9 <0.14.10`
    - `analyzer_testing` to `^0.2.6`
- - The effective minimum Dart SDK is raised by the analyzer dependency to
-   Dart 3.11.0 or later.
+ - The minimum Dart SDK remains Dart 3.10.0, as declared by this package.
  - The analyzer plugin dependency range is capped below
    `analysis_server_plugin` 0.3.16 so that Flutter SDKs that pin `meta` to
-   1.18.0, such as Flutter 3.44.x, can still resolve `altive_lints`.
+   1.18.0, such as Flutter 3.44.x, do not conflict on `meta` alone.
 
 ### Fixed
 

@@ -9,6 +9,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
 - [Table of content](#table-of-content)
 - [Getting started](#getting-started)
   - [altive\_lints](#altive_lints)
+  - [SDK and package compatibility](#sdk-and-package-compatibility)
   - [Disabling lint rules/analysis rules](#disabling-lint-rulesanalysis-rules)
   - [Ignoring analysis rules](#ignoring-analysis-rules)
 - [All custom analysis rules in altive\_lints](#all-custom-analysis-rules-in-altive_lints)
@@ -45,6 +46,33 @@ If not, create a new one or copy [analysis_options.yaml](https://github.com/alti
 ```yaml
 include: package:altive_lints/altive_lints.yaml
 ```
+
+### SDK and package compatibility
+
+`altive_lints` 3.x ships the YAML presets and Analyzer Plugin implementation
+in one pub package. Adding that package therefore brings its `analyzer`
+dependencies into the consuming pub workspace, where SDK-pinned testing
+packages can constrain them even though linting and testing are otherwise
+unrelated.
+
+| `altive_lints` | Dart SDK | `analysis_server_plugin` | `analyzer` | Compatible `test` setup |
+| --- | --- | --- | --- | --- |
+| 3.x | `>=3.10.0 <4.0.0` | `0.3.15` | `13.0.0` | `test 1.31.1` / `test_api 0.7.12` can resolve |
+| 2.x | `>=3.10.0 <4.0.0` | resolves to `0.3.4` | `9.0.0` | `test 1.31.0` / `test_api 0.7.11` can resolve, but this line does not include 3.x changes |
+
+Flutter 3.44.7 / Dart 3.12.2 pins `test_api` to `0.7.11` through
+`flutter_test`. If the same pub workspace also contains a Dart package that
+depends on `test`, pub selects `test 1.31.0`, which requires
+`analyzer >=8.0.0 <13.0.0`. This conflicts with the `analyzer 13.0.0`
+required by `altive_lints` 3.x, so that workspace cannot resolve 3.x.
+
+For that SDK combination, use `altive_lints: ^2.3.0` as a temporary
+dependency-resolution workaround, or keep Flutter and Dart test packages in
+separate pub workspaces. Do not force analyzer 13 with
+`dependency_overrides`: it violates `test 1.31.0`'s supported range. If only
+the YAML preset is needed, note that 3.x still brings Analyzer Plugin
+dependencies; the preset and plugin are not separate packages in this major
+version.
 
 ### Disabling lint rules/analysis rules
 
