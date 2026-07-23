@@ -14,7 +14,15 @@
  - Keep `altive_lints: ^4.0.0` in `dev_dependencies` and continue including
    `package:altive_lints/altive_lints.yaml`.
  - Do not add `altive_lints_plugin` to the consuming package's dependencies.
+ - Change existing ignore prefixes from `altive_lints/` to
+   `altive_lints_plugin/`.
+ - Rename custom `plugins.altive_lints` configuration to
+   `plugins.altive_lints_plugin` and change its version to `^1.0.0`.
  - Restart the Dart Analysis Server after updating analysis options.
+ - On Flutter 3.44.x, use `dart analyze` when command-line output must include
+   Analyzer Plugin diagnostics.
+ - To use only the analyzer-independent YAML preset, include
+   `package:altive_lints/altive_lints_preset.yaml`.
 
 ## 3.1.0
 

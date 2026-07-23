@@ -87,10 +87,10 @@ class _Visitor extends SimpleAstVisitor<void> {
     }
   }
 
-  bool _hasShrinkWrap(InstanceCreationExpression node) =>
-      node.argumentList.arguments.any(
-        (arg) => arg is NamedArgument && arg.name.lexeme == 'shrinkWrap',
-      );
+  bool _hasShrinkWrap(InstanceCreationExpression node) => node
+      .argumentList
+      .arguments
+      .any((arg) => arg is NamedArgument && arg.name.lexeme == 'shrinkWrap');
 
   bool _hasParentList(InstanceCreationExpression node) =>
       node.thisOrAncestorMatching(

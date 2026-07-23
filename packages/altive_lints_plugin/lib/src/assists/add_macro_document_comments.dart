@@ -109,9 +109,12 @@ class AddMacroDocumentComment extends ResolvedCorrectionProducer {
     }
 
     final macroComment = '/// {@macro $macroReference}';
+    final content = unitResult.content;
+    final lineStart = content.lastIndexOf('\n', member.offset - 1) + 1;
+    final indentation = content.substring(lineStart, member.offset);
 
     await builder.addDartFileEdit(file, (builder) {
-      builder.addSimpleInsertion(member.offset, '$macroComment\n');
+      builder.addSimpleInsertion(member.offset, '$macroComment\n$indentation');
     });
   }
 }

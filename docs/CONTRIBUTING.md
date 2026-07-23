@@ -23,7 +23,8 @@ options, so publish the plugin first whenever both packages change.
 1. Validate the workspace and both archives.
     - `flutter analyze`
     - `dart test packages/altive_lints_plugin`
-    - `dart run tool/verify_v4_split.dart`
+    - `dart run tool/verify_v4_split.dart` (also analyzes the real example
+      sources with every custom diagnostic enabled)
     - `(cd packages/altive_lints_plugin && dart pub publish --dry-run)`
     - `(cd packages/altive_lints && dart pub publish --dry-run)`
 1. Create the release commit and package tags.
@@ -32,7 +33,8 @@ options, so publish the plugin first whenever both packages change.
 1. Push the release commit and tags.
 1. Publish from `main` in this order:
     1. `make publish-altive-lints-plugin`
-    2. Confirm that pub.dev can resolve `altive_lints_plugin` 1.x.
+    2. Confirm the hosted plugin works with the unchanged example by running
+       `make verify-published-plugin`.
     3. `make publish-altive-lints`
 
 ```shell

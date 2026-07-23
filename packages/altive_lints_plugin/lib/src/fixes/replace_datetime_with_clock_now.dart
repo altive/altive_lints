@@ -67,20 +67,17 @@ class ReplaceDateTimeWithClockNow extends ResolvedCorrectionProducer {
       if (importPrefix != null) {
         builder.importLibrary(_clockUri, prefix: importPrefix);
       }
-      builder.addReplacement(
-        range.node(expression),
-        (builder) {
-          if (importPrefix == null) {
-            builder.writeReference(clockElement);
-          } else {
-            builder.write('$importPrefix.clock');
-          }
-          builder.write('.now()');
-          if (constructorName == 'timestamp') {
-            builder.write('.toUtc()');
-          }
-        },
-      );
+      builder.addReplacement(range.node(expression), (builder) {
+        if (importPrefix == null) {
+          builder.writeReference(clockElement);
+        } else {
+          builder.write('$importPrefix.clock');
+        }
+        builder.write('.now()');
+        if (constructorName == 'timestamp') {
+          builder.write('.toUtc()');
+        }
+      });
     });
   }
 }

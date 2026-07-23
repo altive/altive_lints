@@ -37,5 +37,5 @@ jobs:
       - name: Test
         run: dart test packages/altive_lints_plugin --fail-fast
 
-      - name: Verify v4 dependency isolation
+      - name: Verify v4 dependency isolation and example
         run: dart run tool/verify_v4_split.dart

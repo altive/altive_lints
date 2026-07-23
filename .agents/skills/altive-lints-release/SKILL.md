@@ -102,6 +102,9 @@ git tag altive_lints-vX.Y.Z
 10. Provide final commands.
    - Always include the push command.
    - Always include the pub.dev publish commands in plugin-then-preset order.
+   - After publishing the plugin and before publishing the preset, run
+     `make verify-published-plugin` to verify hosted resolution with the
+     unchanged example.
    - Include the dry-run command when useful or when it was not already run successfully.
 
 ## Command Output Rules
@@ -116,6 +119,7 @@ Present the pub.dev publish command in this form:
 
 ```bash
 (cd /ABSOLUTE/PATH/TO/packages/altive_lints_plugin && dart pub publish)
+make verify-published-plugin
 (cd /ABSOLUTE/PATH/TO/packages/altive_lints && dart pub publish)
 ```
 

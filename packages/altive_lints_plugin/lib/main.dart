@@ -40,10 +40,7 @@ class _Plugin extends Plugin {
     ].forEach(registry.registerLintRule);
 
     registry
-      ..registerFixForRule(
-        PreferClockNow.code,
-        ReplaceDateTimeWithClockNow.new,
-      )
+      ..registerFixForRule(PreferClockNow.code, ReplaceDateTimeWithClockNow.new)
       ..registerAssist(AddMacroDocumentComment.new)
       ..registerAssist(AddMacroTemplateDocumentComment.new)
       ..registerAssist(WrapWithMacroTemplateDocumentComment.new);

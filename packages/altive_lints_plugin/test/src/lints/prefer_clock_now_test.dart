@@ -38,13 +38,10 @@ final clock = Clock();
     final coreContent = coreFile.readAsStringSync();
     newFile(
       coreFile.path,
-      coreContent.replaceFirst(
-        'DateTime.now() : this._now();',
-        '''
+      coreContent.replaceFirst('DateTime.now() : this._now();', '''
 DateTime.now() : this._now();
   DateTime.timestamp() : this._now();
-  external DateTime toUtc();''',
-      ),
+  external DateTime toUtc();'''),
     );
 
     registeredFixGenerators.registerFixForLint(

@@ -178,8 +178,7 @@ void f() {
   }
 
   Future<void> test_column_multiple_children() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   Column(
@@ -189,8 +188,7 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_if_single_child() async {
@@ -210,8 +208,7 @@ void f() {
   }
 
   Future<void> test_column_if_spread_multiple_children() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   Column(
@@ -220,13 +217,11 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_if_else_spread_multiple_children() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 var condition = true;
 void f() {
@@ -236,8 +231,7 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_if_spread_single_else_spread_single() async {
@@ -262,8 +256,7 @@ void f() {
   }
 
   Future<void> test_column_if_spread_single_followed_by_child() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 var condition = true;
 void f() {
@@ -276,8 +269,7 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_if_single_spread_empty() async {
@@ -300,8 +292,7 @@ void f() {
   }
 
   Future<void> test_column_if_spread_multiple_single() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 var condition = true;
 void f() {
@@ -314,8 +305,7 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_if_spread_empty_else_spread_empty() async {
@@ -355,8 +345,7 @@ void f() {
   }
 
   Future<void> test_column_conditional_list_literals() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 var condition = true;
 void f() {
@@ -371,8 +360,7 @@ void f() {
           ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_if_element_top_level() async {
@@ -401,8 +389,7 @@ void f() {
   }
 
   Future<void> test_listView_list_generate() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   ListView(
@@ -412,13 +399,11 @@ void f() {
     ),
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_row_for_element() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   Row(
@@ -427,13 +412,11 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_sliverList_list_for_element() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   SliverList.list(
@@ -442,13 +425,11 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_sliverMainAxisGroup_multiple_slivers() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   SliverMainAxisGroup(
@@ -462,13 +443,11 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_multiple_ifs() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 var condition = true;
 void f() {
@@ -479,19 +458,16 @@ void f() {
     ],
   );
 }
-''',
-    );
+''');
   }
 
   Future<void> test_column_empty_children() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 $widgetClasses
 void f() {
   Column(children: []);
 }
-''',
-    );
+''');
   }
 }
 

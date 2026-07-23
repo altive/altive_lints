@@ -20,6 +20,17 @@ See the
 [SDK and package compatibility table](packages/altive_lints/README.md#sdk-and-package-compatibility)
 for details.
 
+### Migrating to v4
+
+The standard setup is unchanged: depend on `altive_lints: ^4.0.0` and include
+`package:altive_lints/altive_lints.yaml`. Do not add
+`altive_lints_plugin` to the application's `pubspec.yaml`; the analysis server
+resolves it separately.
+
+Existing ignore comments must change from `altive_lints/<rule>` to
+`altive_lints_plugin/<rule>`. Restart the Dart Analysis Server after upgrading.
+See the [full v4 migration guide](packages/altive_lints/README.md#v400).
+
 ## Usage
 
 ### altive_lints

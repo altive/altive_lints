@@ -9,6 +9,9 @@ Future<void> main() async {
   final pluginPath = Directory(
     '${repository.path}/packages/altive_lints_plugin',
   ).absolute.path;
+  final exampleSource = Directory(
+    '${presetSource.path}/example',
+  ).absolute;
   final fixture = await Directory.systemTemp.createTemp(
     'altive_lints_v4_split_',
   );
@@ -16,8 +19,11 @@ Future<void> main() async {
   try {
     final preset = Directory('${fixture.path}/altive_lints');
     final consumer = Directory('${fixture.path}/consumer');
+    final flutterApp = Directory('${consumer.path}/apps/flutter_app');
+    final dartPackage = Directory('${consumer.path}/packages/dart_package');
     await Directory('${preset.path}/lib').create(recursive: true);
-    await Directory('${consumer.path}/lib').create(recursive: true);
+    await flutterApp.create(recursive: true);
+    await Directory('${dartPackage.path}/lib').create(recursive: true);
 
     final sourcePubspec = await File(
       '${presetSource.path}/pubspec.yaml',
@@ -59,22 +65,58 @@ publish_to: none
 environment:
   sdk: ^3.12.0
 
+workspace:
+  - apps/flutter_app
+  - packages/dart_package
+
 dev_dependencies:
   altive_lints:
     path: ${jsonEncode(preset.path)}
+''');
+    await File('${flutterApp.path}/pubspec.yaml').writeAsString('''
+name: flutter_app
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  clock: ^1.1.2
   flutter_test:
     sdk: flutter
+''');
+    await File('${dartPackage.path}/pubspec.yaml').writeAsString('''
+name: dart_package
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+
+dev_dependencies:
   test: 1.31.0
-  test_api: 0.7.11
 ''');
-    await File('${consumer.path}/analysis_options.yaml').writeAsString('''
-include: package:altive_lints/altive_lints.yaml
+    await File('${dartPackage.path}/lib/dart_package.dart').writeAsString('''
+int add(int left, int right) => left + right;
 ''');
-    await File('${consumer.path}/lib/main.dart').writeAsString('''
-void main() {
-  print('\u3053\u3093\u306b\u3061\u306f');
-}
-''');
+    await File('${exampleSource.path}/analysis_options.yaml').copy(
+      '${consumer.path}/analysis_options.yaml',
+    );
+    for (final name in ['main.dart', 'assists.dart']) {
+      await File(
+        '${exampleSource.path}/$name',
+      ).copy('${flutterApp.path}/$name');
+    }
+    final exampleRules = await File(
+      '${exampleSource.path}/rules.dart',
+    ).readAsString();
+    final fixtureRules = File('${flutterApp.path}/rules.dart');
+    await fixtureRules.writeAsString(exampleRules);
 
     await _run('flutter', ['pub', 'get'], consumer.path);
 
@@ -102,15 +144,65 @@ void main() {
         'but found ${analyzer['rootUri']}.',
       );
     }
+    final testApi = packages.singleWhere(
+      (package) => package['name'] == 'test_api',
+    );
+    if (!(testApi['rootUri']! as String).contains('test_api-0.7.11')) {
+      throw StateError(
+        'Expected flutter_test to pin test_api 0.7.11, '
+        'but found ${testApi['rootUri']}.',
+      );
+    }
 
+    const expectedDiagnostics = {
+      'avoid_consecutive_sliver_to_box_adapter',
+      'avoid_hardcoded_color',
+      'avoid_hardcoded_japanese',
+      'avoid_shrink_wrap_in_list_view',
+      'avoid_single_child',
+      'prefer_clock_now',
+      'prefer_dedicated_media_query_methods',
+      'prefer_space_between_elements',
+      'prefer_to_include_sliver_in_name',
+    };
+    final ignoredAnalyzeResult = await _run(
+      Platform.resolvedExecutable,
+      ['analyze'],
+      consumer.path,
+    );
+    final unexpectedDiagnostics = expectedDiagnostics
+        .where(
+          (diagnostic) => ignoredAnalyzeResult.stdout.toString().contains(
+            diagnostic,
+          ),
+        )
+        .toList();
+    if (unexpectedDiagnostics.isNotEmpty) {
+      throw StateError(
+        'The example ignore prefixes did not suppress these diagnostics: '
+        '${unexpectedDiagnostics.join(', ')}',
+      );
+    }
+
+    await fixtureRules.writeAsString(
+      exampleRules.replaceFirst(
+        RegExp(r'^// ignore_for_file:.*\n', multiLine: true),
+        '',
+      ),
+    );
     final analyzeResult = await _run(
       Platform.resolvedExecutable,
       ['analyze'],
       consumer.path,
     );
-    if (!analyzeResult.stdout.toString().contains('avoid_hardcoded_japanese')) {
+    final analyzeOutput = analyzeResult.stdout.toString();
+    final missingDiagnostics = expectedDiagnostics
+        .where((diagnostic) => !analyzeOutput.contains(diagnostic))
+        .toList();
+    if (missingDiagnostics.isNotEmpty) {
       throw StateError(
-        'The separately resolved plugin did not report its custom lint.',
+        'The example did not report these custom diagnostics: '
+        '${missingDiagnostics.join(', ')}',
       );
     }
   } finally {

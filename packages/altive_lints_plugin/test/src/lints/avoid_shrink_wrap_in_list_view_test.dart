@@ -74,8 +74,7 @@ $widgetClasses
   }
 
   Future<void> test_listView_no_shrinkWrap() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 void f() {
   ListView(
     children: [
@@ -86,13 +85,11 @@ void f() {
   );
 }
 $widgetClasses
-''',
-    );
+''');
   }
 
   Future<void> test_listView_shrinkWrap_no_parent_list() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 void f() {
   ListView(
     shrinkWrap: true,
@@ -100,8 +97,7 @@ void f() {
   );
 }
 $widgetClasses
-''',
-    );
+''');
   }
 }
 

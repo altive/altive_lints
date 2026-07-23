@@ -41,25 +41,21 @@ $mockClasses
   }
 
   Future<void> test_mediaQuery_sizeOf() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 void f(BuildContext context) {
   MediaQuery.sizeOf(context);
 }
 $mockClasses
-''',
-    );
+''');
   }
 
   Future<void> test_mediaQuery_viewInsetsOf() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 void f(BuildContext context) {
   MediaQuery.viewInsetsOf(context);
 }
 $mockClasses
-''',
-    );
+''');
   }
 
   Future<void> test_mediaQuery_of_property_access() async {

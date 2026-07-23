@@ -518,6 +518,36 @@ Replace diagnostic ignore prefixes from `altive_lints/` with
 `altive_lints_plugin` to `pubspec.yaml`, because doing so would bring its
 analyzer dependency back into the consuming workspace.
 
+If `analysis_options.yaml` overrides plugin diagnostics, rename that plugin
+configuration as follows:
+
+Before v4:
+
+```yaml
+plugins:
+  altive_lints:
+    version: ^3.0.0
+```
+
+With v4:
+
+```yaml
+plugins:
+  altive_lints_plugin:
+    version: ^1.0.0
+```
+
+If custom diagnostics are not needed, the analyzer-independent preset can be
+used on its own:
+
+```yaml
+include: package:altive_lints/altive_lints_preset.yaml
+```
+
+For Flutter 3.44.x command-line checks, use `dart analyze` to receive Analyzer
+Plugin diagnostics. This package split fixes pub dependency resolution; it does
+not change `flutter analyze`'s plugin-result timing on that Flutter release.
+
 ### v1.12.0
 
 The [public_member_api_docs](https://dart.dev/tools/linter-rules/public_member_api_docs) prompt to add documents has been activated.

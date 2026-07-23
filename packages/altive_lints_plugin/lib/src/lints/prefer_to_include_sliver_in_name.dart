@@ -92,13 +92,11 @@ class _Visitor extends SimpleAstVisitor<void> {
 
     final returnStatements = methodBody.block.statements
         .whereType<ReturnStatement>();
-    final returnsSliverWidget = returnStatements.any(
-      (returnStatement) {
-        final returnType = returnStatement.expression?.staticType;
-        final typeName = returnType?.getDisplayString();
-        return typeName?.startsWith('Sliver') ?? false;
-      },
-    );
+    final returnsSliverWidget = returnStatements.any((returnStatement) {
+      final returnType = returnStatement.expression?.staticType;
+      final typeName = returnType?.getDisplayString();
+      return typeName?.startsWith('Sliver') ?? false;
+    });
 
     if (!returnsSliverWidget) {
       return;

@@ -41,27 +41,23 @@ class MyWidget {
   }
 
   Future<void> test_field_constructor_with_space() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 class MyWidget {
   final String title;
 
   MyWidget(this.title);
 }
-''',
-    );
+''');
   }
 
   Future<void> test_constructor_build_with_space() async {
-    await assertNoDiagnostics(
-      '''
+    await assertNoDiagnostics('''
 class MyWidget {
   MyWidget();
 
   void build() {}
 }
-''',
-    );
+''');
   }
 
   Future<void> test_constructor_field_no_space() async {

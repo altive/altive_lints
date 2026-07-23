@@ -36,17 +36,14 @@ void main() {
       expect(isTestFile(file), isFalse);
     });
 
-    test(
-      'False if the path or directory contains the string "test" '
-      'but it is not an exact match',
-      () {
-        final resourceProvider = PhysicalResourceProvider.INSTANCE;
+    test('False if the path or directory contains the string "test" '
+        'but it is not an exact match', () {
+      final resourceProvider = PhysicalResourceProvider.INSTANCE;
 
-        const filePath = '/project/testable/testable_file.dart';
-        final file = resourceProvider.getFile(filePath);
-        expect(isTestFile(file), isFalse);
-      },
-    );
+      const filePath = '/project/testable/testable_file.dart';
+      final file = resourceProvider.getFile(filePath);
+      expect(isTestFile(file), isFalse);
+    });
 
     test('False if it is in lib directory and file name is test.dart', () {
       final resourceProvider = PhysicalResourceProvider.INSTANCE;
