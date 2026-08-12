@@ -1,6 +1,6 @@
 ---
 name: altive-lints-release
-description: Manual release workflow for the altive_lints preset and altive_lints_plugin packages. Use when Codex needs to prepare a release without running melos version: review changes, choose SemVer versions, maintain useful changelogs, validate both packages, and publish the plugin before the preset.
+description: "Manual release workflow for the altive_lints preset and altive_lints_plugin packages. Use when Codex needs to prepare a release without running melos version: review changes, choose SemVer versions, maintain useful changelogs, validate both packages, and publish the plugin before the preset."
 ---
 
 <!-- cspell:words creatordate oneline pubspec -->
@@ -52,6 +52,10 @@ python3 .agents/skills/altive-lints-release/scripts/list_lint_rule_changes.py --
    - Add the new version section at the top.
    - Base the notes on commits and actual diffs since the latest release tag.
    - For `all_lint_rules.yaml` changes, do not write only "update all_lint_rules"; always list the added and removed rules.
+   - Write explanatory release notes as declarative descriptions of completed
+     changes or resulting states, not imperative instructions. For example,
+     prefer "`rule_a` remains enabled, while `rule_b` is disabled" over
+     "keep `rule_a` enabled and disable `rule_b`."
    - Match the existing changelog style:
 
 ```markdown
