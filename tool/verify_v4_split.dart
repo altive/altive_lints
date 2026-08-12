@@ -9,9 +9,7 @@ Future<void> main() async {
   final pluginPath = Directory(
     '${repository.path}/packages/altive_lints_plugin',
   ).absolute.path;
-  final exampleSource = Directory(
-    '${presetSource.path}/example',
-  ).absolute;
+  final exampleSource = Directory('${presetSource.path}/example').absolute;
   final fixture = await Directory.systemTemp.createTemp(
     'altive_lints_v4_split_',
   );
@@ -104,9 +102,9 @@ dev_dependencies:
     await File('${dartPackage.path}/lib/dart_package.dart').writeAsString('''
 int add(int left, int right) => left + right;
 ''');
-    await File('${exampleSource.path}/analysis_options.yaml').copy(
-      '${consumer.path}/analysis_options.yaml',
-    );
+    await File(
+      '${exampleSource.path}/analysis_options.yaml',
+    ).copy('${consumer.path}/analysis_options.yaml');
     for (final name in ['main.dart', 'assists.dart']) {
       await File(
         '${exampleSource.path}/$name',
@@ -165,16 +163,13 @@ int add(int left, int right) => left + right;
       'prefer_space_between_elements',
       'prefer_to_include_sliver_in_name',
     };
-    final ignoredAnalyzeResult = await _run(
-      Platform.resolvedExecutable,
-      ['analyze'],
-      consumer.path,
-    );
+    final ignoredAnalyzeResult = await _run(Platform.resolvedExecutable, [
+      'analyze',
+    ], consumer.path);
     final unexpectedDiagnostics = expectedDiagnostics
         .where(
-          (diagnostic) => ignoredAnalyzeResult.stdout.toString().contains(
-            diagnostic,
-          ),
+          (diagnostic) =>
+              ignoredAnalyzeResult.stdout.toString().contains(diagnostic),
         )
         .toList();
     if (unexpectedDiagnostics.isNotEmpty) {
@@ -190,11 +185,9 @@ int add(int left, int right) => left + right;
         '',
       ),
     );
-    final analyzeResult = await _run(
-      Platform.resolvedExecutable,
-      ['analyze'],
-      consumer.path,
-    );
+    final analyzeResult = await _run(Platform.resolvedExecutable, [
+      'analyze',
+    ], consumer.path);
     final analyzeOutput = analyzeResult.stdout.toString();
     final missingDiagnostics = expectedDiagnostics
         .where((diagnostic) => !analyzeOutput.contains(diagnostic))
