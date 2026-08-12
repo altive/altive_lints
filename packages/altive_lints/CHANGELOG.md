@@ -1,3 +1,14 @@
+## 4.1.0
+
+ - **FEAT**: update all_lint_rules (#132).
+   - Added
+     - [future_sync_value](https://dart.dev/tools/linter-rules/future_sync_value)
+     - [migrate_design_widgets](https://dart.dev/tools/linter-rules/migrate_design_widgets)
+     - [unnecessary_this_alias](https://dart.dev/tools/linter-rules/unnecessary_this_alias)
+ - **FEAT**: `future_sync_value` and `unnecessary_this_alias` remain enabled in
+   the recommended preset, while the experimental, migration-specific
+   `migrate_design_widgets` rule is disabled.
+
 ## 4.0.0
 
 ### Breaking changes
