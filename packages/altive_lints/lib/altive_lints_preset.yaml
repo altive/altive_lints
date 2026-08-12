@@ -47,6 +47,10 @@ linter:
     # StatefulWidget will give you a warning
     library_private_types_in_public_api: false
 
+    # Experimental migration rule that rejects standard Material and Cupertino
+    # imports. Keep disabled until Flutter's design widget migration is ready.
+    migrate_design_widgets: false
+
     # Conflicts with `type_annotate_public_apis`
     omit_obvious_property_types: false
 
