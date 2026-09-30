@@ -45,11 +45,14 @@ environment:
     final options = await File(
       '${presetSource.path}/lib/altive_lints.yaml',
     ).readAsString();
+    if (!options.contains('prefer_widget_class: false')) {
+      throw StateError('prefer_widget_class must be disabled by default.');
+    }
     final localOptions = options.replaceFirst(
       'version: ^1.0.0',
       'path: ${jsonEncode(pluginPath)}',
     );
-    if (localOptions == options) {
+    if (!localOptions.contains('path: ${jsonEncode(pluginPath)}')) {
       throw StateError('Could not replace the published plugin constraint.');
     }
     await File(
@@ -102,9 +105,17 @@ dev_dependencies:
     await File('${dartPackage.path}/lib/dart_package.dart').writeAsString('''
 int add(int left, int right) => left + right;
 ''');
-    await File(
+    final consumerOptions = await File(
       '${exampleSource.path}/analysis_options.yaml',
     ).copy('${consumer.path}/analysis_options.yaml');
+    await consumerOptions.writeAsString('''
+
+plugins:
+  altive_lints_plugin:
+    path: ${jsonEncode(pluginPath)}
+    diagnostics:
+      prefer_widget_class: true
+''', mode: FileMode.append);
     for (final name in ['main.dart', 'assists.dart']) {
       await File(
         '${exampleSource.path}/$name',
@@ -162,6 +173,7 @@ int add(int left, int right) => left + right;
       'prefer_dedicated_media_query_methods',
       'prefer_space_between_elements',
       'prefer_to_include_sliver_in_name',
+      'prefer_widget_class',
     };
     final ignoredAnalyzeResult = await _run(Platform.resolvedExecutable, [
       'analyze',

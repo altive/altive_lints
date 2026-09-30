@@ -1,3 +1,8 @@
+## Unreleased
+
+ - **FEAT**: `prefer_widget_class` is available as an opt-in analysis rule and
+   remains disabled in the recommended preset.
+
 ## 4.1.0
 
  - **FEAT**: update all_lint_rules (#132).

@@ -2,6 +2,8 @@
 
  - **FIX**: `prefer_dedicated_media_query_methods` allows copying the full
    `MediaQueryData` returned by `MediaQuery.of` or `MediaQuery.maybeOf`.
+ - **FEAT**: `prefer_widget_class` diagnoses functions, methods, and getters
+   that return Flutter widgets, except framework `build` methods.
 
 ## 1.0.0
 
