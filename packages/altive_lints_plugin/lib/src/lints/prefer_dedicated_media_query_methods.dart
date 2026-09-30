@@ -78,6 +78,15 @@ class _Visitor extends SimpleAstVisitor<void> {
 
     // Check for MediaQuery.of / maybeOf
     if (method == 'of' || method == 'maybeOf') {
+      // A copy needs the complete MediaQueryData, so no dedicated accessor
+      // can replace this call.
+      final parent = node.parent;
+      if (parent is MethodInvocation &&
+          identical(parent.target, node) &&
+          parent.methodName.name == 'copyWith') {
+        return;
+      }
+
       rule.reportAtNode(node);
       return;
     }

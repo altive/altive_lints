@@ -12,6 +12,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [altive\_lints](#altive_lints)
   - [SDK and package compatibility](#sdk-and-package-compatibility)
   - [Disabling lint rules/analysis rules](#disabling-lint-rulesanalysis-rules)
+  - [Enabling optional analysis rules](#enabling-optional-analysis-rules)
   - [Ignoring analysis rules](#ignoring-analysis-rules)
 - [All custom analysis rules](#all-custom-analysis-rules)
   - [avoid\_consecutive\_sliver\_to\_box\_adapter](#avoid_consecutive_sliver_to_box_adapter)
@@ -23,6 +24,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
   - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
+  - [prefer\_widget\_class](#prefer_widget_class)
 - [All assists](#all-assists)
   - [Add macro template documentation comment](#add-macro-template-documentation-comment)
   - [Add macro documentation comment](#add-macro-documentation-comment)
@@ -109,6 +111,23 @@ plugins:
       prefer_dedicated_media_query_methods: false
       prefer_space_between_elements: false
       prefer_to_include_sliver_in_name: false
+```
+
+### Enabling optional analysis rules
+
+`prefer_widget_class` is disabled by default. To enable it, add the following
+configuration to your project's `analysis_options.yaml`. If you already have
+an `altive_lints_plugin` block, add `prefer_widget_class: true` to its
+`diagnostics` section.
+
+```yaml
+include: package:altive_lints/altive_lints.yaml
+
+plugins:
+  altive_lints_plugin:
+    version: ^1.0.0
+    diagnostics:
+      prefer_widget_class: true
 ```
 
 ### Ignoring analysis rules
@@ -306,7 +325,12 @@ var width = MediaQuery.widthOf(context);
 var height = MediaQuery.heightOf(context);
 var padding = MediaQuery.paddingOf(context);
 var viewInsets = MediaQuery.viewInsetsOf(context);
+var data = MediaQuery.of(context).copyWith(textScaler: textScaler);
 ```
+
+The rule allows `MediaQuery.of(context).copyWith(...)` and
+`MediaQuery.maybeOf(context)?.copyWith(...)` because copying all existing
+`MediaQueryData` fields requires the complete data object.
 
 ### prefer_space_between_elements
 
@@ -370,6 +394,32 @@ class SliverMyCustomList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(...);
   }
+}
+```
+
+### prefer_widget_class
+
+Prefer a widget class over a function, method, or getter returning a Flutter
+`Widget`. The rule includes inferred, subclass, and nullable return types.
+Flutter's required `build` methods are excluded. This rule is optional; see
+[Enabling optional analysis rules](#enabling-optional-analysis-rules).
+
+**Bad**:
+
+```dart
+Widget makeGreeting(String name) => Text('Hello, $name'); // LINT
+```
+
+**Good**:
+
+```dart
+class Greeting extends StatelessWidget {
+  const Greeting({required this.name, super.key});
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) => Text('Hello, $name');
 }
 ```
 
