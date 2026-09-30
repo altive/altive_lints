@@ -70,12 +70,14 @@ linter:
     # Prefer inference; annotate properties only when it improves clarity.
     specify_nonobvious_property_types: false
 
-    # Conflicts with `discarded_futures` and `unnecessary_await_in_return` with arrow syntax.
+    # Conflicts with `discarded_futures` with arrow syntax.
     # Lint patterns:
     # - onTap: () => someFuture(arg: someValue), // LINT: discarded_futures
-    # - onTap: () async => await someFuture(arg: someValue), // LINT: unnecessary_await_in_return
     # - onTap: () async => someFuture(arg: someValue), // LINT: unnecessary_async
     unnecessary_async: false
+
+    # Deprecated because following this rule everywhere can cause unexpected errors.
+    unnecessary_await_in_return: false
 
     # Incompatible with `prefer_final_locals`
     # Having immutable local variables makes larger functions more predictable
