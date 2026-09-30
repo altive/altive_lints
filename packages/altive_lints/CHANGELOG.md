@@ -1,3 +1,7 @@
+## Unreleased
+
+ - **FEAT**: the recommended preset enables `prefer_widget_class` by default.
+
 ## 4.1.0
 
  - **FEAT**: update all_lint_rules (#132).

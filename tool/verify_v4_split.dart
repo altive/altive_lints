@@ -162,6 +162,7 @@ int add(int left, int right) => left + right;
       'prefer_dedicated_media_query_methods',
       'prefer_space_between_elements',
       'prefer_to_include_sliver_in_name',
+      'prefer_widget_class',
     };
     final ignoredAnalyzeResult = await _run(Platform.resolvedExecutable, [
       'analyze',

@@ -17,6 +17,7 @@ import 'src/lints/prefer_clock_now.dart';
 import 'src/lints/prefer_dedicated_media_query_methods.dart';
 import 'src/lints/prefer_space_between_elements.dart';
 import 'src/lints/prefer_to_include_sliver_in_name.dart';
+import 'src/lints/prefer_widget_class.dart';
 
 /// Enables Altive lints.
 final plugin = _Plugin();
@@ -37,6 +38,7 @@ class _Plugin extends Plugin {
       PreferDedicatedMediaQueryMethods(),
       PreferSpaceBetweenElements(),
       PreferToIncludeSliverInName(),
+      PreferWidgetClass(),
     ].forEach(registry.registerLintRule);
 
     registry

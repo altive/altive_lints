@@ -13,3 +13,4 @@ plugins:
       prefer_dedicated_media_query_methods: true
       prefer_space_between_elements: true
       prefer_to_include_sliver_in_name: true
+      prefer_widget_class: true

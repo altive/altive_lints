@@ -23,6 +23,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [prefer\_dedicated\_media\_query\_methods](#prefer_dedicated_media_query_methods)
   - [prefer\_space\_between\_elements](#prefer_space_between_elements)
   - [prefer\_to\_include\_sliver\_in\_name](#prefer_to_include_sliver_in_name)
+  - [prefer\_widget\_class](#prefer_widget_class)
 - [All assists](#all-assists)
   - [Add macro template documentation comment](#add-macro-template-documentation-comment)
   - [Add macro documentation comment](#add-macro-documentation-comment)
@@ -109,6 +110,7 @@ plugins:
       prefer_dedicated_media_query_methods: false
       prefer_space_between_elements: false
       prefer_to_include_sliver_in_name: false
+      prefer_widget_class: false
 ```
 
 ### Ignoring analysis rules
@@ -375,6 +377,31 @@ class SliverMyCustomList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(...);
   }
+}
+```
+
+### prefer_widget_class
+
+Prefer a widget class over a function, method, or getter returning a Flutter
+`Widget`. The rule includes inferred, subclass, and nullable return types.
+Flutter's required `build` methods are excluded.
+
+**Bad**:
+
+```dart
+Widget makeGreeting(String name) => Text('Hello, $name'); // LINT
+```
+
+**Good**:
+
+```dart
+class Greeting extends StatelessWidget {
+  const Greeting({required this.name, super.key});
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) => Text('Hello, $name');
 }
 ```
 
