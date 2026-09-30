@@ -12,6 +12,7 @@ Provides `all_lint_rules.yaml` that activates all lint rules and `altive_lints.y
   - [altive\_lints](#altive_lints)
   - [SDK and package compatibility](#sdk-and-package-compatibility)
   - [Disabling lint rules/analysis rules](#disabling-lint-rulesanalysis-rules)
+  - [Enabling optional analysis rules](#enabling-optional-analysis-rules)
   - [Ignoring analysis rules](#ignoring-analysis-rules)
 - [All custom analysis rules](#all-custom-analysis-rules)
   - [avoid\_consecutive\_sliver\_to\_box\_adapter](#avoid_consecutive_sliver_to_box_adapter)
@@ -110,7 +111,23 @@ plugins:
       prefer_dedicated_media_query_methods: false
       prefer_space_between_elements: false
       prefer_to_include_sliver_in_name: false
-      prefer_widget_class: false
+```
+
+### Enabling optional analysis rules
+
+`prefer_widget_class` is disabled by default. To enable it, add the following
+configuration to your project's `analysis_options.yaml`. If you already have
+an `altive_lints_plugin` block, add `prefer_widget_class: true` to its
+`diagnostics` section.
+
+```yaml
+include: package:altive_lints/altive_lints.yaml
+
+plugins:
+  altive_lints_plugin:
+    version: ^1.0.0
+    diagnostics:
+      prefer_widget_class: true
 ```
 
 ### Ignoring analysis rules
@@ -384,7 +401,8 @@ class SliverMyCustomList extends StatelessWidget {
 
 Prefer a widget class over a function, method, or getter returning a Flutter
 `Widget`. The rule includes inferred, subclass, and nullable return types.
-Flutter's required `build` methods are excluded.
+Flutter's required `build` methods are excluded. This rule is optional; see
+[Enabling optional analysis rules](#enabling-optional-analysis-rules).
 
 **Bad**:
 
