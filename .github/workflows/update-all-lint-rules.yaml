@@ -29,9 +29,6 @@ jobs:
             --file "../altive_lints/lib/all_lint_rules.yaml" \
             --query-selector "pre code" \
             --verbose
-      # Dart still lists this deprecated rule on the all-rules page.
-      - name: Exclude deprecated unnecessary_await_in_return rule
-        run: sed -i '/^    - unnecessary_await_in_return$/d' packages/altive_lints/lib/all_lint_rules.yaml
       - name: Check for changes
         id: check_diff
         run: |

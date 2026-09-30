@@ -76,6 +76,9 @@ linter:
     # - onTap: () async => someFuture(arg: someValue), // LINT: unnecessary_async
     unnecessary_async: false
 
+    # Deprecated because following this rule everywhere can cause unexpected errors.
+    unnecessary_await_in_return: false
+
     # Incompatible with `prefer_final_locals`
     # Having immutable local variables makes larger functions more predictable
     # so we will use `prefer_final_locals` instead.

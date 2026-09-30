@@ -24,7 +24,3 @@ dart run diffscrape \
 --query-selector "pre code.yaml" \
 --verbose
 ```
-
-When updating `all_lint_rules.yaml`, remove `unnecessary_await_in_return` from
-the generated list. Dart still includes it on the all-rules page even though
-the rule is deprecated. The scheduled update workflow removes it automatically.
