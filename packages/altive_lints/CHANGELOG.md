@@ -1,3 +1,8 @@
+## Unreleased
+
+ - **FIX**: `unnecessary_await_in_return` is excluded from the lint presets
+   because Dart deprecated the rule due to possible unexpected errors.
+
 ## 4.1.0
 
  - **FEAT**: update all_lint_rules (#132).
