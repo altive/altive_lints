@@ -306,7 +306,12 @@ var width = MediaQuery.widthOf(context);
 var height = MediaQuery.heightOf(context);
 var padding = MediaQuery.paddingOf(context);
 var viewInsets = MediaQuery.viewInsetsOf(context);
+var data = MediaQuery.of(context).copyWith(textScaler: textScaler);
 ```
+
+The rule allows `MediaQuery.of(context).copyWith(...)` and
+`MediaQuery.maybeOf(context)?.copyWith(...)` because copying all existing
+`MediaQueryData` fields requires the complete data object.
 
 ### prefer_space_between_elements
 

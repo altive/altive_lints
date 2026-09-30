@@ -1,3 +1,8 @@
+## Unreleased
+
+ - **FIX**: `prefer_dedicated_media_query_methods` allows copying the full
+   `MediaQueryData` returned by `MediaQuery.of` or `MediaQuery.maybeOf`.
+
 ## 1.0.0
 
  - **FEAT**: extract the Analyzer Plugin implementation from `altive_lints` 3.x.

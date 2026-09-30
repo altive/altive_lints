@@ -70,6 +70,36 @@ $mockClasses
     );
   }
 
+  Future<void> test_mediaQuery_of_copyWith() async {
+    await assertNoDiagnostics('''
+void f(BuildContext context) {
+  final data = MediaQuery.of(context).copyWith(textScaler: Object());
+}
+$mockClasses
+''');
+  }
+
+  Future<void> test_mediaQuery_maybeOf_copyWith() async {
+    await assertNoDiagnostics('''
+void f(BuildContext context) {
+  final data = MediaQuery.maybeOf(context)?.copyWith(textScaler: Object());
+}
+$mockClasses
+''');
+  }
+
+  Future<void> test_mediaQuery_of_property_copyWith() async {
+    await assertDiagnostics(
+      '''
+void f(BuildContext context) {
+  MediaQuery.of(context).size.copyWith();
+}
+$mockClasses
+''',
+      [lint(33, 22)],
+    );
+  }
+
   Future<void> test_mediaQuery_sizeOf_width() async {
     await assertDiagnostics(
       '''
@@ -108,11 +138,13 @@ class MediaQuery {
 class MediaQueryData {
   Size get size => Size();
   EdgeInsets get padding => EdgeInsets();
+  MediaQueryData copyWith({Object? textScaler}) => MediaQueryData();
 }
 
 class Size {
   double get width => 0;
   double get height => 0;
+  Size copyWith() => Size();
 }
 class EdgeInsets {}
 ''';
