@@ -2,7 +2,7 @@ include: altive_lints_preset.yaml
 
 plugins:
   altive_lints_plugin:
-    version: ^1.0.0
+    version: ^1.1.0
     diagnostics:
       avoid_consecutive_sliver_to_box_adapter: true
       avoid_hardcoded_color: true

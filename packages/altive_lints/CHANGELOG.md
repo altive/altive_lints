@@ -1,9 +1,11 @@
-## Unreleased
+## 4.2.0
 
  - **FIX**: The recommended preset disables the deprecated
    `unnecessary_await_in_return` rule because it can cause unexpected errors.
  - **FEAT**: `prefer_widget_class` is available as an opt-in analysis rule and
    remains disabled in the recommended preset.
+ - **FEAT**: The bundled Analyzer Plugin constraint is `^1.1.0`, matching the
+   release that provides `prefer_widget_class`.
 
 ## 4.1.0
 

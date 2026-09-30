@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.0
 
  - **FIX**: `prefer_dedicated_media_query_methods` allows copying the full
    `MediaQueryData` returned by `MediaQuery.of` or `MediaQuery.maybeOf`.

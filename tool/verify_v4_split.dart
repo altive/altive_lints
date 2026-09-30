@@ -49,7 +49,7 @@ environment:
       throw StateError('prefer_widget_class must be disabled by default.');
     }
     final localOptions = options.replaceFirst(
-      'version: ^1.0.0',
+      'version: ^1.1.0',
       'path: ${jsonEncode(pluginPath)}',
     );
     if (!localOptions.contains('path: ${jsonEncode(pluginPath)}')) {

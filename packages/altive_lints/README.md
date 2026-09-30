@@ -99,7 +99,7 @@ linter:
 
 plugins:
   altive_lints_plugin:
-    version: ^1.0.0
+    version: ^1.1.0
     diagnostics:
       # Explicitly disable one analysis rule.
       avoid_consecutive_sliver_to_box_adapter: false
@@ -125,7 +125,7 @@ include: package:altive_lints/altive_lints.yaml
 
 plugins:
   altive_lints_plugin:
-    version: ^1.0.0
+    version: ^1.1.0
     diagnostics:
       prefer_widget_class: true
 ```

@@ -2,7 +2,7 @@ name: altive_lints
 description: >-
   Analyzer-independent lint presets with Altive's recommended rule selection
   and optional Analyzer Plugin integration.
-version: 4.1.0
+version: 4.2.0
 homepage: https://altive.dev
 repository: https://github.com/altive/altive_lints
 issue_tracker: https://github.com/altive/altive_lints/issues
